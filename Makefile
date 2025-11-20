@@ -10,6 +10,28 @@ vim_session:
 
 ######################################################################
 
+Sources += $(wildcard *.md)
+
+## doc.html: doc.md
+## doc.md.tex: doc.md
+## doc.md.pdf: doc.md
+
+######################################################################
+
+## Linking directories
+
+Makefile: | legacy
+
+lgit = https://git@git.overleaf.com/6656039e718682018f3b43f2
+legacy: dir=../emergentHeterogeneity
+legacy:
+	$(linkdirname) || (git clone $(lgit) $@ && ls $@/Makefile)
+
+
+	
+
+######################################################################
+
 ### Makestuff
 
 Sources += Makefile
@@ -29,6 +51,8 @@ makestuff:
 -include makestuff/os.mk
 
 ## -include makestuff/pipeR.mk
+-include makestuff/texj.mk
+-include makestuff/pandoc.mk
 
 -include makestuff/git.mk
 -include makestuff/visual.mk
