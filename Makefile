@@ -1,15 +1,12 @@
-## This is [project.Makefile] …
+## This is kappaMS created 2025 Nov 19 (Wed)
+## Paper 1 of the Roswell conjecture project
 
-## This section is for Dushoff-style vim-setup and vim targeting
-## You can delete it if you don't want it
 current: target
 -include target.mk
 Ignore = target.mk
 
 vim_session:
 	bash -cl "vmt"
-
-## -include makestuff/perl.def
 
 ######################################################################
 
