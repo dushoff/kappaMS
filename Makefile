@@ -10,12 +10,22 @@ vim_session:
 
 ######################################################################
 
+## Still developing this pipeline; be kind to Dushoff
+
 Sources += $(wildcard *.md)
 Ignore += $(wildcard *.html)
 
 ## doc.html: doc.md
-## doc.md.tex: doc.md
-## doc.md.pdf: doc.md
+## doc.pdf: doc.md
+
+## Use TEX for made things .tex for edited things
+Ignore += *.TEX
+Sources += $(wildcard *.tex)
+
+%.TEX: %.md
+	$(pandocs)
+
+## draft.pdf: draft.tex doc.md
 
 ######################################################################
 
