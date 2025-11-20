@@ -11,6 +11,7 @@ vim_session:
 ######################################################################
 
 Sources += $(wildcard *.md)
+Ignore += $(wildcard *.html)
 
 ## doc.html: doc.md
 ## doc.md.tex: doc.md
@@ -22,6 +23,7 @@ Sources += $(wildcard *.md)
 
 Makefile: | legacy
 
+Ignore += legacy
 lgit = https://git@git.overleaf.com/6656039e718682018f3b43f2
 legacy: dir=../emergentHeterogeneity
 legacy:
