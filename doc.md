@@ -10,7 +10,7 @@ Demographic stochasticity can generate “emergent” heterogeneity even in the 
 __Heterogeneity emerges even from a simple, linearized compartmental model__ due to implicit variation in recovery times among infectors. (a) Activity distributions (density curves) and secondary case distributions (density histograms) for the outset of an SIR epidemic. (b) Inequality curves for _activity_ distributions from SIR models with differing \Ro\ are identical (and indestinguishable due to overplotting); inequality in the _case_ distribution decreases with R0 towards the theoretical limit of the activity distribution.
 ](kappa/lsCurves.Rout.pdf)
 
-JD-Azadeh: We shoudl work on making the second panel in a similarly simple way to the first.
+JD-Azadeh: We should work on making the second panel in a similarly simple way to the first.
 
 But despite differences in a non-dynamic world, we find invariance in case-per-case when looking across the entire epidemic
 this is the top L of legacy/figures/emergentHetPoster.pdf
