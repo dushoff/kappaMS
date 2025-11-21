@@ -10,24 +10,17 @@ vim_session:
 
 ######################################################################
 
-## Still developing this pipeline; be kind to Dushoff
+Sources +=  draft.tex inc.tex comms.tex
+## draft.pdf: draft.tex doc.md
+## doc.inc.tex: doc.md
+draft.texdeps.mk: doc.inc.texdeps.mk
 
 Sources += $(wildcard *.md)
 Ignore += $(wildcard *.html)
 
-## doc.html: doc.md
-## doc.pdf: doc.md
-
-## Not using .TEX because I would need to worry about developing rules
-
 Ignore += *.inc.tex
 %.inc.tex: %.md
 	$(pandoc)
-
-Sources +=  draft.tex inc.tex comms.tex
-## doc.inc.tex: doc.md
-## draft.pdf: draft.tex doc.md
-draft.texdeps.mk: doc.inc.texdeps.mk
 
 ######################################################################
 
@@ -39,6 +32,20 @@ lgit = https://git@git.overleaf.com/6656039e718682018f3b43f2
 legacy: dir=../emergentHeterogeneity
 legacy:
 	$(linkdirname) || (git clone $(lgit) $@ && ls $@/Makefile)
+
+hotdirs += rc
+rcgit = https://github.com/dushoff/rcCode
+rc: dir=../rcCode
+rc:
+	$(linkdirname) || (git clone $(rcgit) $@ && ls $@/Makefile)
+
+hotdirs += kappa
+kappagit = https://github.com/dushoff/kappaCode
+kappa: dir=../kappaCode
+kappa:
+	$(linkdirname) || (git clone $(kappagit) $@ && ls $@/Makefile)
+
+Ignore += $(hotdirs)
 
 ######################################################################
 
@@ -67,6 +74,7 @@ makestuff:
 ## -include makestuff/pipeR.mk
 -include makestuff/texj.mk
 -include makestuff/pandoc.mk
+-include makestuff/hotcold.mk
 
 -include makestuff/git.mk
 -include makestuff/visual.mk
