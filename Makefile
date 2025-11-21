@@ -32,18 +32,21 @@ lgit = https://git@git.overleaf.com/6656039e718682018f3b43f2
 legacy: dir=../emergentHeterogeneity
 legacy:
 	$(linkdirname) || (git clone $(lgit) $@ && ls $@/Makefile)
+	cd $@ && $(MAKE) Makefile
 
 hotdirs += rc
 rcgit = https://github.com/dushoff/rcCode
 rc: dir=../rcCode
 rc:
 	$(linkdirname) || (git clone $(rcgit) $@ && ls $@/Makefile)
+	cd $@ && $(MAKE) Makefile
 
 hotdirs += kappa
 kappagit = https://github.com/dushoff/kappaCode
 kappa: dir=../kappaCode
 kappa:
 	$(linkdirname) || (git clone $(kappagit) $@ && ls $@/Makefile)
+	cd $@ && $(MAKE) Makefile
 
 Ignore += $(hotdirs)
 
