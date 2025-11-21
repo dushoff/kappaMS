@@ -24,6 +24,8 @@ Ignore += *.inc.tex
 
 ######################################################################
 
+Sources += $(wildcard *.R)
+
 lsFig.Rout: lsFig.R kappa/lsCurves.rds kappa/lsDensity.rds
 	$(pipeR)
 
