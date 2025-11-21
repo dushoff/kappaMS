@@ -18,13 +18,13 @@ Ignore += $(wildcard *.html)
 ## doc.html: doc.md
 ## doc.pdf: doc.md
 
-## Use TEX for made things .tex for edited things
+## Not using .TEX because I would need to worry about developing rules
 
-Ignore += *.md.tex
+Ignore += *.inc.tex
 %.inc.tex: %.md
 	$(pandoc)
 
-Sources +=  draft.tex inc.tex
+Sources +=  draft.tex inc.tex comms.tex
 ## doc.inc.tex: doc.md
 ## draft.pdf: draft.tex doc.md
 draft.texdeps.mk: doc.inc.texdeps.mk
