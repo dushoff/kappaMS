@@ -24,6 +24,11 @@ Ignore += *.inc.tex
 
 ######################################################################
 
+lsFig.Rout: lsFig.R kappa/lsCurves.rds kappa/lsDensity.rds
+	$(pipeR)
+
+######################################################################
+
 ## Linking directories
 
 Ignore += legacy
@@ -74,7 +79,7 @@ makestuff:
 
 -include makestuff/os.mk
 
-## -include makestuff/pipeR.mk
+-include makestuff/pipeR.mk
 -include makestuff/texj.mk
 -include makestuff/pandoc.mk
 -include makestuff/hotcold.mk
