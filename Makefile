@@ -19,28 +19,30 @@ Ignore += $(wildcard *.html)
 ## doc.pdf: doc.md
 
 ## Use TEX for made things .tex for edited things
-Ignore += *.TEX
-Sources += $(wildcard *.tex)
 
-%.TEX: %.md
-	$(pandocs)
+Ignore += *.md.tex
+%.inc.tex: %.md
+	$(pandoc)
 
+Sources +=  draft.tex inc.tex
+## doc.inc.tex: doc.md
 ## draft.pdf: draft.tex doc.md
+draft.texdeps.mk: doc.inc.texdeps.mk
 
 ######################################################################
 
 ## Linking directories
 
-Makefile: | legacy
-
 Ignore += legacy
+legacy/outputs/%: | legacy
 lgit = https://git@git.overleaf.com/6656039e718682018f3b43f2
 legacy: dir=../emergentHeterogeneity
 legacy:
 	$(linkdirname) || (git clone $(lgit) $@ && ls $@/Makefile)
 
+######################################################################
 
-	
+## Mirroring
 
 ######################################################################
 
