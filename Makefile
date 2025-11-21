@@ -57,6 +57,9 @@ kappa:
 
 Ignore += $(hotdirs)
 
+updatedirs: | $(hotdirs)
+	$(MAKE) $(hotdirs:%=%.pull)
+
 ######################################################################
 
 ## Mirroring
