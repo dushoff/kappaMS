@@ -40,7 +40,12 @@ legacy:
 	$(linkdirname) || (git clone $(lgit) $@ && ls $@/Makefile)
 
 
-	
+######################################################################
+
+# Some of the members
+
+## tapangoel1994.invite: makestuff/github.mk
+## tapangoel1994.architecture:
 
 ######################################################################
 
@@ -67,4 +72,5 @@ makestuff:
 -include makestuff/pandoc.mk
 
 -include makestuff/git.mk
+-include makestuff/github.mk
 -include makestuff/visual.mk
