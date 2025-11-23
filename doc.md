@@ -4,7 +4,7 @@
 
 # Results 
 
-Demographic stochasticity can generate “emergent” heterogeneity even in the absence of explicit differences between individual-based rates. In simple models, this heterogeneity can be characterized in including negative binomial funky distributions of activity. We explicate the notion that this is predictable (see Box)
+Demographic stochasticity can generate “emergent” heterogeneity even in the absence of explicit differences between individual-based rates. In simple models, this heterogeneity can be characterized. We explicate the notion that this is predictable (see Box). [[JD: is that really what Box is doing, though? Or more about linking the two scales of heterogeneity?]].
 
 ![
 __Heterogeneity emerges even from a simple, linearized compartmental model__ due to implicit variation in recovery times among infectors. 
@@ -13,19 +13,17 @@ Because the first bin (at zero) sits at the boundary of support for each distrib
 (right) Inequality curves for _activity_ distributions from SIR models with differing \Ro\ are identical (and indestinguishable due to overplotting); inequality in the _case_ distribution decreases with R0 towards the theoretical limit of the activity distribution.
 ](lsFig.Rout.pdf)
 
-But despite differences in a non-dynamic world, we find invariance in case-per-case when looking across the entire epidemic
-
 ![
 Some histograms. Look at poster text and see what we think.
-](rc/rcHist.Rout.pdf)
+](rc/rcHist.Rout.pdf){#fig:rcHist}
 
-What is the cause of this surprise? We claim: different relative contributions of variability from between and within-cohorts across R0 (bottom C of legacy/figures/emergentHetPoster.pdf). JD-Azadeh: can you work on putting some code into kappa that can do this?
+But despite differences in a non-dynamic world, we find invariance in case-per-case when looking across the entire epidemic. Figure [@fig:rcHist] shows realized distributions of “offspring cases” caused by individual infectors across a simple, stochastic SIR epidemic. The distributions remain indistinguishable across a wide range of the key parameter $\Ro$.
+
+What is the cause of this surprise? We claim: different relative contributions of variability from between and within-cohorts across R0 (bottom C of legacy/figures/emergentHetPoster.pdf). JD-Azadeh: can you work on putting some code into kappa/ (the kappaCode repo) that can do this?
 
 ![
 How components of variance are changing through time
 ](legacy/outputs/RcTimePlotVaryingPeak.Rout.pdf)
-
-JD-Azadeh: I remain confused by this picture. If we look at all the time up until 1/4, $\mu$ and $\sigma_\textrm{with}^2$ are large, and changes in $\mu$ are also pretty large for the large $\beta$. How can $\sigma_\textrm{btw}^2$ be that small?
 
 We are also interested in what emergent distributions will look like to people studying outbreaks in real time. We are interested, at least to some extent, both in how cohorts change through time, and in what the outbreak will “look like” if we observe from a particular time.
 

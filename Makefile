@@ -11,7 +11,7 @@ vim_session:
 ######################################################################
 
 Sources +=  draft.tex inc.tex comms.tex
-## draft.pdf: draft.tex doc.md
+## draft.pdf: doc.md draft.tex
 ## doc.inc.tex: doc.md
 draft.texdeps.mk: doc.inc.texdeps.mk ;
 
@@ -20,7 +20,8 @@ Ignore += $(wildcard *.html)
 
 Ignore += *.inc.tex
 %.inc.tex: %.md
-	$(pandoc)
+	pandoc $(pfilter) -o $@ $<
+pfilter = --filter pandoc-xnos
 
 ######################################################################
 
@@ -90,6 +91,9 @@ makestuff:
 -include makestuff/texj.mk
 -include makestuff/pandoc.mk
 -include makestuff/hotcold.mk
+
+Sources += invite.mk
+-include invite.mk
 
 -include makestuff/git.mk
 -include makestuff/visual.mk
