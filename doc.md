@@ -1,29 +1,41 @@
+# Introduction
 
-## Introduction
+# Box: Kappa tutorial
 
-## Box: Kappa tutorial
+# Results 
 
-## Results 
-
-Demographic stochasticity can generate “emergent” heterogeneity even in the absence of explicit differences between individual-based rates. In simple models, this heterogeneity can be characterized in including negative binomial funky distributions of activity. We cite/elevate + (re)present the notion that this is predictable (see the Box)
+Demographic stochasticity can generate “emergent” heterogeneity even in the absence of explicit differences between individual-based rates. In simple models, this heterogeneity can be characterized in including negative binomial funky distributions of activity. We explicate the notion that this is predictable (see Box)
 
 ![
-](legacy/outputs/plotPMF_PDF_ineq.Rout.pdf)
-In a linearized compartmental model, we can trace two sources of emergent heterogeneity: the first is stochastic and depends on mean of the underlying activity distribution; the second emerges from the structure of a compartmental model, and specifically, implied variation in recovery times.} Inequality in initial secondary case distributions depends on $\Ro$, inequality in activity distributions does not. (a) Activity distributions (density curves) and secondary case distributions (density histograms) for the outset of an SIR epidemic with mean recovery rate of 1/day and per-capita transmission rates of 1.5 (green) and 8 (orange). (b) Inequality curves for activity distributions from the two SIR models with differing $\Ro$ are identical (and indestinguishable due to overplotting); inequality in the secondary case distribution decreases with R0 towards the theoretical limit of the activity distribution. (c) When models include explicit heterogeneity (purple) this affects both the activity and the secondary case distributions. Orange density histograms and density curves  as in (a); purple from an analogous branching process model, now with explicit heterogeneity (23\% of cases have 6.67x the transmission rate as the other 77\% of cases, $\Ro$ still 8). (d) Structural heterogeneity (purple curves) can generate high levels of inequality even when R0 is high (e.g., 8). In panels (a,c), the secondary case distribution probability mass functions (PMFs) are plotted as density histograms with unit binwidths; in this way the ploted PMFs have area = 1, enabling visual comparison with the activity distribution density functions (smooth curves), the area under which is also 1. Because the first bin (at zero) sits at the boundary of support for each distribution, we have plotted this bin as double the density and half the width. This adjustment preserves area-to-area correspondence with the PDF, while facilitating visual comparison of the heights of the density and mass functions. 
+__Heterogeneity emerges even from a simple, linearized compartmental model__ due to implicit variation in recovery times among infectors. 
+(left) Activity distributions (density curves) and secondary case distributions (density histograms) for the outset of an SIR epidemic. 
+Because the first bin (at zero) sits at the boundary of support for each distribution, we have plotted this bin as double the density and half the width; this adjustment preserves area-to-area correspondence with the PDF, while facilitating visual comparison of the heights of the density and mass functions.
+(right) Inequality curves for _activity_ distributions from SIR models with differing \Ro\ are identical (and indestinguishable due to overplotting); inequality in the _case_ distribution decreases with R0 towards the theoretical limit of the activity distribution.
+](lsFig.Rout.pdf)
 
+But despite differences in a non-dynamic world, we find invariance in case-per-case when looking across the entire epidemic
 
-F2 But despite differences in a non-dynamic world, we find invariance in case-per-case when looking across the entire epidemic
-this is the top L of legacy/figures/emergentHetPoster.pdf
+![
+Some histograms. Look at poster text and see what we think.
+](rc/rcHist.Rout.pdf)
 
-+ Add the simple proof to the SI... or main text?
+What is the cause of this surprise? We claim: different relative contributions of variability from between and within-cohorts across R0 (bottom C of legacy/figures/emergentHetPoster.pdf). JD-Azadeh: can you work on putting some code into kappa that can do this?
 
-F3 What is the cause of this surprise? We claim: different relative contributions of variability from between and within-cohorts across R0
+![
+How components of variance are changing through time
+](legacy/outputs/RcTimePlotVaryingPeak.Rout.pdf)
 
-bottom C of legacy/figures/emergentHetPoster.pdf
+JD-Azadeh: I remain confused by this picture. If we look at all the time up until 1/4, $\mu$ and $\sigma_\textrm{with}^2$ are large, and changes in $\mu$ are also pretty large for the large $\beta$. How can $\sigma_\textrm{btw}^2$ be that small?
 
-F4 is one of the new Rc plots, e.g., legacy/outputs/RcTimePlotVaryingPeak.Rout.pdf
-% Please add a narrative statement here so that I understand the flow
-* Is this a sufficient replacement for the poster table (top R)?
-* How to cut? The cohort-based approach may be better for understanding, observation-based approach may be more related to practical questions
-TG: Can me make a note about for epidemics with large R0, if you don't start tracking cases right from the beginning, you'll already underestimate cases/case
+We are also interested in what emergent distributions will look like to people studying outbreaks in real time. We are interested, at least to some extent, both in how cohorts change through time, and in what the outbreak will “look like” if we observe from a particular time.
+
+Observing from a particular time can be done in two ways: either naively, or by trying to correct for the truncation of observations. These can be simulated, respectively, by either simply stopping the simulation at a certain time (or reporting what would be seen if we did), or in an idealized world, by looking at all the cohorts infected up until a given time. It's worth looking at some pictures of both of these views and seeing what we think. It may also be worth looking at statistics for individual cohorts (I guess this is a bit boring, because we only have within-cohort variation in that case, but we should do it and put in the supp). 
+
+It's also possible to imagine realistic approaches between these two extremes, but let's put that off for later. There are methods (including by Dushoff and Park) for thinking about this at the cohort level, but not with a focus on individual variation. Maybe this is just for discussion. OR maybe we should also look at plots where we go up until a particular time and only count recovered infectors.
+
+TG: Can we make a note about for epidemics with large R0, if you don't start tracking cases right from the beginning, you'll already underestimate cases/case JD: Yes, this should go into the paper.
+
+# Box (or appendix?) Tapan's proof?
+
+# Discussion
 

@@ -6,46 +6,65 @@ current: target
 Ignore = target.mk
 
 vim_session:
-	bash -cl "vmt"
+	bash -cl "vmt README.md"
 
 ######################################################################
 
-## Still developing this pipeline; be kind to Dushoff
+Sources +=  draft.tex inc.tex comms.tex
+## draft.pdf: draft.tex doc.md
+## doc.inc.tex: doc.md
+draft.texdeps.mk: doc.inc.texdeps.mk
 
 Sources += $(wildcard *.md)
 Ignore += $(wildcard *.html)
 
-## doc.html: doc.md
-## doc.pdf: doc.md
+Ignore += *.inc.tex
+%.inc.tex: %.md
+	$(pandoc)
 
-## Use TEX for made things .tex for edited things
-Ignore += *.TEX
-Sources += $(wildcard *.tex)
+######################################################################
 
-%.TEX: %.md
-	$(pandocs)
+Sources += $(wildcard *.R)
 
-## draft.pdf: draft.tex doc.md
+lsFig.Rout: lsFig.R kappa/lsCurves.rds kappa/lsDensity.rds
+	$(pipeR)
 
 ######################################################################
 
 ## Linking directories
 
-Makefile: | legacy
-
 Ignore += legacy
+legacy/outputs/%: | legacy
 lgit = https://git@git.overleaf.com/6656039e718682018f3b43f2
 legacy: dir=../emergentHeterogeneity
 legacy:
 	$(linkdirname) || (git clone $(lgit) $@ && ls $@/Makefile)
+	cd $@ && $(MAKE) Makefile
 
+hotdirs += rc
+rcgit = https://github.com/dushoff/rcCode
+rc: dir=../rcCode
+rc:
+	$(linkdirname) || (git clone $(rcgit) $@ && ls $@/Makefile)
+	cd $@ && $(MAKE) Makefile
 
 ######################################################################
 
 # Some of the members
 
 ## tapangoel1994.invite: makestuff/github.mk
-## tapangoel1994.architecture:
+
+hotdirs += kappa
+kappagit = https://github.com/dushoff/kappaCode
+kappa: dir=../kappaCode
+kappa:
+	$(linkdirname) || (git clone $(kappagit) $@ && ls $@/Makefile)
+	cd $@ && $(MAKE) Makefile
+
+Ignore += $(hotdirs)
+
+updatedirs: | $(hotdirs)
+	$(MAKE) $(hotdirs:%=%.pull)
 
 ######################################################################
 
@@ -67,9 +86,10 @@ makestuff:
 
 -include makestuff/os.mk
 
-## -include makestuff/pipeR.mk
+-include makestuff/pipeR.mk
 -include makestuff/texj.mk
 -include makestuff/pandoc.mk
+-include makestuff/hotcold.mk
 
 -include makestuff/git.mk
 -include makestuff/github.mk
