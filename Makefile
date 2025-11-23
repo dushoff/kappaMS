@@ -92,5 +92,4 @@ makestuff:
 -include makestuff/hotcold.mk
 
 -include makestuff/git.mk
--include makestuff/github.mk
 -include makestuff/visual.mk
