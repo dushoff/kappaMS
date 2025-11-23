@@ -13,7 +13,7 @@ vim_session:
 Sources +=  draft.tex inc.tex comms.tex
 ## draft.pdf: draft.tex doc.md
 ## doc.inc.tex: doc.md
-draft.texdeps.mk: doc.inc.texdeps.mk
+draft.texdeps.mk: doc.inc.texdeps.mk ;
 
 Sources += $(wildcard *.md)
 Ignore += $(wildcard *.html)
