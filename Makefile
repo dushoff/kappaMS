@@ -23,7 +23,8 @@ Sources += $(wildcard *.R)
 
 lsFig.Rout: lsFig.R kappa/lsCurves.rds kappa/lsDensity.rds
 	$(pipeR)
-
+Fig2and3.Rout: Fig2and3.R kappa/stackbar.rds kappa/rcHist.rds
+	$(pipeR)
 ######################################################################
 
 ## Linking directories

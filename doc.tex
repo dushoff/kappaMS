@@ -18,9 +18,10 @@ Demographic stochasticity can generate ``emergent'' heterogeneity even in the ab
 
 \begin{figure}
 \centering
-\includegraphics{rc/rcHist.Rout.pdf}
-\caption{
-	Some histograms. Look at poster text and see what we think.
+\includegraphics{kappa/rcHist.Rout.pdf}
+\caption{Identical distributions of cases per case for epidemics of different strength conditioned over the entire outbreak cycle.
+	We simulate epidemic outbreaks for a population of $10000$  and  collect data on the case per case over the entire outbreak cycle. 
+ The case-per-case distribution over the entire outbreak is independent of \Ro.
 }\flab{rcHist}
 \end{figure}
 
@@ -30,8 +31,18 @@ But despite differences in a non-dynamic world, we find invariance in case-per-c
 \centering
 \includegraphics{kappa/stackbar.Rout.pdf}
 \caption{
-	Some more histograms. 
+Different compositions of variance in cases per case for epidemics of different strengths.
+As  \Ro grows, between-cohort variation increases while within-cohort variation decreases, so that the total variance in cases per case remains constant.
 }\flab{stackbar}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{Fig2and3Rout.pdf}
+\caption{
+Different compositions of variance in cases per case for epidemics of different strengths.
+As  \Ro grows, between-cohort variation increases while within-cohort variation decreases, so that the total variance in cases per case remains constant.
+}\flab{fig2and3}
 \end{figure}
 
 This seems surprising. The resolution is that larger epidemics with larger \Ro\ have larger between-cohort variation, as expected, but that is balanced by smaller within-cohort variation. 
@@ -40,7 +51,7 @@ This seems surprising. The resolution is that larger epidemics with larger \Ro\ 
 \centering
 \includegraphics{kappa/RcTimePlotVaryingPeak.Rout.pdf}
 \caption{
-	How components of variance are changing through time
+	How components of variance are changing through time.
 }\flab{timeCutoff}
 \end{figure}
 
