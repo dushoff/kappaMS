@@ -11,16 +11,20 @@ vim_session:
 ######################################################################
 
 Sources +=  draft.tex inc.tex comms.tex
-## draft.pdf: draft.tex doc.md
+## draft.pdf: doc.md draft.tex
 ## doc.inc.tex: doc.md
-draft.texdeps.mk: doc.inc.texdeps.mk
+draft.texdeps.mk: doc.inc.texdeps.mk ;
 
 Sources += $(wildcard *.md)
 Ignore += $(wildcard *.html)
 
 Ignore += *.inc.tex
 %.inc.tex: %.md
-	$(pandoc)
+	pandoc -o $@ $<
+pfilter = --filter pandoc-xnos
+
+## 
+Sources += quarto.mk
 
 ######################################################################
 
@@ -48,6 +52,12 @@ rc:
 	$(linkdirname) || (git clone $(rcgit) $@ && ls $@/Makefile)
 	cd $@ && $(MAKE) Makefile
 
+######################################################################
+
+# Some of the members
+
+## tapangoel1994.invite: makestuff/github.mk
+
 hotdirs += kappa
 kappagit = https://github.com/dushoff/kappaCode
 kappa: dir=../kappaCode
@@ -57,9 +67,8 @@ kappa:
 
 Ignore += $(hotdirs)
 
-######################################################################
-
-## Mirroring
+updatedirs: | $(hotdirs)
+	$(MAKE) $(hotdirs:%=%.pull)
 
 ######################################################################
 
@@ -71,7 +80,7 @@ Ignore += makestuff
 msrepo = https://github.com/dushoff
 
 ## ln -s ../makestuff . ## Do this first if you want a linked makestuff
-Makefile: makestuff/00.stamp
+Makefile: makestuff/01.stamp
 makestuff/%.stamp: | makestuff
 	- $(RM) makestuff/*.stamp
 	cd makestuff && $(MAKE) pull
@@ -85,6 +94,9 @@ makestuff:
 -include makestuff/texj.mk
 -include makestuff/pandoc.mk
 -include makestuff/hotcold.mk
+
+Sources += invite.mk
+-include invite.mk
 
 -include makestuff/git.mk
 -include makestuff/visual.mk
