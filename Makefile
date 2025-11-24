@@ -11,6 +11,7 @@ vim_session:
 
 ######################################################################
 
+## https://github.com/dushoff/kappaMS/blob/main/outputs/draft.pdf
 Sources +=  $(wildcard *.tex)
 ## draft.pdf: doc.tex draft.tex
 draft.texdeps.mk: doc.texdeps.mk ;
