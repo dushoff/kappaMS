@@ -14,18 +14,19 @@ Because the first bin (at zero) sits at the boundary of support for each distrib
 ](lsFig.Rout.pdf)
 
 ![
-Some histograms. Look at poster text and see what we think.
-](rc/rcHist.Rout.pdf){#fig:rcHist}
+Some histograms. Look at poster text and see what we think [Fig:rcHist].
+](rc/rcHist.Rout.pdf){#Fig:rcHist}
 
-But despite differences in a non-dynamic world, we find invariance in case-per-case when looking across the entire epidemic. Figure [@fig:rcHist] shows realized distributions of “offspring cases” caused by individual infectors across a simple, stochastic SIR epidemic. The distributions remain indistinguishable across a wide range of the key parameter $\Ro$.
+But despite differences in a non-dynamic world, we find invariance in case-per-case when looking across the entire epidemic. Fig:rcHist shows realized distributions of “offspring cases” caused by individual infectors across a simple, stochastic SIR epidemic. The distributions remain indistinguishable across a wide range of the key parameter $\Ro$.
 
-What is the cause of this surprise? We claim: different relative contributions of variability from between and within-cohorts across R0 (bottom C of legacy/figures/emergentHetPoster.pdf). JD-Azadeh: can you work on putting some code into kappa/ (the kappaCode repo) that can do this?
+This seems surprising. The resolution is that larger epidemics with larger $\Ro$ have larger between-cohort variation, as expected, but that is balanced by smaller within-cohort variation.
+We claim: different relative contributions of variability from between and within-cohorts across R0 (bottom C of legacy/figures/emergentHetPoster.pdf). JD-Azadeh: can you work on putting some code into kappa/ (the kappaCode repo) that can do this?
 
 ![
-How components of variance are changing through time
+How components of variance are changing through time fig:timeCutoff
 ](legacy/outputs/RcTimePlotVaryingPeak.Rout.pdf)
 
-We are also interested in what emergent distributions will look like to people studying outbreaks in real time. We are interested, at least to some extent, both in how cohorts change through time, and in what the outbreak will “look like” if we observe from a particular time.
+We are also interested in what emergent distributions will look like to people studying outbreaks in real time. We are interested, at least to some extent, both in how cohorts change through time, and in what the outbreak will “look like” if we observe from a particular time. @fig:timeCutoff is one example; we are working on others.
 
 Observing from a particular time can be done in two ways: either naively, or by trying to correct for the truncation of observations. These can be simulated, respectively, by either simply stopping the simulation at a certain time (or reporting what would be seen if we did), or in an idealized world, by looking at all the cohorts infected up until a given time. It's worth looking at some pictures of both of these views and seeing what we think. It may also be worth looking at statistics for individual cohorts (I guess this is a bit boring, because we only have within-cohort variation in that case, but we should do it and put in the supp). 
 
