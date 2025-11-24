@@ -12,4 +12,8 @@ But this will do a lot of steps, and may not work. Maybe best not to worry about
 
 You can just look at the [pdf document instead](outputs/draft.pdf), and edit doc.md without worrying about whether you can make things for now.
 
+----------------------------------------------------------------------
+
 Note 2025 Nov 23 (Sun): I am struggling with the pipeline to convert markdown to pdf, and may just give up and make this a latex project. What I should probably do is make it a quarto project, but I'm afraid of getting sucked into a time trap.
+
+Note 2025 Nov 24 (Mon): Giving up!, and converting LaTeX.
