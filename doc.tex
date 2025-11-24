@@ -16,35 +16,39 @@ Demographic stochasticity can generate ``emergent'' heterogeneity even in the ab
 
 \Fref{ls} shows patterns of emergent heterogeneity in the early stage of an outbreak.
 
+%\begin{figure}
+%\centering
+%\includegraphics{kappa/rcHist.Rout.pdf}
+%\caption{Identical distributions of cases per case for epidemics of different strength conditioned over the entire outbreak cycle.
+	%We simulate epidemic outbreaks for a population of $10000$  and  collect data on the case per case over the entire outbreak cycle. 
+ %The case-per-case distribution over the entire outbreak is independent of \Ro.
+%}\flab{rcHist}
+%\end{figure}
+
+
+%\begin{figure}
+%\centering
+%\includegraphics{kappa/stackbar.Rout.pdf}
+%\caption{
+%Different compositions of variance in cases per case for epidemics of different strengths.
+%As  \Ro grows, between-cohort variation increases while within-cohort variation decreases, so that the total variance in cases per case remains constant.
+%}\flab{stackbar}
+%\end{figure}
+
 \begin{figure}
 \centering
-\includegraphics{kappa/rcHist.Rout.pdf}
-\caption{Identical distributions of cases per case for epidemics of different strength conditioned over the entire outbreak cycle.
-	We simulate epidemic outbreaks for a population of $10000$  and  collect data on the case per case over the entire outbreak cycle. 
+\includegraphics{Fig2and3.Rout.pdf}
+\caption{
+Identical distributions of cases per case for epidemics of different strength conditioned over the entire outbreak cycle.
+Top panel. We simulate epidemic outbreaks for a population of $10000$  and  collect data on the case per case over the entire outbreak cycle. 
  The case-per-case distribution over the entire outbreak is independent of \Ro.
-}\flab{rcHist}
-\end{figure}
-
-But despite differences in a non-dynamic world, we find invariance in case-per-case when looking across the entire epidemic. \fref{rcHist} shows realized distributions of ``offspring cases'' caused by individual infectors across a simple, stochastic SIR epidemic. The distributions remain indistinguishable across a wide range of the key parameter \Ro.
-
-\begin{figure}
-\centering
-\includegraphics{kappa/stackbar.Rout.pdf}
-\caption{
-Different compositions of variance in cases per case for epidemics of different strengths.
-As  \Ro grows, between-cohort variation increases while within-cohort variation decreases, so that the total variance in cases per case remains constant.
-}\flab{stackbar}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics{Fig2and3Rout.pdf}
-\caption{
-Different compositions of variance in cases per case for epidemics of different strengths.
+Lower panel. Different compositions of variance in cases per case for epidemics of different strengths.
 As  \Ro grows, between-cohort variation increases while within-cohort variation decreases, so that the total variance in cases per case remains constant.
 }\flab{fig2and3}
 \end{figure}
 
+But despite differences in a non-dynamic world, we find invariance in case-per-case when looking across the entire epidemic. 
+The top panel of \fref{fig2and3} shows realized distributions of ``offspring cases'' caused by individual infectors across a simple, stochastic SIR epidemic. The distributions remain indistinguishable across a wide range of the key parameter \Ro.
 This seems surprising. The resolution is that larger epidemics with larger \Ro\ have larger between-cohort variation, as expected, but that is balanced by smaller within-cohort variation. 
 
 \begin{figure}

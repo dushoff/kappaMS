@@ -5,6 +5,10 @@ loadEnvironments()
 
 startGraphics(height=5)
 
+label_wrap <- function(wrap_level) {
+  sapply(wrap_level,function(x){
+    paste("R0 =",x)
+  })}
 stackplot <- rdsRead("stackbar")
 rcHistplot <- rdsRead("rcHist")
  
