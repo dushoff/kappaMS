@@ -1,3 +1,14 @@
+## Just a random dump of stuff I might try to use if I ever take on a markdown-based project. Hopefully not much to do with this particular directory going forward.
+
+## doc.inc.tex: doc.md
+
+Sources += $(wildcard *.md)
+Ignore += $(wildcard *.html)
+
+Ignore += *.inc.tex
+%.inc.tex: %.md
+	pandoc -o $@ $<
+pfilter = --filter pandoc-xnos
 
 ## Such a pain, still! Not sure why xnos didn't want to work, but need to stop.
 

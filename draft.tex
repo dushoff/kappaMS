@@ -1,12 +1,20 @@
 \documentclass{article}[12pt]
 
+\usepackage{xcolor}
+
 \input{inc.tex}
 
-\input{comms.tex}
+\input{makestuff/style.tex}
+
+%% Using this style for comments means we can easily turn them off and render
+%% Feel free to pick your own color
+\newcommand{\jd}[1]{\comment{cyan}{JD}{#1}}
+\newcommand{\tg}[1]{\comment{magenta}{TG}{#1}}
+%% \renewcommand{\comment}[3]{}
 
 \begin{document}
 
-\input{doc.inc.tex}
+\input{doc.tex}
 
 %% \bibliography{references}
 

@@ -10,20 +10,10 @@ vim_session:
 
 ######################################################################
 
-Sources +=  draft.tex inc.tex comms.tex
-## draft.pdf: doc.md draft.tex
-## doc.inc.tex: doc.md
-draft.texdeps.mk: doc.inc.texdeps.mk ;
+Sources +=  $(wildcard *.tex)
+## draft.pdf: doc.tex draft.tex
+draft.texdeps.mk: doc.texdeps.mk ;
 
-Sources += $(wildcard *.md)
-Ignore += $(wildcard *.html)
-
-Ignore += *.inc.tex
-%.inc.tex: %.md
-	pandoc -o $@ $<
-pfilter = --filter pandoc-xnos
-
-## 
 Sources += quarto.mk
 
 ######################################################################
