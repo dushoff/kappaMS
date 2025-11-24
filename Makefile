@@ -11,9 +11,10 @@ vim_session:
 
 ######################################################################
 
+## https://github.com/dushoff/kappaMS/blob/main/outputs/draft.pdf
 Sources +=  $(wildcard *.tex)
 ## draft.pdf: doc.tex draft.tex
-draft.texdeps.mk: doc.texdeps.mk ;
+draft.texdeps.mk: doc.texdeps ;
 
 Sources += quarto.mk
 
@@ -72,7 +73,7 @@ Ignore += makestuff
 msrepo = https://github.com/dushoff
 
 ## ln -s ../makestuff . ## Do this first if you want a linked makestuff
-Makefile: makestuff/01.stamp
+Makefile: makestuff/03.stamp
 makestuff/%.stamp: | makestuff
 	- $(RM) makestuff/*.stamp
 	cd makestuff && $(MAKE) pull
