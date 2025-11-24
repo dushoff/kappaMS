@@ -20,8 +20,11 @@ Ignore += $(wildcard *.html)
 
 Ignore += *.inc.tex
 %.inc.tex: %.md
-	pandoc $(pfilter) -o $@ $<
+	pandoc -o $@ $<
 pfilter = --filter pandoc-xnos
+
+## 
+Sources += quarto.mk
 
 ######################################################################
 
