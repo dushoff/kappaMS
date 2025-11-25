@@ -14,5 +14,3 @@ rcHistplot <- rdsRead("rcHist")
  
 print((rcHistplot + theme(legend.position = "none"))/stackplot)
 
-
-
