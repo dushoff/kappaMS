@@ -11,6 +11,7 @@ vim_session:
 
 ######################################################################
 
+focus=draft.force.pdf
 final=draft.pdf
 
 ## For a new clone
@@ -20,7 +21,7 @@ setup: Makefile updatedirs
 update: pullup updatedirs
 
 ## To view the final product
-view: $(final)
+view: $(focus)
 	@echo Made $< ... trying to open
 	echo "$(open) $< >& go.log &" | $(usershell)
 
