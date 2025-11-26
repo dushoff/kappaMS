@@ -1,4 +1,14 @@
 
+You should be able to make this repo “work” – that is, make all the figures from code, and then make the document – as follows.
+
+* Clone the repo
+* say `make setup` (once per location)
+* say `make view`
+
+When finished, say 
+
+If you come back to work after others have worked, say `make update`
+
 If you clone this repo, it should work to say:
 ```
 make Makefile
