@@ -11,6 +11,24 @@ vim_session:
 
 ######################################################################
 
+final=draft.pdf
+
+## For a new clone
+setup: Makefile updatedirs
+
+## To catch up with work here and elsewhere
+update: pullup updatedirs
+
+## To view the final product
+view: $(final)
+	@echo Made $< ... trying to open
+	echo "$(open) $< >& go.log &" | $(usershell)
+
+## To save 
+output: $(final).op
+
+######################################################################
+
 ## https://github.com/dushoff/kappaMS/blob/main/outputs/draft.pdf
 Sources +=  $(wildcard *.tex)
 ## draft.pdf: doc.tex draft.tex
@@ -20,24 +38,17 @@ Sources += quarto.mk
 
 ######################################################################
 
+autopipeR += defined
+
 Sources += $(wildcard *.R)
 
 lsFig.Rout: lsFig.R kappa/lsCurves.rds kappa/lsDensity.rds
-	$(pipeR)
+
 RcAverage.Rout: RcAverage.R kappa/stackbar.rds kappa/rcHist.rds
-	$(pipeR)
 
 ######################################################################
 
 ## Linking directories
-
-Ignore += legacy
-legacy/outputs/%: | legacy
-lgit = https://git@git.overleaf.com/6656039e718682018f3b43f2
-legacy: dir=../emergentHeterogeneity
-legacy:
-	$(linkdirname) || (git clone $(lgit) $@ && ls $@/Makefile)
-	cd $@ && $(MAKE) Makefile
 
 hotdirs += rc
 rcgit = https://github.com/dushoff/rcCode
@@ -46,12 +57,6 @@ rc:
 	$(linkdirname) || (git clone $(rcgit) $@ && ls $@/Makefile)
 	cd $@ && $(MAKE) Makefile
 
-######################################################################
-
-# Some of the members
-
-## tapangoel1994.invite: makestuff/github.mk
-
 hotdirs += kappa
 kappagit = https://github.com/dushoff/kappaCode
 kappa: dir=../kappaCode
@@ -59,10 +64,17 @@ kappa:
 	$(linkdirname) || (git clone $(kappagit) $@ && ls $@/Makefile)
 	cd $@ && $(MAKE) Makefile
 
-Ignore += $(hotdirs)
+## legacy was used to build this quickly for Weitz 🙁
+Ignore += $(hotdirs) legacy
 
 updatedirs: | $(hotdirs)
 	$(MAKE) $(hotdirs:%=%.pull)
+
+######################################################################
+
+# Some of the members
+
+## tapangoel1994.invite: makestuff/github.mk
 
 ######################################################################
 
@@ -74,7 +86,7 @@ Ignore += makestuff
 msrepo = https://github.com/dushoff
 
 ## ln -s ../makestuff . ## Do this first if you want a linked makestuff
-Makefile: makestuff/03.stamp
+Makefile: makestuff/04.stamp
 makestuff/%.stamp: | makestuff
 	- $(RM) makestuff/*.stamp
 	cd makestuff && $(MAKE) pull
