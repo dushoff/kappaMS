@@ -1,0 +1,171 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+\hypertarget{box-kappa-tutorial}{%
+\section{Box: Kappa tutorial}\label{box-kappa-tutorial}}
+
+\hypertarget{results}{%
+\section{Results}\label{results}}
+
+Demographic stochasticity can generate ``emergent'' heterogeneity even
+in the absence of explicit differences between individual-based rates.
+In simple models, this heterogeneity can be characterized. We explicate
+the notion that this is predictable (see Box). {[}{[}JD: is that really
+what Box is doing, though? Or more about linking the two scales of
+heterogeneity?{]}{]}.
+
+\begin{figure}
+\centering
+\includegraphics{lsFig.Rout.pdf}
+\caption{\textbf{Heterogeneity emerges even from a simple, linearized
+compartmental model} due to implicit variation in recovery times among
+infectors. (left) Activity distributions (density curves) and secondary
+case distributions (density histograms) for the outset of an SIR
+epidemic. Because the first bin (at zero) sits at the boundary of
+support for each distribution, we have plotted this bin as double the
+density and half the width; this adjustment preserves area-to-area
+correspondence with the PDF, while facilitating visual comparison of the
+heights of the density and mass functions. (right) Inequality curves for
+\emph{activity} distributions from SIR models with differing \Ro~are
+identical (and indestinguishable due to overplotting); inequality in the
+\emph{case} distribution decreases with R0 towards the theoretical limit
+of the activity distribution.}
+\end{figure}
+
+\begin{figure}
+\hypertarget{Fig:rcHist}{%
+\centering
+\includegraphics{rc/rcHist.Rout.pdf}
+\caption{Some histograms. Look at poster text and see what we think
+{[}Fig:rcHist{]}.}\label{Fig:rcHist}
+}
+\end{figure}
+
+But despite differences in a non-dynamic world, we find invariance in
+case-per-case when looking across the entire epidemic. Fig:rcHist shows
+realized distributions of ``offspring cases'' caused by individual
+infectors across a simple, stochastic SIR epidemic. The distributions
+remain indistinguishable across a wide range of the key parameter
+\(\Ro\).
+
+This seems surprising. The resolution is that larger epidemics with
+larger \(\Ro\) have larger between-cohort variation, as expected, but
+that is balanced by smaller within-cohort variation. We claim: different
+relative contributions of variability from between and within-cohorts
+across R0 (bottom C of legacy/figures/emergentHetPoster.pdf). JD-Azadeh:
+can you work on putting some code into kappa/ (the kappaCode repo) that
+can do this?
+
+\begin{figure}
+\centering
+\includegraphics{legacy/outputs/RcTimePlotVaryingPeak.Rout.pdf}
+\caption{How components of variance are changing through time
+fig:timeCutoff}
+\end{figure}
+
+We are also interested in what emergent distributions will look like to
+people studying outbreaks in real time. We are interested, at least to
+some extent, both in how cohorts change through time, and in what the
+outbreak will ``look like'' if we observe from a particular time.
+@fig:timeCutoff is one example; we are working on others.
+
+Observing from a particular time can be done in two ways: either
+naively, or by trying to correct for the truncation of observations.
+These can be simulated, respectively, by either simply stopping the
+simulation at a certain time (or reporting what would be seen if we
+did), or in an idealized world, by looking at all the cohorts infected
+up until a given time. It's worth looking at some pictures of both of
+these views and seeing what we think. It may also be worth looking at
+statistics for individual cohorts (I guess this is a bit boring, because
+we only have within-cohort variation in that case, but we should do it
+and put in the supp).
+
+It's also possible to imagine realistic approaches between these two
+extremes, but let's put that off for later. There are methods (including
+by Dushoff and Park) for thinking about this at the cohort level, but
+not with a focus on individual variation. Maybe this is just for
+discussion. OR maybe we should also look at plots where we go up until a
+particular time and only count recovered infectors.
+
+TG: Can we make a note about for epidemics with large R0, if you don't
+start tracking cases right from the beginning, you'll already
+underestimate cases/case JD: Yes, this should go into the paper.
+
+\hypertarget{box-or-appendix-tapans-proof}{%
+\section{Box (or appendix?) Tapan's
+proof?}\label{box-or-appendix-tapans-proof}}
+
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
+
+\end{document}
