@@ -15,7 +15,8 @@ focus=draft.force.pdf
 final=draft.pdf
 
 ## For a new clone
-setup: Makefile updatedirs
+setup: Makefile
+	$(MAKE) updatedirs
 
 ## To catch up with work here and elsewhere
 update: pullup updatedirs
