@@ -51,11 +51,11 @@ RcAverage.Rout: RcAverage.R kappa/stackbar.rds kappa/rcHist.rds
 
 ## Linking directories
 
-hotdirs += rc
-rcgit = https://github.com/dushoff/rcCode
-rc: dir=../rcCode
-rc:
-	$(linkdirname) || (git clone $(rcgit) $@ && ls $@/Makefile)
+hotdirs += sims
+ehgit = https://github.com/dushoff/ehSim
+sims: dir=../ehSim
+sims:
+	$(linkdirname) || (git clone $(ehgit) $@ && ls $@/Makefile)
 	cd $@ && $(MAKE) Makefile
 
 hotdirs += kappa
@@ -76,6 +76,7 @@ updatedirs: | $(hotdirs)
 # Some of the members
 
 ## tapangoel1994.invite: makestuff/github.mk
+Sources += invite.scr
 
 ######################################################################
 
@@ -101,9 +102,6 @@ makestuff:
 -include makestuff/texj.mk
 -include makestuff/pandoc.mk
 -include makestuff/hotcold.mk
-
-Sources += invite.mk
--include invite.mk
 
 -include makestuff/git.mk
 -include makestuff/visual.mk
