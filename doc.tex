@@ -51,7 +51,17 @@ For panels b and c, the y-axis value at each time point was computed using only 
 
 We are also interested in what emergent distributions will look like to people studying outbreaks in real time. We are interested, at least to some extent, both in how cohorts change through time, and in what the outbreak will ``look like'' if we observe from a particular time.  \Fref{timeCutoff} is one example; we are working on others.
 
-Observing from a particular time can be done in two ways: either naively, or by trying to correct for the truncation of observations.  These can be simulated, respectively, by either simply stopping the simulation at a certain time \ag{Does \fref{timeCutoffNaive} do what we are looking for? What about \fref{timeCutoffNaiveV1}} (or reporting what would be seen if we did), or in an idealized world, by looking at all the cohorts infected up until a given time \ag{Does \fref{timeCutoff} do what we are looking for?}. It's worth looking at some pictures of both of these views and seeing what we think. It may also be worth looking at statistics for individual cohorts (I guess this is a bit boring, because we only have within-cohort variation in that case, but we should do it and put in the supp).
+2025 Dec 09 (Tue) suggestion for figures. We want:
+
+\begin{itemize}
+
+\item a naive truncated figure that assigns to each cohort the number of actual cases up until a particular time. 
+
+\item an idealized truncated figure that gets each cohort right (this is the current timeCutoff), the idea is that it can also represent an idealized version of nowcast perceptions.
+
+\item A cohort-description figure but without cumulating for the supp. This one does not need to bother with between-cohort statistics. That is going to be time-scaled version of an older fgure.
+
+\end{itemize}
 
 It's also possible to imagine realistic approaches between these two extremes, but let's put that off for later. There are methods (including by Dushoff and Park) for thinking about this at the cohort level, but not with a focus on individual variation. Maybe this is just for discussion. OR maybe we should also look at plots where we go up until a particular time and only count recovered infectors \ag{Does \fref{timeCutoffV1} do what we are looking for?}.
 

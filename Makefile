@@ -22,6 +22,7 @@ setup: Makefile
 update: pullup updatedirs
 
 ## To view the final product
+## view: doc.tex draft.tex
 view: $(focus)
 	@echo Made $< ... trying to open
 	echo "$(open) $< >& go.log &" | $(usershell)
