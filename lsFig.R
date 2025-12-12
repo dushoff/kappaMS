@@ -2,7 +2,7 @@ library(shellpipes)
 library(ggplot2); theme_set(theme_bw())
 library(patchwork)
 
-startGraphics(height=5)
+startGraphics(height=5, width=8)
 
 dens <- rdsRead("Density")
 curve <- rdsRead("Curves")

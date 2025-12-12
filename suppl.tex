@@ -1,0 +1,67 @@
+
+%\renewcommand \thesection{S\@arabic\c@section}
+%\renewcommand\thetable{S\@arabic\c@table}
+
+%\renewcommand\theequation{S.\@arabic\c@equation}
+%AA partly adapted from main.tex on Overleaf
+\section{Materials and Methods}
+
+To generate the top panel of \fref{RcAverage}, we used the individual based simulation and computed the case per case reproductive number in a population of size $10^4$. 
+The simulation was initiated with one case.
+
+To compute the mean and variance of \Rx{c}, we used a  deterministic SIR model.
+First, we scaled time by the mean infectious period, so the resulting SIR model then depends on one parameter \Ro, and the mean infectious period in the scaled model is one.
+The SIR differential equations were numerically solved for the proportions of susceptible $x(t)$ and infectious $y(t)$ at each time point $t$. 
+The time interval for integration was set to $[0,100]$; well after the outbreak died out.
+We then used the \textbf{R} function \fun{approxfun} to construct a function,  ${X}(t)$, that linearly interpolates the time-series $(t,\Ro x(t))$.
+We associated a cohort to each of the first $60\%$ time points in the time-series $t$ (We used a $60\%$ cutoff to ensure cohorts had almost recovered by the end of the simulation period) and calculated the cohort-specific mean  and variance.
+More specifically, for cohort infected at time point $\tau$, the
+mean, $\mu(\tau)$, and variance $\sigma^2(\tau)$ of \Rx{c} read as:
+\begin{align*}
+ \mu(\tau) &=  \int_{t>\tau} f(t-\tau) \int_{\tau}^{t} x(s) \ds \dt, \\
+  \sigma^2(\tau) &=  \int_{t>\tau} f(t-\tau) \left(\int_{\tau}^{t} x(s) \ds \right)^2\dt  - \mu^2(\tau).
+\end{align*}
+
+To calculate these quantities for cohort infected at $\tau$, the interpolating function $X(t)$ was integrated from $\tau$ to obtain the case reproductive potential.
+The mean \Rx{c} for each cohort $\mu(\tau)$ was then the integral of the case reproductive potential weighted by the infectious period density function.
+We used the same approach to compute the variance of \Rx{c} for each cohort $\sigma^2(\tau)$.
+The last two panels in \flab{Cohort} was generated using this approach.
+
+We computed the between variance by integrating over the cohort's mean $\mu(\tau)$ weighted by the incidence $i(t) = \Ro x(t)y(t)$. 
+The result was then normalized by the final size, $\int i(t) \dt$.
+The with-in cohort variance  was computed by taking integral over the cohorts' variance $\sigma^2(\tau)$ weighted by the incidence.
+The result was also normalized by the final size.
+The total variance was the sum of the between and with-in variances. 
+We also calculated the total variance independently; we first
+ integrated  product of the infectious period density function and the squared of the integral $X(t)$ for each cohort.
+ We then reintegrated the result weighted by the incidence and normalized by the final size.
+Both approaches yield the same value for the total variance.
+
+ All integrations were done using \fun{lsoda} method with the \textbf{R} package \pkg{deSolve}.
+  All simulations were carried out using \textbf{R} \texttt{4.5.2}.
+    Code for all numerical simulations is housed at: \url{https://github.com/dushoff/kappaCode}.   
+
+We solved all integrals across a range of values for $\Ro$, using the starting values $y_0 = 10^{-9};x_0 = 1-10^{-9}$  to represent the limiting case in which there are no exogenous cases.
+%, and therefore the mean case reproduction number over the course of the epidemic must be 1.
+ In building these simulations, we used a range of time step sizes, noting convergence towards known and conjectured values (e.g., epidemic final size, mean case reproduction number, variance in case reproduction number) as resolution increased. 
+\newpage
+\section{Supplementary Materials}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\setcounter{figure}{0}
+\pagenumbering{arabic}% resets `page` counter to 1
+\renewcommand*{\thepage}{S\arabic{page}}
+\makeatother
+\begin{figure}
+	\centering
+	\includegraphics{kappa/CohortPlot.Rout.pdf}
+	\caption{
+		\textbf{As \Ro~increases the variation in \Rx{c} shifts from within to between cohorts.}  
+		In an
+		epidemic with \Ro~close to 1, there is little susceptible depletion well after the outbreak inset, and the with-in variation in \Rx{c} is larger compared to an stronger epidemic and is nearly equal to the variance of the infectious period distribution.
+		After the time of peak incidence, the \Rx{c} decreases.
+	}
+	\flab{Cohort}
+\end{figure}
+
+
+
