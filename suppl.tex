@@ -74,16 +74,18 @@ We solved all integrals across a range of values for $\Ro$, using the starting v
 	\includegraphics{kappa/CohortPlot.Rout.pdf}
 	\caption{
 		\textbf{Between-cohort variation in \Rx{c} increases as \Ro~increases.} 
-		Panel a depicts the cohort size against the cohort time of infection in units of mean infectious period divided by the incidence peak time; the cohort size is the same as the incidence.
-		In Panel b, the mean and standard deviation of \Rx{c} associated with each cohort are plotted.
-		In an
-		epidemic with \Ro~close to 1, there is little susceptible depletion well after the outbreak onset, and the variation in infectious period mainly drives
-		the variation in \Rx{c}.
-		Panel c plots the squared coefficient of variation, $\kappa$. 
-		Around the time of peak incidence, $\kappa$ reaches its minimum, then rebounds towards one--taking much longer (in rescaled time) in stronger epidemics (larger \Ro).
+	Panel a depicts cohort size as a function of the time of infection, in units of the mean infectious period divided by the incidence peak time; the cohort size equals the incidence.
+		In Panel b, the mean and standard deviation of \Rx{c} associated with each cohort are plotted.	
+%	In an
+%	epidemic with \Ro~close to 1, there is little susceptible depletion well after the outbreak onset, and the variation in infectious period mainly drives
+%	the variation in \Rx{c}.
+	Early in the outbreak, the susceptible pool shrinks slowly, and differences in recovery time mainly cause variations in case numbers. As a result, the average for cases is about the same as in a simple linearized model.
+	Near the outbreak's peak, faster susceptible loss partly compensates for the inequality stemming from the infectious period, and, in turn, the squared coefficient of variation $\kappa$
+	decreases (Panel c).
+	After the peak, once the susceptible pool has become nearly constant again, variation in the infectious period once more drives variation within cohorts; $\kappa$ approaches 1.
+	In stronger outbreaks (higher \Ro), it takes longer (in rescaled time units) for the susceptible population to stabilize, explaining the slower move of $\kappa$ toward one.
 	}
 	\flab{Cohort}
 \end{figure}
-
 
 
