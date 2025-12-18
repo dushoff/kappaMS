@@ -4,8 +4,7 @@
 
 \section{Results}
 
-Demographic stochasticity can generate ``emergent'' heterogeneity even in the absence of explicit differences between individual-based rates.  In simple models, this heterogeneity can be characterized. We explicate the notion that this is predictable (see Box). \jd{Is that really what Box is doing, though? Or more about linking the emergent stochasticity in the deterministic vs.\ demographic-stochastic models?}
-
+Demographic stochasticity can generate ``emergent'' heterogeneity even in the absence of explicit differences between individual-based rates (\Fref{ls}). In simple models, this heterogeneity can be characterized. We explicate the notion that this is predictable (see Box). \jd{Is that really what Box is doing, though? Or more about linking the emergent stochasticity in the deterministic vs.\ demographic-stochastic models?}
 
 \begin{figure}
 \centering
@@ -16,11 +15,14 @@ Demographic stochasticity can generate ``emergent'' heterogeneity even in the ab
 \end{figure}
 
 \Fref{ls} shows patterns of emergent heterogeneity in the early stage of an outbreak.
-
+It is therefore appropriate to revisit the case-per-case distribution when the susceptible pool is dynamic.
+ To address this, we simulated epidemic outbreaks for a population of size $10000$ and, for each infected individual, recorded the number of secondary cases they generated throughout the course of the outbreak. 
 But despite differences in a non-dynamic world, we find invariance in case-per-case when looking across the entire epidemic. 
 The top panel of \Fref{RcAverage} shows realized distributions of ``offspring cases'' caused by individual infectors across a simple, stochastic SIR epidemic. The distributions remain indistinguishable across a wide range of the key parameter \Ro.
-This seems surprising. 
-The resolution is that larger epidemics with larger \Ro\ have larger between-cohort variation, as expected, but that is balanced by smaller within-cohort variation (\Fref{RcAverage}, lower panel). 
+This seems surprising.
+ 
+To address this gap, we examined how heterogeneity differs when analyzing epidemiologically relevant cohorts, which are groups of individuals infected at the same time (\Fref{Cohort}).
+By doing so and splitting the total case-per-case variation into between- and within-cohort components, we found that epidemics with larger \Ro\ have larger between-cohort variation, as expected, but that is balanced by smaller within-cohort variation (\Fref{RcAverage}, lower panel). 
 \begin{figure}
 \centering
 \includegraphics{RcAverage.Rout.pdf}
@@ -32,25 +34,19 @@ The resolution is that larger epidemics with larger \Ro\ have larger between-coh
 }\flab{RcAverage}
 \end{figure}
 
-\begin{figure}
-\centering
-\includegraphics{kappa/RcTimePlotVaryingPeak.Rout.pdf}
-\caption{
-\textbf{Nowcasting the case-per-case distribution evolves as the outbreak unfolds.}
- Panel a: Incidence represents the size of each cohort infected at each rescaled time point.
-By ``rescaled,'' we mean that time has first been scaled by the mean infectious period and is then measured relative to the outbreak peak.
-Panel b: At each time, the mean and standard deviation of cases caused by each case are calculated using only cohorts infected up to that time.
-The mean cases per case is larger in early-infected cohorts and depends on the key parameter \Ro. 
-As time goes by, later-infected cohorts have larger weights, as measured by incidence. These cohorts experience susceptible pool depletion, leading to fewer secondary cases and a lower mean case-per-case number. 
-After the peak, the susceptible population size stabilizes, and the mean and variance approach 1. 
-Panel c: The between-cohort component of the squared coefficient of variation $\kappa_{bet}$ is negligible among the early-infected cohorts, as they experience a similar size of susceptibles. As the outbreak unfolds, the decline in the susceptible population drives between-cohort variation, which is more pronounced in stronger epidemics. The squared coefficient of variation $\kappa$ reaches its minimum around the outbreak peak. The largest cohort, measured by incidence, experiences a sharp depletion of susceptibles, and the impact of variation in recovery time fades—declining the variance and, in turn, $\kappa$. After the peak, $\kappa$ rebounds to one. 
-In panel c, the squared coefficient of variation is shown, split into within-group and between-group components. 
-For panels b and c, the y-axis value at each time point was computed using only the cohorts that had been infected up to that time.
-}\flab{timeCutoff}
-\end{figure}
+
+We are also interested in what emergent distributions will look like to people studying outbreaks in real time. We are interested, at least to some extent, both in how cohorts change through time, and in what the outbreak will ``look like'' if we observe from a particular time.  
+We simulated a deterministic SIR model and stopped it at various cutoff points. At each point, we recorded the number of cases generated by each infected cohort up to that time.
+In the early stage of the outbreak, observed heterogeneity is lower compared to both a fully susceptible population (linearized model) and the entire outbreak (\fref{Naive}). 
+By the end of the outbreak, the mean and standard deviation of case-per-case for different values of \Ro~become indistinguishable.
+
+We also examined an idealized scenario in which we computed the case-per-case distribution among cohorts who got infected up to a given cutoff point.
+In epidemics with lower \Ro, the case-per-case distribution across early-infected cohorts is the same as that in a constant-susceptible pool (\fref{timeCutoff}).
+Incorporating cohorts who later, but prior to the outbreak peak, became infected reduces variability. Further incorporating those cohorts that became infected after the peak increased the variability.
+By the end of the outbreak, all epidemics with different \Ro~agree on the case-per-case distribution.
 
 
-We are also interested in what emergent distributions will look like to people studying outbreaks in real time. We are interested, at least to some extent, both in how cohorts change through time, and in what the outbreak will ``look like'' if we observe from a particular time.  \Fref{timeCutoff} is one example; we are working on others.
+
 
 2025 Dec 09 (Tue) suggestion for figures. We want:
 
@@ -67,6 +63,22 @@ We are also interested in what emergent distributions will look like to people s
 It's also possible to imagine realistic approaches between these two extremes, but let's put that off for later. There are methods (including by Dushoff and Park) for thinking about this at the cohort level, but not with a focus on individual variation. Maybe this is just for discussion. OR maybe we should also look at plots where we go up until a particular time and only count recovered infectors.
 %\ag{Does \fref{timeCutoffV1} do what we are looking for?}
 
+\begin{figure}
+	\centering
+	\includegraphics{kappa/RcTimePlotVaryingPeak.Rout.pdf}
+	\caption{
+		\textbf{Nowcasting the case-per-case distribution evolves as the outbreak unfolds.}
+		Panel a: Incidence represents the size of each cohort infected at each rescaled time point.
+		By ``rescaled,'' we mean that time has first been scaled by the mean infectious period and is then measured relative to the outbreak peak.
+		Panel b: At each time, the mean and standard deviation of cases caused by each case are calculated using only cohorts infected up to that time.
+		The mean cases per case is larger in early-infected cohorts and depends on the key parameter \Ro. 
+		As time goes by, later-infected cohorts have larger weights, as measured by incidence. These cohorts experience susceptible pool depletion, leading to fewer secondary cases and a lower mean case-per-case number. 
+		After the peak, the susceptible population size stabilizes, and the mean and variance approach 1. 
+		Panel c: The between-cohort component of the squared coefficient of variation $\kappa_{bet}$ is negligible among the early-infected cohorts, as they experience a similar size of susceptibles. As the outbreak unfolds, the decline in the susceptible population drives between-cohort variation, which is more pronounced in epidemics with larger \Ro. The squared coefficient of variation $\kappa$ reaches its minimum around the outbreak peak. The largest cohort, measured by incidence, experiences a sharp depletion of susceptibles, and the impact of variation in recovery time fades—declining the variance and, in turn, $\kappa$. After the peak, $\kappa$ rebounds to one. 
+		In panel c, the squared coefficient of variation is shown, split into within-group and between-group components. 
+		For panels b and c, the y-axis value at each time point was computed using only the cohorts that had been infected up to that time.
+	}\flab{timeCutoff}
+\end{figure}
 
 \begin{figure}
 	\centering
@@ -79,7 +91,7 @@ It's also possible to imagine realistic approaches between these two extremes, b
 		As the outbreak approaches its peak, the contribution of the early infected but not yet recovered population is realized, increasing the standard deviation.
 		After the peak, both the mean and the standard deviation approach 1 rapidly, regardless of \Ro.
 		Panel c: The squared coefficient of variation of case-per-case $\kappa$ climbs over the course of the outbreak.
-		Unlike in epidemics with \Ro~close to one, in stronger epidemics, the between-cohort component jumps after the outbreak peak as the susceptible pool depletes.
+		In epidemics with large \Ro, as opposed to those with \Ro~close to one, the between-cohort component jumps after the outbreak peak as the susceptible pool depletes.
 		For panels b and c, the simulation was stopped at each time point to compute the y-axis value. 
 		The y-axis value at each time point was computed by assigning to each cohort the number of realized cases up to that time.
 		In all panels, time units measured in the mean infectious period are again scaled relative to the peak time.
