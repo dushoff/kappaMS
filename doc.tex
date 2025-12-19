@@ -1,9 +1,31 @@
 \section{Introduction}
 
-\section{Box: Kappa tutorial}
+%\section{Box: Kappa tutorial}
 
+
+\begin{framed}
+	\noindent\textbf{Box 1. $\kappa$ tutorial.} 
+	
+For a continuous distribution with mean $\mu$ and variance $\sigma^2$, we define (generalized)
+\emph{dispersion parameter}, $\kappa$, as $\frac{\sigma^2}{\mu^2}$. 
+We define the dispersion parameter for a discrete distribution  with mean $\mu$ and variance $\sigma^2$  as 
+$\kappa_\mathrm{discrete} = \frac{\sigma^2-\mu}{\mu^2}$.
+
+These statistics have desirable properties for a dispersion measure: they \textit{increase} with dispersion around the mean and equal zero for a Dirac delta function \ag{How is $\kappa_\mathrm{discrete}$ zero for a \emph{discrete} Dirac delta distribution?}. 
+
+The dispersion parameter is invariant under Poissonification: If a gamma distribution is parameterized by its mean $\mu$ and dispersion $\kappa$, then the negative binomial distribution arising from the Poisson mixture with that gamma is also parameterized by $\mu$ and $\kappa_\mathrm{discrete} = \kappa$.
+
+More generally, the connection between $\kappa$ and $\kappa_\mathrm{discrete}$ holds for the Poisson mixture with any underlying distribution. 
+Thus, we can use $\kappa$ statistics to compare models with different mean-variance structures.
+
+
+
+In our setting, the continuous distribution corresponds to the expected transmission rate, and the discrete distribution arises from the stochastic realization of that rate, i.e., by compounding a Poisson distribution with a rate parameter derived from the continuous distribution. 
+Hence, $\kappa$ can be used to characterize the dispersion of secondary case distributions.
+
+
+\end{framed}
 \section{Results}
-
 Demographic stochasticity can generate ``emergent'' heterogeneity even in the absence of explicit differences between individual-based rates (\Fref{ls}). In simple models, this heterogeneity can be characterized. We explicate the notion that this is predictable (see Box). \jd{Is that really what Box is doing, though? Or more about linking the emergent stochasticity in the deterministic vs.\ demographic-stochastic models?}
 
 \begin{figure}
@@ -14,14 +36,14 @@ Demographic stochasticity can generate ``emergent'' heterogeneity even in the ab
 }\flab{ls}
 \end{figure}
 
-\Fref{ls} shows patterns of emergent heterogeneity in the early stage of an outbreak.
-It is therefore appropriate to revisit the case-per-case distribution when the susceptible pool is dynamic.
- To address this, we simulated epidemic outbreaks for a population of size $10000$ and, for each infected individual, recorded the number of secondary cases they generated throughout the course of the outbreak. 
-But despite differences in a non-dynamic world, we find invariance in case-per-case when looking across the entire epidemic. 
-The top panel of \Fref{RcAverage} shows realized distributions of ``offspring cases'' caused by individual infectors across a simple, stochastic SIR epidemic. The distributions remain indistinguishable across a wide range of the key parameter \Ro.
+\Fref{ls} shows patterns of emergent heterogeneity in the number of secondary cases during the early stage of an outbreak,i.e., in a fully susceptible population.
+Both activity distribution and the secondary case distribution depend on \Ro.
+How would the secondary distribution look if we examined all infectors over the entire outbreak?
+To address this, we simulated epidemic outbreaks in a population of $10000$ and, for each infected individual, recorded the number of secondary cases they generated throughout the outbreak. 
+The top panel of \Fref{RcAverage} shows realized distributions of ``offspring cases'' caused by individual infectors across a simple, stochastic SIR epidemic. Despite a non-dynamic world, the distributions remain indistinguishable across a wide range of the key parameter \Ro.
 This seems surprising.
  
-To address this gap, we examined how heterogeneity differs when analyzing epidemiologically relevant cohorts, which are groups of individuals infected at the same time (\Fref{Cohort}).
+To resolve this apparent discrepancy, we examined how heterogeneity differs when analyzing epidemiologically relevant cohorts, which are groups of individuals infected at the same time (\Fref{Cohort}).
 By doing so and splitting the total case-per-case variation into between- and within-cohort components, we found that epidemics with larger \Ro\ have larger between-cohort variation, as expected, but that is balanced by smaller within-cohort variation (\Fref{RcAverage}, lower panel). 
 \begin{figure}
 \centering
@@ -36,13 +58,13 @@ By doing so and splitting the total case-per-case variation into between- and wi
 
 
 We are also interested in what emergent distributions will look like to people studying outbreaks in real time. We are interested, at least to some extent, both in how cohorts change through time, and in what the outbreak will ``look like'' if we observe from a particular time.  
-We simulated a deterministic SIR model and stopped it at various cutoff points. At each point, we recorded the number of cases generated by each infected cohort up to that time.
+To do so, we simulated a deterministic SIR model and stopped it at various cutoff points. At each point, we recorded the number of cases generated by each infected cohort up to that time.
 In the early stage of the outbreak, observed heterogeneity is lower compared to both a fully susceptible population (linearized model) and the entire outbreak (\fref{Naive}). 
 By the end of the outbreak, the mean and standard deviation of case-per-case for different values of \Ro~become indistinguishable.
 
 We also examined an idealized scenario in which we computed the case-per-case distribution among cohorts who got infected up to a given cutoff point.
 In epidemics with lower \Ro, the case-per-case distribution across early-infected cohorts is the same as that in a constant-susceptible pool (\fref{timeCutoff}).
-Incorporating cohorts who later, but prior to the outbreak peak, became infected reduces variability. Further incorporating those cohorts that became infected after the peak increased the variability.
+Incorporating cohorts who later, but prior to the outbreak peak, became infected reduced variability. Further incorporating those cohorts that became infected after the peak increased the variability.
 By the end of the outbreak, all epidemics with different \Ro~agree on the case-per-case distribution.
 
 
