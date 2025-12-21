@@ -5,23 +5,22 @@
 
 \begin{framed}
 	\noindent\textbf{Box 1. $\kappa$ tutorial.} 
-	
-For a continuous distribution with mean $\mu$ and variance $\sigma^2$, we define (generalized)
-\emph{dispersion parameter}, $\kappa$, as $\frac{\sigma^2}{\mu^2}$. 
-We define the dispersion parameter for a discrete distribution  with mean $\mu$ and variance $\sigma^2$  as 
-$\kappa_\mathrm{discrete} = \frac{\sigma^2-\mu}{\mu^2}$.
+%Adapted from main.tex on Overleaf	
 
-These statistics have desirable properties for a dispersion measure: they \textit{increase} with dispersion around the mean and equal zero for a Dirac delta function \ag{How is $\kappa_\mathrm{discrete}$ zero for a \emph{discrete} Dirac delta distribution?}. 
+For a continuous distribution with mean $\mu$ and variance $\sigma^2,$ the (generalized)
+\emph{dispersion parameter}, $\kappa$, is defined as the squared coefficient of variation $\sigma^2/\mu^2$. 
+The dispersion parameter of a discrete distribution  with mean $\mu$ and variance $\sigma^2$ is defined as
+$\kappa_\mathrm{discrete} = (\sigma^2-\mu)/\mu^2$.
 
-The dispersion parameter is invariant under Poissonification: If a gamma distribution is parameterized by its mean $\mu$ and dispersion $\kappa$, then the negative binomial distribution arising from the Poisson mixture with that gamma is also parameterized by $\mu$ and $\kappa_\mathrm{discrete} = \kappa$.
+The statistics $\kappa$ and $\kappa_\mathrm{discrete}$ have desirable properties for a dispersion measure: They \emph{increase} with dispersion around the mean and equal zero for a Dirac delta function \ag{How is $\kappa_\mathrm{discrete}$ zero for a \emph{discrete} Dirac delta distribution?}. 
 
-More generally, the connection between $\kappa$ and $\kappa_\mathrm{discrete}$ holds for the Poisson mixture with any underlying distribution. 
-Thus, we can use $\kappa$ statistics to compare models with different mean-variance structures.
-
-
+The dispersion parameter is \emph{invariant} under Poisson mixing.
+When a gamma distribution is parameterized by its mean $\mu$ and dispersion $\kappa$, the resulting negative binomial distribution, derived from  Poisson mixing, is likewise parameterized by $\mu$ and $\kappa_\mathrm{discrete} = \kappa$.
+The connection between $\kappa$ and $\kappa_\mathrm{discrete}$ holds for Poisson mixture with any mixing distribution. 
+%Thus, we can use $\kappa$ statistics to compare models with different mean-variance structures.
 
 In our setting, the continuous distribution corresponds to the expected transmission rate, and the discrete distribution arises from the stochastic realization of that rate, i.e., by compounding a Poisson distribution with a rate parameter derived from the continuous distribution. 
-Hence, $\kappa$ can be used to characterize the dispersion of secondary case distributions.
+Hence, $\kappa$ and $\kappa_\mathrm{discrete}$ can be used to characterize the dispersion of secondary case distributions.
 
 
 \end{framed}
@@ -35,16 +34,22 @@ Demographic stochasticity can generate ``emergent'' heterogeneity even in the ab
 	\textbf{Heterogeneity emerges even from a simple, linearized compartmental model} due to implicit variation in recovery times among infectors. (left) Activity distributions (density curves) and secondary case distributions (density histograms) for the outset of an SIR epidemic. Because the first bin (at zero) sits at the boundary of support for each distribution, we have plotted this bin as double the density and half the width; this adjustment preserves area-to-area correspondence with the PDF, while facilitating visual comparison of the heights of the density and mass functions. (right) Inequality curves for \emph{activity} distributions from SIR models with differing \Ro~are identical (and indistinguishable due to overplotting); inequality in the \emph{case} distribution decreases with \Ro~towards the theoretical limit of the activity distribution.
 }\flab{ls}
 \end{figure}
+The inequality in the secondary cases varied by \Ro; the inequality in the activity distribution did not.
+The share of Poisson noise in the inequality shrank in epidemics with large \Ro (\Fref{ls}, right panel).
 
-\Fref{ls} shows patterns of emergent heterogeneity in the number of secondary cases during the early stage of an outbreak,i.e., in a fully susceptible population.
-Both activity distribution and the secondary case distribution depend on \Ro.
+The left panel of \Fref{ls} shows patterns of emergent heterogeneity in secondary case numbers during the early stage of an outbreak, when the population is susceptible.
+Both activity distribution and secondary case distribution depend on \Ro.
 How would the secondary distribution look if we examined all infectors over the entire outbreak?
-To address this, we simulated epidemic outbreaks in a population of $10000$ and, for each infected individual, recorded the number of secondary cases they generated throughout the outbreak. 
-The top panel of \Fref{RcAverage} shows realized distributions of ``offspring cases'' caused by individual infectors across a simple, stochastic SIR epidemic. Despite a non-dynamic world, the distributions remain indistinguishable across a wide range of the key parameter \Ro.
+To address this, we simulated epidemic outbreaks with different \Ro~values in a population of $10000$.
+For each infected individual, we recorded the number of secondary cases they generated during the outbreak. 
+The top row of \Fref{RcAverage} shows realized distributions of ``offspring cases'' caused by individual infectors in simple, stochastic SIR epidemics. Despite a non-dynamic world, the distributions remain indistinguishable across a wide range of the key parameter \Ro.
 This seems surprising.
  
-To resolve this apparent discrepancy, we examined how heterogeneity differs when analyzing epidemiologically relevant cohorts, which are groups of individuals infected at the same time (\Fref{Cohort}).
-By doing so and splitting the total case-per-case variation into between- and within-cohort components, we found that epidemics with larger \Ro\ have larger between-cohort variation, as expected, but that is balanced by smaller within-cohort variation (\Fref{RcAverage}, lower panel). 
+To reconcile these two observations, we examined how heterogeneity differs when analyzing epidemiologically relevant cohorts, which are groups of individuals infected at the same time.
+A large \Ro~results in a large initial number of cases per case; however, rapid depletion of susceptible individuals reduces the chance of large secondary cases.
+In contrast, a small \Ro~produces fewer initial cases per case, but the slower susceptible exhaustion allows for larger secondary cases (\Fref{Cohort}).
+We then split the total case-per-case variance over the course of the outbreak into between- and within-cohort components. We found that epidemics with larger \Ro\ have larger between-cohort variation, as expected. However, this is balanced by smaller within-cohort variation (\Fref{RcAverage}, lower panel). 
+In particular, we proved that the variance in case-per-case, conditioned on the entire outbreak, is equal to one, regardless of the key parameter \Ro~(see the appendix for a proof).
 \begin{figure}
 \centering
 \includegraphics{RcAverage.Rout.pdf}
@@ -52,20 +57,21 @@ By doing so and splitting the total case-per-case variation into between- and wi
 \textbf{Nearly identical empirical distributions of case-per-case for epidemics of different strengths conditioned over the entire outbreak cycle.}
 	Epidemic outbreaks have been simulated for a population of $10000$ with different \Ro\, and the number of secondary cases per infector has been recorded at the time of outbreak extinction (top panels).
 	Identical variance in case-per-case for epidemics of different strengths modeled using simple compartmental models (lower panel).
-	As \Ro~increases, between-cohort variance rises, and within-cohort variance falls, maintaining constant total variance of 1.
+	As \Ro~increases, between-cohort variance rises, and within-cohort variance falls, maintaining constant total variance of one.
 }\flab{RcAverage}
 \end{figure}
 
 
 We are also interested in what emergent distributions will look like to people studying outbreaks in real time. We are interested, at least to some extent, both in how cohorts change through time, and in what the outbreak will ``look like'' if we observe from a particular time.  
-To do so, we simulated a deterministic SIR model and stopped it at various cutoff points. At each point, we recorded the number of cases generated by each infected cohort up to that time.
-In the early stage of the outbreak, observed heterogeneity is lower compared to both a fully susceptible population (linearized model) and the entire outbreak (\fref{Naive}). 
-By the end of the outbreak, the mean and standard deviation of case-per-case for different values of \Ro~become indistinguishable.
+To do so, we simulated a deterministic SIR model and stopped it at different cutoff points.
+At each point, we calculated case-per-case heterogeneity based on the cases generated by infected cohorts up to that time.
+We found that in the early stage of the outbreak, the observed heterogeneity was lower than in either the linearized model or the entire outbreak, and that it varied by \Ro~(\fref{Naive}). 
+By the end of the outbreak, the heterogeneity in case-per-case for different values of \Ro~became indistinguishable and equal to one.
 
-We also examined an idealized scenario in which we computed the case-per-case distribution among cohorts who got infected up to a given cutoff point.
-In epidemics with lower \Ro, the case-per-case distribution across early-infected cohorts is the same as that in a constant-susceptible pool (\fref{timeCutoff}).
+We also examined an idealized scenario in which, for each time point, we computed case-per-case heterogeneity over the entire outbreak, considering all cohorts that had become infectious up to that time.
+In epidemics with lower \Ro, the case-per-case mean and variance across early-infected cohorts were the same as those in a linearized model (\fref{timeCutoff}).
 Incorporating cohorts who later, but prior to the outbreak peak, became infected reduced variability. Further incorporating those cohorts that became infected after the peak increased the variability.
-By the end of the outbreak, all epidemics with different \Ro~agree on the case-per-case distribution.
+By the end of the outbreak, all epidemics with different \Ro~agreed on the case-per-case distribution.
 
 
 
@@ -95,9 +101,9 @@ It's also possible to imagine realistic approaches between these two extremes, b
 		Panel b: At each time, the mean and standard deviation of cases caused by each case are calculated using only cohorts infected up to that time.
 		The mean cases per case is larger in early-infected cohorts and depends on the key parameter \Ro. 
 		As time goes by, later-infected cohorts have larger weights, as measured by incidence. These cohorts experience susceptible pool depletion, leading to fewer secondary cases and a lower mean case-per-case number. 
-		After the peak, the susceptible population size stabilizes, and the mean and variance approach 1. 
-		Panel c: The between-cohort component of the squared coefficient of variation $\kappa_{bet}$ is negligible among the early-infected cohorts, as they experience a similar size of susceptibles. As the outbreak unfolds, the decline in the susceptible population drives between-cohort variation, which is more pronounced in epidemics with larger \Ro. The squared coefficient of variation $\kappa$ reaches its minimum around the outbreak peak. The largest cohort, measured by incidence, experiences a sharp depletion of susceptibles, and the impact of variation in recovery time fades—declining the variance and, in turn, $\kappa$. After the peak, $\kappa$ rebounds to one. 
-		In panel c, the squared coefficient of variation is shown, split into within-group and between-group components. 
+		After the peak, the susceptible population size stabilizes, and the mean and variance approach one. 
+		Panel c: The between-cohort component of the squared coefficient of variation $\kappa_{bet}$ is negligible among the early-infected cohorts, as they experience a similar size of susceptibles. As the outbreak unfolds, the decline in the susceptible population drives between-cohort variation, which is more pronounced in epidemics with larger \Ro. The squared coefficient of variation $\kappa$ reaches its minimum around the outbreak peak; the largest cohort, measured by incidence, experiences a sharp depletion of susceptibles, and the impact of variation in recovery time fades—declining the variance and, in turn, $\kappa$. After the peak, $\kappa$ rebounds to one. 
+		In panel c, the squared coefficient of variation is shown, split into within- and between-cohort components. 
 		For panels b and c, the y-axis value at each time point was computed using only the cohorts that had been infected up to that time.
 	}\flab{timeCutoff}
 \end{figure}
@@ -110,8 +116,7 @@ It's also possible to imagine realistic approaches between these two extremes, b
 		Panel a: The size of the cohort infected at each rescaled time point is measured by incidence at that point.
 		Panel b: The mean and standard deviation of case-per-case at each time are computed using the realized cases up to that point. 
 		Early in the outbreak, the variability in case-per-case is yet to be fully revealed, as those still infectious generated the same number of secondary cases as those who had just recovered.
-		As the outbreak approaches its peak, the contribution of the early infected but not yet recovered population is realized, increasing the standard deviation.
-		After the peak, both the mean and the standard deviation approach 1 rapidly, regardless of \Ro.
+		After the peak, the standard deviation has already settled at one; the mean approaches one rapidly, regardless of \Ro.
 		Panel c: The squared coefficient of variation of case-per-case $\kappa$ climbs over the course of the outbreak.
 		In epidemics with large \Ro, as opposed to those with \Ro~close to one, the between-cohort component jumps after the outbreak peak as the susceptible pool depletes.
 		For panels b and c, the simulation was stopped at each time point to compute the y-axis value. 
