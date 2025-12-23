@@ -42,14 +42,14 @@ Both activity distribution and secondary case distribution depend on \Ro.
 How would the secondary distribution look if we examined all infectors over the entire outbreak?
 To address this, we simulated epidemic outbreaks with different \Ro~values in a population of $10000$.
 For each infected individual, we recorded the number of secondary cases they generated during the outbreak. 
-The top row of \Fref{RcAverage} shows realized distributions of ``offspring cases'' caused by individual infectors in simple, stochastic SIR epidemics. Despite a non-dynamic world, the distributions remain indistinguishable across a wide range of the key parameter \Ro.
-This seems surprising.
+The top row of \Fref{RcAverage} shows realized distributions of ``offspring cases'' caused by individual infectors in simple, stochastic SIR epidemics. Unlike in the linearized case above, the distributions remain indistinguishable across a wide range of the key parameter \Ro.
+This seems surprising: in particular, we see much greater dynamical changes when \Ro is large; we might expect this to be reflected in a larger variation in the offspring distribution.
  
 To reconcile these two observations, we examined how heterogeneity differs when analyzing epidemiologically relevant cohorts, which are groups of individuals infected at the same time, as the outbreak unfolds.
 A large \Ro~results in a large initial number of cases per case; however, rapid depletion of susceptible individuals reduces the chance of large secondary cases.
 In contrast, a small \Ro~produces fewer initial cases per case, but the slower susceptible exhaustion allows for larger secondary cases (\Fref{Cohort}).
 We then split the total case-per-case variance over the course of the outbreak into between- and within-cohort components. We found that epidemics with larger \Ro\ have larger between-cohort variation, as expected. However, this is balanced by smaller within-cohort variation (\Fref{RcAverage}, lower panel). 
-In particular, we proved that the variance in case-per-case, conditioned on the entire outbreak, is equal to one, regardless of the key parameter \Ro~(Section \ref{sec_proof}).
+We can in fact prove that the variance in case-per-case, conditioned on the entire outbreak, is equal to one, regardless of the value of \Ro~(Section \ref{sec_proof}).
 \begin{figure}
 \centering
 \includegraphics{RcAverage.Rout.pdf}

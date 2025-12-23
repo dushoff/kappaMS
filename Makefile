@@ -7,7 +7,7 @@ Ignore = target.mk
 
 Sources += $(wildcard *.md)
 vim_session:
-	bash -cl "vmt README.md"
+	bash -cl "vmt README.md notes.md"
 
 ######################################################################
 
@@ -68,7 +68,7 @@ kappa:
 	cd $@ && $(MAKE) Makefile
 
 ## legacy was used to build this quickly for Weitz 🙁
-Ignore += $(hotdirs) legacy
+Ignore += $(hotdirs)
 
 updatedirs: | $(hotdirs)
 	$(MAKE) $(hotdirs:%=%.pull)
