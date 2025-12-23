@@ -5,6 +5,11 @@ current: target
 -include target.mk
 Ignore = target.mk
 
+pyvenv: ; $(cleanpyvenv)
+-include makestuff/pyvenv.mk
+-include makestuff/python.def
+-include makestuff/perl.def
+
 Sources += $(wildcard *.md)
 vim_session:
 	bash -cl "vmt README.md notes.md"
@@ -67,11 +72,26 @@ kappa:
 	$(linkdirname) || (git clone $(kappagit) $@ && ls $@/Makefile)
 	cd $@ && $(MAKE) Makefile
 
-## legacy was used to build this quickly for Weitz 🙁
 Ignore += $(hotdirs)
 
 updatedirs: | $(hotdirs)
 	$(MAKE) $(hotdirs:%=%.pull)
+
+######################################################################
+
+## Reference stuff?
+
+## Dump DOIs here; it should find PMIDs for you. This is obviously not perfect
+Ignore += add.pmlist
+Sources += $(wildcard *.pmsearch)
+## add.pmlist: add.pmsearch reff/pm.py
+
+## main.recs: main.rmu
+## main.tags.pgr: main.rmu
+## main.downloads: main.rmu
+## main.downloads: main.tags.pgr library reff/download.py | doi2pdf.pip metapub.pip pubmed-pdf-downloader.pip
+## main.gfm: main.rmu
+## main.reff.html: main.rmu main.gfm
 
 ######################################################################
 
@@ -104,6 +124,7 @@ makestuff:
 -include makestuff/texj.mk
 -include makestuff/pandoc.mk
 -include makestuff/hotcold.mk
+-include makestuff/reff.mk
 
 -include makestuff/git.mk
 -include makestuff/visual.mk
