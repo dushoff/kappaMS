@@ -1,0 +1,213 @@
+\renewcommand{\thefigure}{S\arabic{figure}}
+\pagenumbering{arabic}% resets `page` counter to 1
+\renewcommand*{\thepage}{S\arabic{page}}
+\renewcommand{\theequation}{S.\arabic{equation}}
+\renewcommand{\thesection}{S.\arabic{section}}
+\resetallcounters
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+% --------------------------------------------------------------
+%Previously TheRoswellConjecture_TG
+% Author: Tapan Goel
+% Date: May 9, 2025
+% This document follows the proof for the Roswell conjecture laid out by J. Dushoff for proving that the excess variation in individual cases per case in the standard SIR model is 1.
+% --------------------------------------------------------------
+ 
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+% Modified by AA, main changes include: 
+%
+\section{Analytical Results} \label{sec_proof}
+\subsection{Preliminaries}
+The standard SIR model is described by the following equations:
+%\begin{equation}\label{eq:SIR}
+\begin{align*}
+        \dot{x} &= - \Ro xy, \\
+        \dot{y} &= \Ro xy - y,
+\end{align*}
+%\end{equation}
+where $x(t)$ and $y(t)$ denote the proportion of susceptible and infectious individuals, respectively. 
+Time has been normalized by the recovery rate.
+Let $i(t)$ denote the incidence $\Ro xy$, and define the size of the epidemic as follows:
+\[Z = \int_0^\infty dt i(t).\]
+
+Let $f$ denote the distribution of residence times in the infectious compartment. Define $F(t)$ as the corresponding survival distribution, that is
+\begin{equation} \label{eq:survial}
+    F(t) = 1 - \int_0^t d\tau f(\tau) = \int_t^\infty d\tau f(\tau).
+\end{equation}
+
+Note that $F(t)$ is the probability that an individual infected at time $0$ remains infectious after time $t$. 
+%Note also that in changing the limits of the integral, we only used the fact that $f$ is a normalized probability density function -- we did not use the fact that $f$ is an exponential.
+
+
+We define the \emph{expected case reproductive number} between time $\tau$ and $\rho$ as 
+\[C(\tau,\rho) = \Ro \int_\tau^\rho dt\; x(t).\]
+The $k^\text{th}$ weighted raw moment of $C$ is then defined as
+\begin{equation}
+    \label{eq:Moments}
+    C_k = \int_0^\infty d\tau \int_\tau^\infty d\rho \; w(\tau,\rho) (C(\tau,\rho))^k,
+\end{equation}
+where $w(\tau,\rho) = i(\tau)f(\rho-\tau)$ is the size of the cohort that became infectious at time $\tau$ and recovered at time $\rho$.
+
+\subsection{The Statement}
+The excess variation of the individual case reproductive number in the standard SIR model outbreak is 1. Mathematically, this amounts to proving that
+
+\begin{align}\label{eq:target}
+\boxed{\kappa_C = \frac{C_0C_2}{C_1^2} - 1 = 1.}
+\end{align}
+
+
+
+
+\subsection{Proof}
+We will calculate $C_0$, $C_1$ and $C_2$. We can calculate $C_0$ and $C_1$ without making any assumptions about the functional form of $f$ (we don't have to assume that the wait times are exponentially distributed). We do need $F$ to be memoryless, i.e., obey $F(a+b) = F(a)F(b)$, to get the ``right'' value of $C_2$.
+Calculating each of these moments essentially involves multiple manipulations of the limits of the integrals involved. 
+
+%\subsubsection{Proof of $C_0 = Z$} \label{sec:C0}
+From \autoref{eq:Moments}, we have
+\begin{align*}
+        C_0 &= \int_0^\infty d\tau \int_\tau^\infty d\rho \; w(\tau,\rho) \\
+        &= \int_0^\infty d\tau \int_\tau^\infty d\rho \; i(\tau) f(\rho - \tau)
+\end{align*}
+
+Substituting $\omega + \tau $ for $\rho$ in the inner integral, results in
+
+\begin{align*}
+        C_0 &=\int_0^\infty d\tau \;i(\tau) \int_0^\infty d\omega \; f(\omega).
+\end{align*}
+Since $f$ is the residence time distribution (note we're not invoking the fact that $f$ is an exponential distribution!), the inner integral is simply 1.
+It follows that
+\begin{align*}
+ %   \begin{split} \label{eq:C0calc}
+        C_0 &=\int_0^\infty d\tau \;i(\tau) \\
+        &= Z. 
+  %  \end{split}
+\end{align*}
+
+%\subsubsection{Proof of $C_1 = Z$}\label{sec:C1}
+
+The next step is to prove that $C_1 = Z$.
+From \autoref{eq:Moments}, we have
+\begin{align*}
+        C_1 &= \int_0^\infty d\tau \int_\tau^\infty d\rho \; w(\tau,\rho) C(\tau,\rho)\\
+        &= \Ro\int_0^\infty d\tau \int_\tau^\infty d\rho i(\tau) f(\rho-\tau) \int_\tau^{\rho} dt x(t).
+\end{align*}
+Instead of first integrating over $t$ from $\tau$ to $\rho$ and then over $\rho$ from $\tau$ to $\infty$, we can first integrate over $\rho$ from $t$ to $\infty$ and then integrate over $t$ from $\tau$ to $\infty$, i.e.,
+\begin{equation*}
+    C_1 =\Ro\int_0^\infty d\tau \int_\tau^\infty dt i(\tau) x(t) \int_t^\infty d\rho f(\rho-\tau). 
+\end{equation*}
+Substitute $\rho = \omega + \tau$ in the innermost integral and using \autoref{eq:survial}, we get
+\begin{align*}
+    \begin{split}
+        C_1 &= \Ro\int_0^\infty d\tau \int_\tau^\infty dt\; i(\tau)x(t) \int_{t-\tau}^\infty d\omega f(\omega)\\
+        &=  \Ro\int_0^\infty d\tau \int_\tau^\infty dt\; i(\tau)x(t) F(t-\tau).
+    \end{split}
+\end{align*}
+Note again that we have not used the fact that $f$ is exponential, we have merely used the definition of $F$ as an integral of $f$.
+By interchanging the order of the integrals once more, we have
+\begin{align*}
+        C_1 &= \Ro\int_0^\infty d\tau \int_\tau^\infty dt\; i(\tau)x(t) \int_{t-\tau}^\infty d\omega f(\omega)\\
+        &=  \Ro\int_0^\infty dt\; x(t) \int_0^t d\tau\; i(\tau)F(t-\tau). 
+\end{align*}
+Note that the inner integrand counts the number of individuals that entered the infectious state at some time $\tau < t$ and remain infectious  at time $t$. When we integrate over all times $\tau < t$, we simply get the number of individuals who are infections at time $t$, i.e., $y(t)$.
+ So,
+\begin{align}
+        C_1 &= \Ro\int_0^\infty dt\; x(t) \int_0^t d\tau\; i(\tau)F(t-\tau) \label{eq:C1calc_prev}\\
+        &= \Ro\int_0^\infty dt\; x(t)y(t)     \label{eq:C1calc}\\
+        &= \int_0^\infty dt\; i(t)\\
+        &=Z.
+\end{align}
+%\subsubsection{Proof of $C_2 = 2Z$}\label{sec:C2}
+The next step is to show $C_2 = 2Z$.
+Given \autoref{eq:Moments}, we have
+\begin{align*}
+        C_2 &= \int_0^\infty d\tau \int_\tau^\infty d\rho \; w(\tau,\rho) \left(C(\tau,\rho)\right)^2\\
+        &= \Ro^2 \int_0^\infty d\tau \int_\tau^\infty d\rho \;i(\tau) f(\rho-\tau) \left(\int_\tau^{\rho} dt x(t)\right)^2
+\end{align*}
+Now we break down the square integral into a double integral
+\begin{align*}
+        \left(\int_\tau^\rho x(t)dt\right)^2 &= \left( \int_\tau^\rho x(t) dt\right) \left( \int_\tau^\rho x(s)ds\right)\\
+        &=  \left( \int_\tau^\rho x(t) dt\right) \left( \int_\tau^\rho x(s)ds\right)\\
+        &=  \int_\tau^\rho \int_\tau^\rho dt ds \; x(t) x(s).
+\end{align*}
+In $t-s$ space, this is integrating $x(t)x(s)$ over a square region whose vertices are $(\tau,\tau)$, $(\tau,\rho)$, $(\rho,\tau)$ and $(\rho,\rho)$. This is twice the integral over the triangle whose vertices are $(\tau,\tau)$, $(\tau,\rho)$ and $(\rho,\tau)$. So,
+\begin{equation*}
+        \left(\int_\tau^\rho x(t)dt\right)^2 = 2 \int_\tau^\rho ds \int_\tau^s dt \; x(t)x(s)
+\end{equation*}
+Plugging this back into the expression for $C_2$ yields
+%\begin{align} \label{eq:SquareToTriangle}
+    \begin{equation*}
+        C_2 = 2\Ro^2 \int_0^\infty d\tau \int_\tau^\infty d\rho \int_\tau^\rho ds \int_\tau^s dt \; i(\tau) f(\rho-\tau) x(t)x(s).
+    \end{equation*}
+%\end{align}
+First, we reorder the integrals over $\rho$ and $s$ and change the limits appropriately
+\begin{align*}
+    \begin{split}
+        C_2 &= 2\Ro^2 \int_0^\infty d\tau \; i(\tau) \int_\tau^\infty ds \; x(s)\int_s^\infty d\rho \int_\tau^s dt  f(\rho-\tau) x(t).
+    \end{split}
+\end{align*}
+Next, we reorder the integrals over $\rho$ and $t$ to get
+\begin{align*}
+    \begin{split}
+        C_2 &= 2\Ro^2 \int_0^\infty d\tau \; i(\tau) \int_\tau^\infty ds \; x(s) \int_\tau^s dt \; x(t)\int_s^\infty d\rho f(\rho-\tau). 
+    \end{split}
+\end{align*}
+By substituting $\rho = \omega + \tau$ and using \autoref{eq:survial}, we get
+\begin{align*}
+    \begin{split}
+        C_2 &= 2\Ro^2 \int_0^\infty d\tau \; i(\tau) \int_\tau^\infty ds \; x(s) \int_\tau^s dt \; x(t)F(s-\tau).
+    \end{split}
+\end{align*}
+We then reorder the integrals over $\tau$ and $s$
+\begin{align*}
+    \begin{split}
+        C_2 &= 2\Ro^2 \int_0^\infty ds\;x(s)\int_0^s d\tau \int_\tau^s dt\; x(t)i(\tau)F(s-\tau).
+    \end{split}
+\end{align*}
+ Swapping the integrals over $\tau$ and $t$, results in
+\begin{align*}
+  %  \begin{split} 
+        C_2 = 2\Ro^2 \int_0^\infty ds\;x(s)\int_0^s dt \; x(t) \int_0^t d\tau\;i(\tau)F(s-\tau).
+ %   \end{split}
+\end{align*}
+Now, we use the fact that the survival function $F$ is memoryless, i.e., $F(a+b) = F(a)F(b)$, and replace $F(s-\tau)$ with $F(s-t)F(t-\tau)$
+%\begin{align} \label{eq:NeedMarkov}
+    \begin{equation*}
+        C_2 = 2\Ro^2 \int_0^\infty ds\;x(s)\int_0^s dt \; x(t) \int_0^t d\tau\;i(\tau)F(s-t)F(t-\tau).
+    \end{equation*}
+%\end{align}
+Next, we use the same argument we used to go from \autoref{eq:C1calc_prev} to \autoref{eq:C1calc}, which results in
+\begin{align*}
+        C_2 &= 2\Ro^2 \int_0^\infty ds\;x(s)\int_0^s dt \; x(t) F(s-t)y(t)\\
+        &= 2\Ro \int_0^\infty ds\;x(s)\int_0^s dt \; i(t) F(s-t)\\
+        &= 2\Ro \int_0^\infty ds\;x(s)y(s)\\
+        &= 2 \int_0^\infty ds\;i(s)\\
+        &= 2Z.
+\end{align*}
+
+Finally, replacing $C_0$, $C_1$, and $C_2$ by $Z$, $Z$, and $2Z$, respectively, in \autoref{eq:target}, results $\kappa_C = 1$.
+% --------------------------------------------------------------
+%                         Finish here
+% --------------------------------------------------------------
+\newpage
+\section*{Supplementary Figures}
+\begin{figure}
+	\centering
+	\includegraphics{kappa/CohortPlot.Rout.pdf}
+	\caption{
+		\textbf{Between-cohort variation in case-per-case increases as \Ro~increases.} 
+		Panel a depicts cohort size as a function of the time of infection, in units of the mean infectious period divided by the incidence peak time; the cohort size equals the incidence.
+		In Panel b, the mean and standard deviation of case-per-case associated with each cohort are plotted.	
+		%	In an
+		%	epidemic with \Ro~close to 1, there is little susceptible depletion well after the outbreak onset, and the variation in infectious period mainly drives
+		%	the variation in \Rx{c}.
+		Early in the outbreak, the susceptible pool shrinks slowly, and differences in recovery time mainly cause variations in case numbers. As a result, the average for cases is about the same as in a simple linearized model.
+		Near the outbreak's peak, faster susceptible loss partly compensates for the inequality stemming from the infectious period, and, in turn, the squared coefficient of variation $\kappa$
+		decreases (Panel c).
+		After the peak, once the susceptible pool has become nearly constant again, variation in the infectious period once more drives variation within cohorts; $\kappa$ approaches one.
+		In stronger outbreaks (higher \Ro), it takes longer (in rescaled time units) for the susceptible population to stabilize, explaining the slower move of $\kappa$ toward one.
+	}
+	\flab{Cohort}
+\end{figure}
+

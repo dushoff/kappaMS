@@ -15,12 +15,20 @@
 \newcommand{\tg}[1]{\comment{magenta}{TG}{#1}}
 \newcommand{\ag}[1]{\comment{red}{AA}{#1}}
 %% \renewcommand{\comment}[3]{}
+\newcommand{\resetallcounters}{
+	\setcounter{equation}{0}
+	\setcounter{figure}{0}
+	\setcounter{table}{0}
+	\setcounter{footnote}{0}
+	\setcounter{section}{0}
+	\setcounter{page}{1}
+}
 
 \begin{document}
 	
 \input{doc.tex}
-\input{suppl.tex}
+\input{methods.tex}
+\input{supp.tex}
 %% \bibliography{references}
-
 \end{document}
 
