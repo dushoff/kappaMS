@@ -6,6 +6,7 @@ Azadeh
 * Add a short version of Tapan's proof as an appendix.
 
 Jonathan
-* Diagnose make problem?
+* Diagnose make problem? ✓
+	* Not reproduced in fresh directory; continue to track
 * Read through and think about changes (start with box)
 * Look at bib file from emergentHeterogeneity
