@@ -89,7 +89,7 @@ Sources += $(wildcard *.pmsearch)
 main.recs: main.rmu | Bio.pip
 ## main.tags.pgr: main.rmu
 ## main.downloads: main.rmu
-main.downloads: main.tags.pgr library reff/download.py | doi2pdf.pip metapub.pip pubmed-pdf-downloader.pip
+main.downloads: main.tags.pgr
 ## main.gfm: main.rmu
 ## main.reff.html: main.rmu main.gfm
 main.bib:
