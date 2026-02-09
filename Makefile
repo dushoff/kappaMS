@@ -82,7 +82,7 @@ updatedirs: | $(hotdirs)
 ## Reference stuff?
 
 ## Dump DOIs here; it should find PMIDs for you. This is obviously not perfect
-## add.pmlist: add.pmsearch reff/pm.py
+add.pmlist: add.pmsearch reff/pm.py
 Ignore += add.pmlist main.bib
 Sources += $(wildcard *.pmsearch)
 
@@ -92,7 +92,7 @@ main.recs: main.rmu | Bio.pip
 main.downloads: main.tags.pgr library reff/download.py | doi2pdf.pip metapub.pip pubmed-pdf-downloader.pip
 ## main.gfm: main.rmu
 ## main.reff.html: main.rmu main.gfm
-## main.bib:
+main.bib:
 
 ######################################################################
 
