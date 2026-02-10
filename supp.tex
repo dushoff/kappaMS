@@ -23,13 +23,13 @@
 The standard SIR model is described by the following equations:
 %\begin{equation}\label{eq:SIR}
 \begin{align*}
-        \dot{x} &= - \Ro xy, \\
-        \dot{y} &= \Ro xy - y,
+        \dot{x}(t) &= - \Ro x(t)y(t), \\
+        \dot{y}(t) &= \Ro x(t)y(t) - y(t),
 \end{align*}
 %\end{equation}
 where $x(t)$ and $y(t)$ denote the proportion of susceptible and infectious individuals, respectively. 
 Time has been normalized by the recovery rate.
-Let $i(t)$ denote the incidence $\Ro xy$, and define the size of the epidemic as follows:
+Let $i(t)$ denote the incidence $\Ro x(t)y(t)$, and define the size of the epidemic as follows:
 \[Z = \int_0^\infty dt i(t).\]
 
 Let $f$ denote the distribution of residence times in the infectious compartment. Define $F(t)$ as the corresponding survival distribution, that is

@@ -5,11 +5,11 @@ As for the expected infectiousness, we evaluated
 the exponential probability density function with mean \Ro~at $300$ equally distanced point in the
  interval $[0,30]$.
 
-In the right panel of \fref{ls}, we used the Lloyd-Smith's approach to compute the inequality in the activity distribution. 
-More specifically, we used the relation $F_{\text{trans}}(x)=\frac{1}{\Ro^2}\int_{0}^x ve^{-\frac{1}{\Ro}}dv$ which is the fraction of cases
+In the right panel of \fref{ls}, we used the Lloyd-Smith's approach to compute the inequality in the activity distribution \cite[SI, Sec. 2.2.5]{lloydsmith2005superspreading}. 
+More specifically, we used the relation $F_{\text{trans}}(x)=\frac{1}{\Ro^2}\int_{0}^x ve^{-\frac{v}{\Ro}}dv$ which is the fraction of cases
 due to those caused up to $x$ secondary cases.
 The fraction of cases due to those caused more than $x$ cases would be $1-F_{\text{trans}}(x)$, which is equal to $(1+\frac{x}{\Ro})e^{-\frac{x}{\Ro}}$.
-The population fraction of the individuals infected more than $x$ cases is $e^{-\frac{v}{\Ro}}$.
+The population fraction of the individuals infected more than $x$ cases is $e^{-\frac{x}{\Ro}}$.
 We used a similar approach to compute the  inequality in the secondary case distribution: We used the relation $F_{\mathrm{trans}}(x)=\frac{1}{\Ro}\sum_{v=0}^x vG(v,\Ro)$ which is the fraction of cases
 due to those caused up to $x$ secondary cases.
 Here $G(v,\Ro)$ is a geometric distribution with mean \Ro.
@@ -20,8 +20,7 @@ To generate the top panel of \fref{RcAverage}, we used the individual based simu
 The simulation was initiated with one case.
 
 We used a deterministic SIR model to compute the mean and variance of \Rx{c}.
-First, we scaled time by the mean infectious period, so the resulting SIR model then depends on one parameter: \Ro.
-The SIR differential equations were numerically solved for the proportions of susceptible $x(t)$ and infectious $y(t)$ at each time point $t$. 
+First, we scaled time by the mean infectious period, so the resulting SIR model then depends on one parameter: \Ro. The SIR differential equations were numerically solved for the proportions of susceptible $x(t)$ and infectious $y(t)$ at each time point $t$. 
 The time interval for integration was set to $[0,100]$, well after the outbreak died out.
 We then used the \textbf{R} function \fun{approxfun} to construct a function,  ${X}(t)$, that linearly interpolates the time-series $(t,\Ro x(t))$.
 We associated a cohort to each of the first $60\%$ time points in the time-series $t$ (We used a $60\%$ cutoff to ensure cohorts had almost recovered by the end of the simulation period) and calculated the cohort-specific mean  and variance.
@@ -38,9 +37,9 @@ The mean \Rx{c} for each cohort $\mu(\tau)$ was then the integral of the case re
 We used the same approach to compute $E[\Rx{c}^2(\tau)]$ and the variance of \Rx{c} for each cohort $\sigma^2(\tau)$.
 In \fref{Cohort}, the middle panel was generated using this approach.
 
-We obtained the mean of \Rx{c} by integrating the cohort-specific mean $\mu(\tau)$ against the incidence, $i(t) = \Ro x(t)y(t)$, and normalizing the result by the final size, $\int i(t) \dt$.
-We computed the between variance by integrating over the cohort's mean $\mu(\tau)$ weighted by the incidence. 
-The result was then normalized by the final size.
+We obtained the mean of \Rx{c} by integrating the cohort-specific mean $\mu(\tau)$ against the incidence, $i(\tau) = \Ro x(\tau)y(\tau)$, and normalizing the result by the final size, $\int i(t) \dt$.
+To compute the between cohort variance, we integrated the squared cohort mean $\mu^2(\tau)$ weighted by the incidence $i(\tau)$ and divided it  by the final size.
+The result minus the squared mean of \Rx{c} equaled the between cohort variance.
 The with-in cohort variance  was computed by taking integral over the cohorts' variance $\sigma^2(\tau)$ weighted by the incidence.
 The result was also normalized by the final size.
 The total variance was the sum of the between and with-in variances. 
