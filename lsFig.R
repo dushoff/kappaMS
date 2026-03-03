@@ -13,6 +13,7 @@ print(dens + 	curve
 	 ncol   = 2,         
 	 widths = c(1, 1)    
 )
+	+ plot_annotation(tag_levels = 'a', tag_suffix = ")")
 )
 
 
