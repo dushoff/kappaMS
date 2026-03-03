@@ -15,7 +15,7 @@ Theoretical treatment of superspreading has focused on effective, non-mechanisti
 % Canonically, the individual reproduction number is modeled as a gamma distribution, giving rise to negative binomial secondary case distributions.
  In this way, variation from the stochastic process of successful transmission is conceptually separated from a more intrinsic individual-level heterogeneity [in expected infectiousness] that may emerge from a plethora of potential differences in physiology, contact patterns, or behaviors between individuals.
 
-In its simplest form, the canonical ODE S[E]IR model assumes homogeneous rates of recovery and constant, uniform infectivity across all individuals during the infectious stage \cite{Hethcote2000, Kermack1927}. Although single-infective-class compartmental models would seem ill-equipped to describe heterogeneity, even the SIR model yields exponentially distributed recovery times and thus, when linearized, geometric secondary case distributions. Further, taking susceptible depletion into account, the exponentially-distributed durations still drive variation in the number of infections attributable to fractions of the population infected at a given time, while a changing effective reproduction number drives variation between fractions of the population infected at different times. In other words, even fully deterministic ODE models predict variation around \Ro~in the expected number of cases per case.
+In its simplest form, the canonical ODE S[E]IR model assumes homogeneous rates of recovery and constant, uniform infectivity across all individuals during the infectious stage \cite{Hethcote2000, Kermack1927}. Although single-infective-class compartmental models would seem ill-equipped to describe heterogeneity, even the SIR model yields exponentially distributed recovery times and thus, when linearized, geometric secondary case distributions. Further, taking susceptible depletion into account, the exponentially-distributed durations still drive variation in the number of infections attributable to fractions of the population infected at a given time, while a changing effective reproduction number drives variation between fractions of the population infected at different times. In other words, even fully deterministic ODE models predict variation around \Ro~in the expected secondary cases.
 We term this variation, ``emergent heterogeneity.''
 In practice, epidemiological modelers also include \emph{explicit heterogeneity} into their models, for example by considering age- or spatially-explicit compartments that may have different expected rates of mixing, transmission, or recovery \cite{schenzle1984agestructured}.
 Explicit heterogeneity reproduces superspreading in linear compartmental models \cite{meehan2023replicating}.
@@ -68,17 +68,17 @@ The top row of \Fref{RcAverage} shows realized distributions of ``offspring case
 This seems surprising: in particular, we see much greater dynamical changes when \Ro~ is large; we might expect this to be reflected in a larger variation in the offspring distribution.
  
 To reconcile these two observations, we examined how heterogeneity differs when analyzing epidemiologically relevant cohorts, which are groups of individuals infected at the same time, as the outbreak unfolds.
-A large \Ro~results in a large initial number of cases per case; however, rapid depletion of susceptible individuals reduces the chance of large secondary cases.
-In contrast, a small \Ro~produces fewer initial cases per case, but the slower susceptible exhaustion allows for larger secondary cases (\Fref{Cohort}).
-We then split the total case-per-case variance over the course of the outbreak into between- and within-cohort components. We found that epidemics with larger \Ro\ have larger between-cohort variation, as expected. However, this is balanced by smaller within-cohort variation (\Fref{RcAverage}, lower panel). 
-We can in fact prove that the variance in case-per-case, conditioned on the entire outbreak, is equal to one, regardless of the value of \Ro~(Section \ref{sec_proof}).
+A large \Ro~ initially generates many secondary cases. Later, rapid depletion of susceptible individuals reduces the chance of large secondary cases.
+In contrast, a small \Ro~produces fewer initial secondary cases, but the slower susceptible exhaustion allows for larger secondary cases (\Fref{Cohort}).
+We then split the total variance in secondary-case over the course of the outbreak into between- and within-cohort components. We found that epidemics with larger \Ro\ have larger between-cohort variation, as expected. However, this is balanced by smaller within-cohort variation (\Fref{RcAverage}, lower panel). 
+We can in fact prove that the variance in secondary cases, conditioned on the entire outbreak, is equal to one, regardless of the value of \Ro~(Section \ref{sec_proof}).
 \begin{figure}
 \centering
 \includegraphics{RcAverage.Rout.pdf}
 \caption{
-\textbf{Indistinguishable empirical distributions of case-per-case for epidemics of different strengths conditioned over the entire outbreak cycle.}
+\textbf{Indistinguishable empirical secondary-case distributions  for epidemics of different strengths conditioned over the entire outbreak cycle.}
 	Epidemic outbreaks have been simulated for a population of $10000$ with different \Ro\, and the number of secondary cases per infector has been recorded at the time of outbreak extinction (top panels).
-	Identical variance in case-per-case for epidemics of different strengths modeled using simple compartmental models (lower panel).
+	Identical variance in secondary cases for epidemics of different strengths modeled using simple compartmental models (lower panel).
 	As \Ro~increases, between-cohort variance rises, and within-cohort variance falls, maintaining constant total variance of one.
 }\flab{RcAverage}
 \end{figure}
@@ -86,26 +86,26 @@ We can in fact prove that the variance in case-per-case, conditioned on the enti
 
 We are also interested in what emergent distributions will look like to people studying outbreaks in real time. We are interested, at least to some extent, both in how cohorts change through time, and in what the outbreak will ``look like'' if we observe from a particular time.  
 To do so, we simulated a deterministic SIR model and stopped it at different cutoff points.
-At each time point, we calculated case-per-case heterogeneity based on the cases generated up to that time by infected cohorts.
+At each time point, we calculated heterogeneity in secondary cases based on the cases generated up to that time by infected cohorts.
 We found that in the early stage of the outbreak, the observed heterogeneity was lower than that observed in the linearized model or throughout the entire outbreak, and that it varied by \Ro~(\fref{Naive}). 
-By the end of the outbreak, the heterogeneity in case-per-case for different values of \Ro~became indistinguishable and equal to one.
+By the end of the outbreak, the heterogeneity in secondary cases for different values of \Ro~became indistinguishable and equal to one.
 
-We also examined an idealized scenario in which, for each time point, we computed case-per-case heterogeneity over the entire outbreak, considering all cohorts that had become infectious up to that time.
-In epidemics with lower \Ro, the case-per-case mean and variance across early-infected cohorts were the same as those in a linearized model (\fref{timeCutoff}).
+We also examined an idealized scenario in which, for each time point, we computed heterogeneity in secondary cases over the entire outbreak, considering all cohorts that had become infectious up to that time.
+In epidemics with lower \Ro, the mean and variance of secondary cases across early-infected cohorts were the same as those in a linearized model (\fref{timeCutoff}).
 Incorporating cohorts who later, but prior to the outbreak peak, became infected reduced variability. Further incorporating those cohorts that became infected after the peak increased the variability.
-By the end of the outbreak, all epidemics with different \Ro~agreed on the case-per-case heterogeneity, measured by $\kappa$.
+By the end of the outbreak, all epidemics with different \Ro~agreed on the heterogeneity in secondary cases, measured by $\kappa$.
 
 
-\begin{figure}[h!]
+\begin{figure}[H]
 	\centering
 	\includegraphics{kappa/PlotTrunc.Rout.pdf}
 	\caption{
-		\textbf{Distribution of case-per-case evolves over the course of outbreak.}
+		\textbf{The secondary-case distribution evolves over the course of outbreak.}
 		Panel a: The size of the cohort infected at each rescaled time point is measured by incidence at that point.
-		Panel b: The mean and standard deviation of case-per-case at each time are computed using the realized cases up to that point. 
+		Panel b: The mean and standard deviation of secondary cases at each time are computed using the realized cases up to that point. 
 		%Early in the outbreak, the variability in case-per-case is yet to be fully revealed, as those still infectious generated the same number of secondary cases as those who had just recovered.
 		After the peak, the standard deviation has already settled at one; the mean approaches one rapidly, regardless of \Ro.
-		Panel c: The squared coefficient of variation of case-per-case $\kappa$ climbs over the course of the outbreak.
+		Panel c: The squared coefficient of variation of secondary-cases $\kappa$ climbs over the course of the outbreak.
 		Epidemics with small \Ro~take longer to reach their peak. Even early on, differences in how long people remain infectious in the same cohort become important, making the within component of $\kappa$ larger (and, as a result, decreasing the between component part). 
 		In epidemics with large \Ro, as opposed to those with \Ro~close to one, the between-cohort component jumps after the outbreak peak as the susceptible pool depletes.
 		For panels b and c, the simulation was stopped at each time point to compute the y-axis value. 
@@ -117,16 +117,17 @@ By the end of the outbreak, all epidemics with different \Ro~agreed on the case-
 %It's also possible to imagine realistic approaches between these two extremes, but let's put that off for later. There are methods (including by Dushoff and Park) for thinking about this at the cohort level, but not with a focus on individual variation. Maybe this is just for discussion. OR maybe we should also look at plots where we go up until a particular time and only count recovered infectors.
 %\ag{Does \fref{timeCutoffV1} do what we are looking for?}
 
-\begin{figure}[h!]
+\begin{figure}[H]
 	\centering
 	\includegraphics{kappa/RcTimePlotVaryingPeak.Rout.pdf}
 	\caption{
-		\textbf{Nowcasting the case-per-case distribution evolves as the outbreak unfolds.}
+		\textbf{Forecasting the secondary-case distribution evolves as the outbreak unfolds.}
 		Panel a: Incidence represents the size of each cohort infected at each rescaled time point.
 		By ``rescaled,'' we mean that time has first been scaled by the mean infectious period and is then measured relative to the outbreak peak.
 		Panel b: At each time, the mean and standard deviation of cases caused by each case are calculated using only cohorts infected up to that time.
-		The mean cases per case is larger in early-infected cohorts and depends on the key parameter \Ro. 
-		As time goes by, later-infected cohorts have larger weights, as measured by incidence. These cohorts experience susceptible pool depletion, leading to fewer secondary cases and a lower mean case-per-case number. 
+		The mean of secondary-cases is larger in early-infected cohorts and depends on the key parameter \Ro. 
+		As time goes by, later-infected cohorts have larger weights, as measured by incidence.
+		These cohorts experience susceptible pool depletion, leading to fewer secondary cases. 
 		After the peak, the susceptible population size stabilizes, and the mean and variance approach one. 
 		Panel c: The between-cohort component of the squared coefficient of variation $\kappa_{bet}$ is negligible among the early-infected cohorts, as they experience a similar size of susceptibles. As the outbreak unfolds, the decline in the susceptible population drives between-cohort variation, which is more pronounced in epidemics with large \Ro. The squared coefficient of variation $\kappa$ reaches its minimum around the outbreak peak; the largest cohort, measured by incidence, experiences a sharp depletion of susceptibles, and the impact of variation in recovery time fades—declining the variance and, in turn, $\kappa$. After the peak, $\kappa$ rebounds to one. 
 		For panels b and c, the y-axis value at each time point was computed using only the cohorts that had been infected up to that time.
@@ -152,7 +153,7 @@ By the end of the outbreak, all epidemics with different \Ro~agreed on the case-
 \tg{Can we make a note about for epidemics with large R0, if you don't start tracking cases right from the beginning, you'll already underestimate cases/case }
 \jd{Yes, this should go into the paper.}
 
-In SIR-type epidemics, the effective reproduction number declines as the susceptible population becomes depleted. Consequently, if surveillance begins after the initial transmission generations, estimates of cases-per-case will represent the reduced effective reproduction number rather than \Ro \cite{pellis}. As a result, delayed surveillance may yield substantially lower estimates, especially when \Ro is large, due to rapid depletion of the susceptible pool.
+In SIR-type epidemics, the effective reproduction number declines as the susceptible population becomes depleted. Consequently, if surveillance begins after the initial transmission generations, estimates of secondary-cases will represent the reduced effective reproduction number rather than \Ro \cite{pellis}. As a result, delayed surveillance may yield substantially lower estimates, especially when \Ro is large, due to rapid depletion of the susceptible pool.
 
 % Although there have been efforts to both quantitatively describe individual-level heterogeneity in contact rates \cite{woolhouse1997heterogeneities} and to parameterize biologically realistic secondary case distributions, abstracted from the mechanism \cite{lloydsmith2005superspreading}, these efforts have been largely separate from the construction and evaluation of the compartmental models that enable epidemic forecasting and intervention design (but see \cite{meehan2023replicating}). Here, we expand [or some other verb] the bridge between individual- and population perspectives of disease spread. By integrating the study of superspreading, and the dynamical consequences of structured populations and susceptible depletion, we facilitate [x,y,z]
 % x, y, z might consist of dynamical consideration of superspreading, outbreak characteristics of compartmental models, opportunity for model identifyability or validation with secondary case data, etc.
