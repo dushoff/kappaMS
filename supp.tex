@@ -194,20 +194,28 @@ Finally, replacing $C_0$, $C_1$, and $C_2$ by $Z$, $Z$, and $2Z$, respectively, 
 \section*{Supplementary Figures}
 \begin{figure}[H]
 	\centering
+	\includegraphics{kappa/TimeEvolution.Rout.pdf}
+	\caption{\textbf{The susceptible population changes during an outbreak.} Outbreaks with higher \Ro~values lead to greater variation in incidence and more rapid depletion of the susceptible pool. We modeled these outbreaks using a deterministic compartmental approach.}
+	\flab{SIRsim}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
 	\includegraphics{kappa/CohortPlot.Rout.pdf}
 	\caption{
-		\textbf{Between-cohort variation in number of secondary cases increases as \Ro~increases.} 
-		Panel a depicts cohort size as a function of the time of infection, in units of the mean infectious period divided by the incidence peak time; the cohort size equals the incidence.
+		\textbf{Cohorts' secondary-case statistics.} 
+		Panel a depicts cohort size as a function of the time of infection, in units of the mean infectious period divided by the incidence peak time. Individuals infected during $[t,t+\Delta t]$ form a cohort, with $\Delta t = 2\times 10^{-4}$.
 		In Panel b, the mean and standard deviation of secondary cases associated with each cohort are plotted.	
 		%	In an
 		%	epidemic with \Ro~close to 1, there is little susceptible depletion well after the outbreak onset, and the variation in infectious period mainly drives
 		%	the variation in \Rx{c}.
 		Early in the outbreak, the susceptible pool shrinks slowly, and differences in recovery time mainly cause variations in case numbers. As a result, the average for cases is about the same as in a simple linearized model.
-		Near the outbreak's peak, faster susceptible loss partly compensates for the inequality stemming from the infectious period, and, in turn, the squared coefficient of variation $\kappa$
+		Near the outbreak's peak, faster susceptible loss partly compensates for the inequality stemming from the infectious period, and hence, the squared coefficient of variation $\kappa$
 		decreases (Panel c).
 		After the peak, once the susceptible pool has become nearly constant again, variation in the infectious period once more drives variation within cohorts; $\kappa$ approaches one.
 		In stronger outbreaks (higher \Ro), it takes longer (in rescaled time units) for the susceptible population to stabilize, explaining the slower move of $\kappa$ toward one.
 	}
 	\flab{Cohort}
 \end{figure}
+
 
