@@ -43,33 +43,44 @@ We aim to spur the development of theory and methods that better integrate heter
 %
 %In our setting, the continuous distribution corresponds to the expected infectiousness, and the discrete distribution arises from the stochastic realization of that rate, i.e., by compounding a Poisson distribution with a rate parameter derived from the continuous distribution. 
 %Therefore, we use a single parameter $\kappa$ to characterize the dispersion in both secondary cases and expected infectiousness.
-When a continuous random variable with mean $\mu$ and variance $\sigma^2$ is used as the mixing distribution in a Poisson mixture, the resulting discrete random variable has mean $\mu$ and variance $\mu+\sigma^2$.
-If we define the (generalized)
-\emph{dispersion parameter}, $\kappa$, as $\sigma^2/\mu^2$, these two distributions can be characterized by two exact quantities: dispersion $\kappa$ and mean $\mu$.
+When the mixing distribution in a Poisson mixture has the mean $\mu$ and variance $\sigma^2$, the resulting discrete random variable has mean $\mu$ and variance $\mu+\sigma^2$.
+By defining the (generalized) \emph{dispersion parameter}, $\kappa$, as $\sigma^2/\mu^2$, both mixing and mixed Poisson distributions can be described using the same two quantities: dispersion $\kappa$ and mean $\mu$.
 
-The statistics $\kappa$ has desirable properties for a dispersion measure: it \emph{increases} with dispersion around the mean and equals zero for a Dirac delta function. 
+The statistic $\kappa$ is a desirable measure of dispersion because it increases with variability around the mean and equals zero for a Dirac delta function.
 
-In our setting, the continuous distribution corresponds to the expected infectiousness, and the discrete distribution arises from the stochastic realization of the expected infectiousness, i.e., by compounding a Poisson distribution with a rate parameter derived from the continuous distribution. 
-Therefore, in this paper, we use a single parameter $\kappa$ to characterize the dispersion in both secondary cases and expected infectiousness.
+Here, the continuous distribution represents expected infectiousness, while the discrete distribution, resulting from the stochastic realization (Poissonification) of expected infectiousness, represents the secondary-case distribution.
+Therefore, we use a single parameter, $\kappa$, to characterize dispersion in both secondary cases and expected infectiousness throughout this paper.
 
 \end{framed}
 \section{Results}
-Demographic stochasticity can generate ``emergent'' heterogeneity even in the absence of explicit differences between individual-based rates (\Fref{ls}). In simple models, this heterogeneity can be characterized. We explicate the notion that this is predictable (see Box). \jd{Is that really what Box is doing, though? Or more about linking the emergent stochasticity in the deterministic vs.\ demographic-stochastic models?}
+Demographic stochasticity can generate ``emergent'' heterogeneity even in the absence of explicit differences between individual-based rates.
+In outbreaks modeled by the linearized compartmental model (with susceptible, infected, removed compartments), this heterogeneity can be characterized as the infectious period is exponentially distributed which drives an exponentially distributed \emph{expected infectiousness} (also called \emph{individual reproductive number}).
+The secondary case distribution, which is the Poisson mixture of the expected infectiousness, would then be the geometric distribution.
+% We explicate the notion that this is predictable (see Box).
+
+  \jd{Is that really what Box is doing, though? Or more about linking the emergent stochasticity in the deterministic vs.\ demographic-stochastic models?}
 
 \begin{figure}
 \centering
 \includegraphics{lsFig.Rout.pdf}
 \caption{
 	\textbf{Heterogeneity emerges even from a simple, linearized compartmental model} due to implicit variation in recovery times among infectors.
-	 Panel a: Both expected infectiousness (density curves) and secondary case distributions (density histograms) for the outset of an SIR epidemic, where the population is fully susceptible depend on \Ro.
+	Panel a: Both expected infectiousness (density curves) and secondary case distributions (density histograms) for the outset of an SIR epidemic, where the population is fully susceptible depend on \Ro.
 	 Panel b: Inequality curves, defined as the cumulative fraction of new infections versus the cumulative fraction of infectors, computed from the expected infectiousness across varying \Ro~, are identical and visually indistinguishable due to overplotting. In contrast, inequality curves derived from the secondary case distribution exhibit differences. As \Ro~ increases, the inequality observed in the secondary case distribution decreases and approaches the expected infectiousness inequality curve. The cross marks ``20-80'' point, where 20\% of infectors cause 80\% of infections.
 	 In panel a,  because the first bin (at zero) sits at the boundary of support for each distribution, we have plotted this bin as double the density and half the width; this adjustment preserves area-to-area correspondence with the probability density function, while facilitating visual comparison of the heights of the density and mass functions.
 }\flab{ls}
 \end{figure}
-  Panel (a) of \Fref{ls} shows patterns of emergent heterogeneity in secondary case numbers during the early stage of an outbreak, when the population is fully susceptible.
-The distributions of expected infectiousness and secondary cases depend on \Ro.
-\ag{It is not clear to me what we are trying to get out of plotting inequality?} The inequality in the secondary cases, i.e., the relationship between the fraction of new infections and the fraction of infectors, varied by \Ro; the inequality in the expected infectiousness did not.
-The share of Poisson noise in the inequality shrank in epidemics with large \Ro (\Fref{ls}, panel b) and approached its theoretical limit (inequality in expected infectiousness).
+Panel (a) of \Fref{ls} shows patterns of emergent heterogeneity in secondary case numbers during the early stage of an outbreak, when the population is fully susceptible.
+Expected infectiousness is exponentially distributed; therefore, the number of secondary cases is geometrically distributed, and both depend on \Ro.
+
+Under a stochastic SIR model, the number of secondary cases arises from a Poisson draw with rate given by expected infectiousness, which is itself exponentially distributed.
+In this setting, inequality in secondary cases--that is, the relationship between the fraction of new infections and the fraction of infectors--depends on the mean, whereas inequality in expected infectiousness, that is, in the mixing distribution, need not (\Fref{ls}, panel b).
+In fact, the contribution of Poisson noise to overall inequality shrinks as \Ro~increases (\Fref{ls}, panel b), and the inequality in secondary cases approaches its theoretical limit, namely, the inequality in expected infectiousness.
+One way to interpret this is as follows: when \Ro~is small, an increasing fraction of infected individuals generate no secondary infections, so the individuals who do transmit make up a smaller fraction of all infectors. Indeed, the ``20/80 rule''--that 80\% of secondary infections arise from only 20\% of infectious individuals--is attained when \Ro~falls just below $0.4$.
+However, even when \Ro~exceeds the epidemic threshold, the distribution of secondary cases can still display substantial heterogeneity.
+
+%The inequality in the secondary cases, i.e., the relationship between the fraction of new infections and the fraction of infectors, varied by \Ro; the inequality in the expected infectiousness did not.
+
 
 The distributions plotted in \Fref{ls} neglect the depletion of the susceptible population. How would these distributions change if we incorporated changes in the susceptible pool, as occurs in real outbreaks?
 To address this, we simulated simple, stochastic SIR epidemics with different \Ro~values in a population of $10000$ individuals.
