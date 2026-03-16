@@ -3,17 +3,18 @@
 
 Real outbreaks have significant heterogeneity in the number of secondary cases -- including \emph{superspreading,} marked by a small fraction of individuals causing a disproportionately large fraction of realized transmission \cite{lloydsmith2005superspreading, woolhouse1997heterogeneities}.
 %Superspreading can arise from several distinct factors, each of which affects outbreak dynamics differently \cite{kuylen2022different,wallace2025hotspot}.
- Superspreading can help explain why epidemics break- and burn out in some times and places but not others, despite apparently similar contexts \cite{lemieux2021phylogenetic}. 
+ Superspreading can help explain why epidemics break- and burn out in some times and places but not others, despite apparently similar contexts \cite{lemieux2021phylogenetic, endo2020estimating}. 
 %Furthermore, when control efforts can successfully target individuals, groups, or settings for which atypically high transmission is more likely, they may be especially effective
 Furthermore, control efforts incorporating superspreading into their design can be more effective \cite{garske2008effect, nielsen2023counterintuitive, sneppen2021overdispersion}. 
 %When prevalence is low and stochasticity is pronounced, superspreading can determine the fate of an outbreak\cite{matthews2005new,althouse2020superspreading}.
-Superspreading may be most salient for disease dynamics and control strategies at the time of outbreak \cite{goyal2022multiscale}. % see if this is actually the reference we want here
-For this reason, theoretical treatment of superspreading emphasizes individual-level transmission patterns, often while assuming a fully susceptible population.~%possible citation but I'm not in love with it: Elie et al. 2022 Proc B
-Over longer timescales, the processes of susceptible depletion and resupply, which are elegantly captured in mechanistic compartmental models, drive population-scale disease dynamics. Despite shared theory motivating models that highlight individual-level transmission events and superspreading, and those that highlight population-level transmission dynamics, there remains a gap between how each model framework treats individual-level transmission heterogeneity. 
 
-Theoretical treatment of superspreading has focused on effective, non-mechanistic models that link observed secondary case counts to a continuous random variable, the \emph{individual reproductive number,} (also known as \emph{expected infectiousness}) via a Poisson sampling process \cite{lloydsmith2005superspreading}.
-% Canonically, the individual reproduction number is modeled as a gamma distribution, giving rise to negative binomial secondary case distributions.
- In this way, variation from the stochastic process of successful transmission is conceptually separated from a more intrinsic individual-level heterogeneity [in expected infectiousness] that may emerge from a plethora of potential differences in physiology, contact patterns, or behaviors between individuals \cite{althouse2020superspreading}.
+Superspreading may be most salient for disease dynamics and control strategies at the time of outbreak \cite{goyal2022multiscale}. % see if this is actually the reference we want here
+For this reason, theoretical treatment of superspreading emphasizes individual-level transmission patterns, often while assuming a fully susceptible population \cite{lloydsmith2005superspreading,james2007event}.~%possible citation but I'm not in love with it: Elie et al. 2022 Proc B
+Theoretical analysis of superspreading has focused on effective, non-mechanistic models that link observed secondary case counts to a continuous random variable, the \emph{individual reproductive number,}  via a Poisson sampling process.
+ Canonically, the individual reproduction number is modeled as a gamma distribution, giving rise to negative binomial secondary case distributions \cite{lloydsmith2005superspreading}.
+In this way, variation from the stochastic process of successful transmission is conceptually separated from a more intrinsic individual-level heterogeneity [in expected infectiousness] that may emerge from a plethora of potential differences in biology, contact patterns, or behaviors between individuals \cite{chen2021heterogeneity, althouse2020superspreading,hamner2020high}.
+
+Over longer timescales, the processes of susceptible depletion and resupply, which are elegantly captured in mechanistic compartmental models, drive population-scale disease dynamics. Despite shared theory motivating models that highlight individual-level transmission events and superspreading, and those that emphasize population-level transmission dynamics, a gap persists in how each model framework treats individual-level transmission heterogeneity. 
 
 In its simplest form, the canonical ODE S[E]IR (Susceptible-Exposed-Infected-Removed) model assumes homogeneous rates of recovery and constant, uniform infectivity across all individuals during the infectious stage \cite{Hethcote2000, Kermack1927}. Although single-infective-class compartmental models would seem ill-equipped to describe heterogeneity, even the SIR model yields exponentially distributed recovery times and thus, when linearized, geometric secondary case distributions. Further, taking susceptible depletion into account, the exponentially-distributed durations still drive variation in the number of infections attributable to fractions of the population infected at a given time, while a changing effective reproduction number drives variation between fractions of the population infected at different times. In other words, even fully deterministic ODE models predict variation around \Ro~in the expected secondary cases.
 We term this variation, \emph{emergent heterogeneity.}
@@ -43,13 +44,14 @@ We aim to spur the development of theory and methods that better integrate heter
 %
 %In our setting, the continuous distribution corresponds to the expected infectiousness, and the discrete distribution arises from the stochastic realization of that rate, i.e., by compounding a Poisson distribution with a rate parameter derived from the continuous distribution. 
 %Therefore, we use a single parameter $\kappa$ to characterize the dispersion in both secondary cases and expected infectiousness.
-When the mixing distribution in a Poisson mixture has the mean $\mu$ and variance $\sigma^2$, the resulting discrete random variable has mean $\mu$ and variance $\mu+\sigma^2$.
-By defining the (generalized) \emph{dispersion parameter}, $\kappa$, as $\sigma^2/\mu^2$, both mixing and mixed Poisson distributions can be described using the same two quantities: dispersion $\kappa$ and mean $\mu$.
+A mixed Poisson distribution with continuous mixing distribution of  mean $\mu$ and variance $\sigma^2$ has mean $\mu$ and variance $\mu+\sigma^2$.
+Thus both mixing and mixed Poisson distributions can be described using  two quantities: mean $\mu$ and 
+ (generalized) \emph{dispersion} parameter, $\kappa$, defined as $\sigma^2/\mu^2$.
 
 The statistic $\kappa$ is a desirable measure of dispersion because it increases with variability around the mean and equals zero for a Dirac delta function.
 
-Here, the continuous distribution represents expected infectiousness, while the discrete distribution, resulting from the stochastic realization (Poissonification) of expected infectiousness, represents the secondary-case distribution.
-Therefore, we use a single parameter, $\kappa$, to characterize dispersion in both secondary cases and expected infectiousness throughout this paper.
+Here, the continuous mixing distribution describes expected infectiousness, and the mixed Poisson distribution represents the secondary-case, resulting from the stochastic realization (Poissonification) of expected infectiousness.
+Hence, we use a single parameter, $\kappa$, to characterize dispersion in both secondary cases and expected infectiousness throughout this paper.
 
 \end{framed}
 \section{Results}
