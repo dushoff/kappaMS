@@ -24,7 +24,7 @@ Explicit heterogeneity reproduces superspreading in linear compartmental models 
  We delineate the distinct sources of individual variation in transmission inscribed into a simple SIR model. We trace how these sources compose into observed or observable heterogeneity in different settings, for example contrasting how heterogeneity emerges in dynamical models versus linearized, or branching-process models. Throughout, we highlight the understudied but critically important role of disease dynamics \textit{per se} in generating individual-level heterogeneity. 
 We aim to spur the development of theory and methods that better integrate heterogeneity and dynamics, ultimately facilitating feedback between data on incidence and individual-level transmission chains, mechanistic model specification, identification, and validation, and intervention design.
 
-\section{Box: Kappa tutorial}
+%\section{Box: Kappa tutorial}
 \begin{framed}
 	\noindent\textbf{Box 1. $\kappa$ tutorial.} 
 %Adapted from main.tex on Overleaf	
@@ -53,30 +53,21 @@ Therefore, we use a single parameter, $\kappa$, to characterize dispersion in bo
 
 \end{framed}
 \section{Results}
-Demographic stochasticity can generate ``emergent'' heterogeneity even in the absence of explicit differences between individual-based rates.
-In outbreaks modeled by the linearized compartmental model (with susceptible, infected, removed compartments), this heterogeneity can be characterized as the infectious period is exponentially distributed which drives an exponentially distributed \emph{expected infectiousness} (also called \emph{individual reproductive number}).
-The secondary case distribution, which is the Poisson mixture of the expected infectiousness, would then be the geometric distribution.
+Demographic stochasticity can generate emergent heterogeneity even in the absence of explicit differences in individual-level rates.
+In outbreaks modeled using the linearized compartmental model (with susceptible, infected, and removed compartments), this heterogeneity can be quantitatively characterized.
+The infectious period follows an exponential distribution, resulting in an exponentially distributed expected infectiousness (or \emph{individual reproductive number}) with $\kappa = 1$.
+Consequently, the secondary case distribution (or \emph{offspring distribution}), modeled as a Poisson mixture of the expected infectiousness, follows a geometric distribution with dispersion $\kappa$ (see Box).
 % We explicate the notion that this is predictable (see Box).
 
   \jd{Is that really what Box is doing, though? Or more about linking the emergent stochasticity in the deterministic vs.\ demographic-stochastic models?}
 
-\begin{figure}
-\centering
-\includegraphics{lsFig.Rout.pdf}
-\caption{
-	\textbf{Heterogeneity emerges even from a simple, linearized compartmental model} due to implicit variation in recovery times among infectors.
-	Panel a: Both expected infectiousness (density curves) and secondary case distributions (density histograms) for the outset of an SIR epidemic, where the population is fully susceptible depend on \Ro.
-	 Panel b: Inequality curves, defined as the cumulative fraction of new infections versus the cumulative fraction of infectors, computed from the expected infectiousness across varying \Ro~, are identical and visually indistinguishable due to overplotting. In contrast, inequality curves derived from the secondary case distribution exhibit differences. As \Ro~ increases, the inequality observed in the secondary case distribution decreases and approaches the expected infectiousness inequality curve. The cross marks ``20-80'' point, where 20\% of infectors cause 80\% of infections.
-	 In panel a,  because the first bin (at zero) sits at the boundary of support for each distribution, we have plotted this bin as double the density and half the width; this adjustment preserves area-to-area correspondence with the probability density function, while facilitating visual comparison of the heights of the density and mass functions.
-}\flab{ls}
-\end{figure}
 Panel (a) of \Fref{ls} shows patterns of emergent heterogeneity in secondary case numbers during the early stage of an outbreak, when the population is fully susceptible.
-Expected infectiousness is exponentially distributed; therefore, the number of secondary cases is geometrically distributed, and both depend on \Ro.
+The distributions of both expected infectiousness and the number of secondary cases depend on \Ro.
 
 Under a stochastic SIR model, the number of secondary cases arises from a Poisson draw with rate given by expected infectiousness, which is itself exponentially distributed.
-In this setting, inequality in secondary cases--that is, the relationship between the fraction of new infections and the fraction of infectors--depends on the mean, whereas inequality in expected infectiousness, that is, in the mixing distribution, need not (\Fref{ls}, panel b).
-In fact, the contribution of Poisson noise to overall inequality shrinks as \Ro~increases (\Fref{ls}, panel b), and the inequality in secondary cases approaches its theoretical limit, namely, the inequality in expected infectiousness.
-One way to interpret this is as follows: when \Ro~is small, an increasing fraction of infected individuals generate no secondary infections, so the individuals who do transmit make up a smaller fraction of all infectors. Indeed, the ``20/80 rule''--that 80\% of secondary infections arise from only 20\% of infectious individuals--is attained when \Ro~falls just below $0.4$.
+In this setting, inequality in secondary cases--that is, the relationship between the fraction of new infections and the fraction of infectors--depends on the mean, whereas inequality in expected infectiousness does not (\Fref{ls}, panel b).
+In fact, the share of Poisson noise in overall inequality shrinks as \Ro~increases, and the inequality in secondary cases approaches its theoretical limit, namely, the inequality in expected infectiousness (\Fref{ls}, panel b).
+When \Ro~is small, an increasing fraction of infected individuals generate no secondary infections, so the individuals who do transmit make up a smaller fraction of all infectors. Indeed, the ``20/80 rule''--that 80\% of secondary infections arise from only 20\% of infectious individuals--is attained when \Ro~falls just below $0.4$.
 However, even when \Ro~exceeds the epidemic threshold, the distribution of secondary cases can still display substantial heterogeneity.
 
 %The inequality in the secondary cases, i.e., the relationship between the fraction of new infections and the fraction of infectors, varied by \Ro; the inequality in the expected infectiousness did not.
@@ -85,38 +76,54 @@ However, even when \Ro~exceeds the epidemic threshold, the distribution of secon
 The distributions plotted in \Fref{ls} neglect the depletion of the susceptible population. How would these distributions change if we incorporated changes in the susceptible pool, as occurs in real outbreaks?
 To address this, we simulated simple, stochastic SIR epidemics with different \Ro~values in a population of $10000$ individuals.
 For each infected individual, we recorded the number of secondary cases they generated during the outbreak. 
-Panel (a) of \Fref{RcAverage} shows realized distributions of secondary cases (or offspring cases) caused by individual infectors over the entire outbreaks.
+Panel (a) of \Fref{RcAverage} shows realized distributions of secondary cases caused by individual infectors over the entire outbreaks.
 Unlike in the linearized scenario, where the susceptible pool is fully populated (\Fref{ls}, panel a), the secondary case distributions remain indistinguishable across a broad range of the key parameter \Ro.
-This result is unexpected. Significantly greater dynamical changes occur when \Ro~is large, which would typically be expected to correspond to greater variation in the expected infectiousness distribution (\Fref{SIRsim}).
+This result is unexpected. Significantly greater dynamical changes occur when \Ro~is large, which would typically be expected to correspond to greater variation in the expected infectiousness distribution (\Fref{SIRsim}) and, hence, secondary-case distribution.
  
-To clarify these contradictory observations, we considered a simple deterministic SIR model to examine how heterogeneity evolves in epidemiologically relevant cohorts, defined as groups infected simultaneously, over the course of the outbreak.
+ \begin{figure}
+ 	\centering
+ 	\includegraphics{lsFig.Rout.pdf}
+ 	\caption{
+ 		\textbf{Heterogeneity emerges even from a simple, linearized compartmental model} due to implicit variation in recovery times among infectors.
+ 		Panel a: Both expected infectiousness (density curves) and secondary case distributions (density histograms) for the outset of an SIR epidemic, where the population is fully susceptible depend on \Ro.
+ 		Panel b: Inequality curves, defined as the cumulative fraction of new infections versus the cumulative fraction of infectors, computed from the expected infectiousness across varying \Ro~, are identical and visually indistinguishable due to overplotting. In contrast, inequality curves derived from the secondary case distribution exhibit differences. As \Ro~ increases, the inequality observed in the secondary case distribution decreases and approaches the expected infectiousness inequality curve. The cross marks ``20-80'' point, where 20\% of infectors cause 80\% of infections.
+ 		In panel a,  because the first bin (at zero) sits at the boundary of support for each distribution, we have plotted this bin as double the density and half the width; this adjustment preserves area-to-area correspondence with the probability density function, while facilitating visual comparison of the heights of the density and mass functions.
+ 	}\flab{ls}
+ \end{figure}
+ 
+To clarify these contradictory observations, we considered a standardize deterministic SIR model in which the time is measured in units of the mean infectious period.
+We examined how heterogeneity evolves in epidemiologically relevant cohorts, defined as groups infected simultaneously, over the course of the outbreak.
 A large \Ro~initially generates significant expected infectiousness. Later, rapid depletion of susceptible individuals reduces the expected infectiousness.
 In contrast, a small \Ro~initially causes smaller expected infectiousness, but the slower susceptible exhaustion allows for considerable expected infectiousness (\Fref{Cohort}).
 We then split the total variance in expected infectiousness over the course of the outbreak into between- and within-cohort components. We found that epidemics with larger \Ro\ have larger between-cohort variation, as expected. However, this is balanced by smaller within-cohort variation (\Fref{RcAverage}, panel b). 
-We can in fact prove that the variance in expected infectiousness, conditioned on the entire outbreak, is equal to one, regardless of the value of \Ro~(Section \ref{sec_proof}).
+We can in fact prove that the mean and variance of expected infectiousness, conditioned on the entire outbreak, is equal to one, regardless of the value of \Ro~(Section \ref{sec_proof}). 
+Thus, the dispersion $\kappa$ is also one.
 \begin{figure}
 \centering
 \includegraphics{RcAverage.Rout.pdf}
 \caption{
-\textbf{Indistinguishable empirical secondary-case distributions  for epidemics of different strengths} conditioned over the entire outbreak cycle.
-(a)	Epidemic outbreaks were simulated for a population of $10000$, and the number of secondary cases per infector was recorded at the time of outbreak extinction.
-(b)	Identical variance in expected infectiousness for epidemics of different strengths modeled using simple compartmental models.
+\textbf{Indistinguishable empirical secondary-case distributions  for epidemics of different strengths} conditioned over the entire outbreak cycle with $\kappa = 1$.
+Panel a: Epidemic outbreaks were simulated for a population of $10000$, and the number of secondary cases per infector was recorded at the time of outbreak extinction.
+Panel b: Identical variance in expected infectiousness for epidemics of different strengths modeled using standardized compartmental models.
 	As \Ro~increases, between-cohort variance rises, and within-cohort variance falls, maintaining constant total variance of one.
 }\flab{RcAverage}
 \end{figure}
 
 
-We are also interested in how expected infectiousness appear to researchers analyzing outbreaks in real time.
+We are also interested in how expected infectiousness appears to researchers analyzing outbreaks in real time.
 %In particular, how cohorts evolve over time and how the outbreak appears when observed at specific time points.
-To do so, for different values of \Ro, we simulated an outbreak using the simple deterministic SIR model and evaluated it at different cutoff points.
+To do so, for different values of \Ro, we simulated an outbreak using the standardized deterministic SIR model and evaluated it at different cutoff points.
 At each cutoff point, we calculated heterogeneity in expected infectiousness based on cases generated by infected cohorts up to that time.
-In the early stage of the outbreak, observed heterogeneity was lower than in the linearized model or the full outbreak, and it varied by \Ro~(\fref{Naive}).
-By the end of the outbreak, heterogeneity in expected infectiousness for different \Ro~ values became indistinguishable.
+In the early stage of the outbreak, observed heterogeneity was lower than in the linearized model or the full outbreak, and it varied by \Ro.
+From the beginning, in epidemics with large \Ro, the between-cohort variation was the main driver of heterogeneity. 
+By the end of the outbreak, heterogeneity in expected infectiousness for different \Ro~ values became indistinguishable (\fref{Naive}).
 
 We also examined an idealized scenario in which, for each cutoff point, we computed heterogeneity in expected infectiousness over the entire outbreak, considering all cohorts that had become infectious up to that time.
-In epidemics with lower \Ro, the individual reproductive number statistics for early-infected cohorts almost matched those from the linearized model (\fref{timeCutoff}).
+In epidemics with lower \Ro, the individual reproductive number statistics for early-infected cohorts almost matched those from the linearized model, i.e., mean and standard deviation equal to \Ro~ (\fref{timeCutoff}).
 Including cohorts infected later, but before the outbreak peak, reduced variability as measured by $\kappa$. Including cohorts infected after the peak increased variability.
 By the end of the outbreak, all epidemics with different \Ro~agreed on the heterogeneity in individual reproductive number, measured by $\kappa$.
+Regardless of \Ro, within-cohort variation primarily drove heterogeneity among early-infected cohorts.
+However, after the peak, the exhaustion of the susceptible population reduced the share of within-cohort variation, a reduction that was more pronounced in epidemics with large \Ro.
 
 
 \begin{figure}[p]
@@ -128,8 +135,8 @@ By the end of the outbreak, all epidemics with different \Ro~agreed on the heter
 		Panel b: The mean and standard deviation of expected infectiousness at each time are computed using the realized cases up to that point. 
 		In stronger epidemics, $t_{\mathrm{peak}}$ is smaller, and almost all infected individuals are still infectious well before $t_{\mathrm{peak}}$, leading to lower heterogeneity compared to epidemics with smaller \Ro.
 		Panel c:  $\kappa$ climbs over the course of the outbreak.
-		Epidemics with small \Ro~take longer to reach their peak. Hence, even fractions of $t_{\mathrm{peak}}$ are long enough to stand out differences in infectious period among the cohort's members, hence a relatively large within component of $\kappa$ (and, as a result, a smaller between component part,  measured as the ratio of the between-cohort variance to the squared mean).
-		After the peak, the difference in infectious period among individuals in the largest cohort (infected at the peak time) drives a slight increment in within-cohort variation.
+		Epidemics with small \Ro~take longer to reach their peak. Even fractions of $t_{\mathrm{peak}}$ are long enough to reveal differences in infectious period among cohort members, resulting in a relatively large within component of $\kappa$ (measured as the ratio of within-cohort variance to the squared mean).
+		After the peak, the difference in infectious period among individuals in the largest cohort, who infected at the peak time, drives a slight increment in within-cohort variation.
 		For panels b and c, the simulation was stopped at each time point to compute the y-axis value. 
 		The y-axis value at each time point was computed by assigning to each cohort the number of realized case reproductive number up to that time.
 		In panels b and c, time units measured in the mean infectious period are again scaled relative to the peak time.
@@ -144,14 +151,14 @@ By the end of the outbreak, all epidemics with different \Ro~agreed on the heter
 	\includegraphics{kappa/RcTimePlotVaryingPeak.Rout.pdf}
 	\caption{
 		\textbf{Forecasting the distribution of expected infectiousness evolves as the outbreak unfolds.}
-		Panel a: Cohort size infected during $[t,t+\Delta t]$ is measured as the area under the incidence curve over this interval ($\Delta t =2\times 10^{-3}t_{\mathrm{peak}}$, where $t_{\mathrm{peak}}$ \ag{simulation is running  for $\Delta t =2\times 10^{-4}t_{\mathrm{peak}}$} is the time of peak incidence).
-		Panel b: At each time point, the mean and standard deviation of expected infectiousness are calculated using only cohorts infected up to that time, while accounting for their subsequent roles in disease transmission.
+		Panel a: Cohort size infected during $[t,t+\Delta t]$ is measured as the area under the incidence curve over this interval ($\Delta t =2\times 10^{-3}t_{\mathrm{peak}}$, where $t_{\mathrm{peak}}$ is the time of peak incidence) \ag{simulation is running  for $\Delta t =2\times 10^{-4}t_{\mathrm{peak}}$}.
+		Panel b: At each time point, the mean and standard deviation of expected infectiousness are calculated using only cohorts infected up to that specific time, incorporating the subsequent contributions of these cohorts to disease transmission.
 		By ``rescaled,'' we mean that time has first been scaled by the mean infectious period and is then measured relative to the outbreak peak.
 		The mean of expected infectiousness is larger for early-infected cohorts and depends on the key parameter \Ro. 
 		As time goes by, later-infected cohorts, who have larger sizes,
 		experience susceptible pool depletion, decreasing expected infectiousness. 
 		After the peak, the susceptible population size stabilizes, and the mean and standard deviation approach one. 
-		Panel c: The between-cohort component of the squared coefficient of variation $\kappa_{bet}$, measured as the ratio of the between-cohort variance to the squared mean, is negligible among the early-infected cohorts, as they experience a similar size of susceptible population. As the outbreak unfolds, the decline in the susceptible population drives between-cohort variation, which is more pronounced in epidemics with large \Ro. The squared coefficient of variation $\kappa$ reaches its minimum around the outbreak peak; large cohorts experience sharp depletion of susceptibles, and the impact of variation in recovery time fades—declining the variance, and hence $\kappa$. After the peak, $\kappa$ rebounds to one. 
+		Panel c: The within-cohort component of the squared coefficient of variation $\kappa_{with}$, measured as the ratio of the within-cohort variance to the squared mean, is the main driver of heterogeneity among the early-infected cohorts, as they experience a similar size of susceptible population. As the outbreak unfolds, the decline in the susceptible population drives between-cohort variation, which is more pronounced in epidemics with large \Ro.  $\kappa$ reaches its minimum around the outbreak peak; large cohorts experience sharp depletion of susceptibles, and the impact of variation in recovery time fades, declining the variance, and hence $\kappa$. After the peak, $\kappa$ rebounds to one. 
 		For panels b and c, the y-axis value at each time point was computed using only the cohorts that had been infected up to that time.
 	}\flab{timeCutoff}
 \end{figure}
