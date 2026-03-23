@@ -125,12 +125,11 @@ In epidemics with lower \Ro, the individual reproductive number statistics for e
 Including cohorts infected later, but before the outbreak peak, reduced variability as measured by $\kappa$. Including cohorts infected after the peak increased variability.
 By the end of the outbreak, all epidemics with different \Ro~agreed on the heterogeneity in individual reproductive number, measured by $\kappa$.
 Regardless of \Ro, within-cohort variation primarily drove heterogeneity among early-infected cohorts.
-However, after the peak, the exhaustion of the susceptible population reduced the share of within-cohort variation, a reduction that was more pronounced in epidemics with large \Ro.
-
-
-\begin{figure}[p]
+However, after the peak, the exhaustion of the susceptible population reduced the share of within-cohort variation, a reduction that was more pronounced in epidemics with large 
+\begin{figure}
 	\centering
 	\includegraphics{kappa/PlotTrunc.Rout.pdf}
+	\captionsetup{width=1.28\linewidth}
 	\caption{
 		\textbf{The expected infectiousness evolves over the course of outbreak.}
 		Panel a: The size of the cohort infected during $[t,t+\Delta t]$ equals the area under the incidence curve on that interval. Time is in units of the mean infectious period, and $\Delta t = 2\times 10^{-4}t_{\mathrm{peak}}$ (where $t_{\mathrm{peak}}$ is the time of peak incidence).
@@ -144,16 +143,16 @@ However, after the peak, the exhaustion of the susceptible population reduced th
 		In panels b and c, time units measured in the mean infectious period are again scaled relative to the peak time.
 	}\flab{Naive}
 \end{figure}
-
 %It's also possible to imagine realistic approaches between these two extremes, but let's put that off for later. There are methods (including by Dushoff and Park) for thinking about this at the cohort level, but not with a focus on individual variation. Maybe this is just for discussion. OR maybe we should also look at plots where we go up until a particular time and only count recovered infectors.
 %\ag{Does \fref{timeCutoffV1} do what we are looking for?}
 
-\begin{figure}[H]
+\begin{figure}
 	\centering
 	\includegraphics{kappa/RcTimePlotVaryingPeak.Rout.pdf}
+		\captionsetup{width=1.28\linewidth}
 	\caption{
 		\textbf{Forecasting the distribution of expected infectiousness evolves as the outbreak unfolds.}
-		Panel a: Cohort size infected during $[t,t+\Delta t]$ is measured as the area under the incidence curve over this interval ($\Delta t =2\times 10^{-3}t_{\mathrm{peak}}$, where $t_{\mathrm{peak}}$ is the time of peak incidence) \ag{simulation is running  for $\Delta t =2\times 10^{-4}t_{\mathrm{peak}}$}.
+		Panel a: Cohort size infected during $[t,t+\Delta t]$ is measured as the area under the incidence curve over this interval ($\Delta t =2\times 10^{-4}t_{\mathrm{peak}}$, where $t_{\mathrm{peak}}$ is the time of peak incidence).
 		Panel b: At each time point, the mean and standard deviation of expected infectiousness are calculated using only cohorts infected up to that specific time, incorporating the subsequent contributions of these cohorts to disease transmission.
 		By ``rescaled,'' we mean that time has first been scaled by the mean infectious period and is then measured relative to the outbreak peak.
 		The mean of expected infectiousness is larger for early-infected cohorts and depends on the key parameter \Ro. 
@@ -164,7 +163,6 @@ However, after the peak, the exhaustion of the susceptible population reduced th
 		For panels b and c, the y-axis value at each time point was computed using only the cohorts that had been infected up to that time.
 	}\flab{timeCutoff}
 \end{figure}
-
 
 
 %\begin{figure}
