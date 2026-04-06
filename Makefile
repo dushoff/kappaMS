@@ -103,6 +103,10 @@ Sources += invite.scr
 
 ######################################################################
 
+Ignore += legacy rc ## Mystery directories in JD's attic; probably crib files 2026 Apr 05 (Sun)
+
+######################################################################
+
 ### Makestuff
 
 Sources += Makefile
