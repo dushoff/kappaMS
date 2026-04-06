@@ -12,5 +12,8 @@ label_wrap <- function(wrap_level) {
 stackplot <- rdsRead("stackbar")
 rcHistplot <- rdsRead("rcHist")
  
-print((rcHistplot + theme(legend.position = "none"))/stackplot)
+print(((rcHistplot + theme(legend.position = "none"))/stackplot) +
+				 plot_annotation(tag_levels = 'a', tag_suffix = ")" 
+													)
+			)
 

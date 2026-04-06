@@ -1,23 +1,40 @@
 \documentclass{article}[12pt]
-
 \usepackage{xcolor}
-
+\usepackage{framed} %box
+\usepackage{float} %Here specifier
+\usepackage{caption}
 \input{inc.tex}
 
 \input{makestuff/style.tex}
-
+\newcommand{\dt}{dt\,}
+\newcommand{\ds}{ds\,}
+\newcommand{\pkg}[1]{\texttt{#1}}
+\newcommand{\fun}[1]{\texttt{#1}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\tb}[1]{\cite{[#1]}}
+%\newcommand{\tb}[1]{\cite{#1}}
 %% Using this style for comments means we can easily turn them off and render
 %% Feel free to pick your own color
 \newcommand{\jd}[1]{\comment{cyan}{JD}{#1}}
 \newcommand{\tg}[1]{\comment{magenta}{TG}{#1}}
 \newcommand{\ag}[1]{\comment{red}{AA}{#1}}
 %% \renewcommand{\comment}[3]{}
+\newcommand{\resetallcounters}{
+	\setcounter{equation}{0}
+	\setcounter{figure}{0}
+	\setcounter{table}{0}
+	\setcounter{footnote}{0}
+	\setcounter{section}{0}
+	\setcounter{page}{1}
+}
 
 \begin{document}
-
+\input{front.tex}
 \input{doc.tex}
-
-%% \bibliography{references}
-
+\input{methods.tex}
+\input{supp.tex}
+\newpage
+\bibliographystyle{plain}
+\bibliography{draft.bib}
 \end{document}
 
