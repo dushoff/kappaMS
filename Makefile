@@ -7,7 +7,7 @@ Ignore = target.mk
 
 Sources += $(wildcard *.md)
 vim_session:
-	bash -cl "vmt README.md"
+	bash -ic "vmt README.md"
 
 ######################################################################
 
