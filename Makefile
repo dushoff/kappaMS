@@ -80,6 +80,14 @@ updatedirs: | $(hotdirs)
 
 ######################################################################
 
+migrateDirs: ../ehSim ../kappaCode
+	$(RM) sims kappa
+
+../%:
+	$(justmakethere)
+
+######################################################################
+
 ## Reference stuff?
 
 ## Dump DOIs here; it should find PMIDs for you. This is obviously not perfect
