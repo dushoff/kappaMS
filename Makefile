@@ -56,7 +56,8 @@ RcAverage.Rout: RcAverage.R kappa/stackbar.rds kappa/rcHist.rds
 
 ######################################################################
 
-## Linking directories
+:x
+
 
 hotdirs += sims
 ehgit = https://github.com/dushoff/ehSim
