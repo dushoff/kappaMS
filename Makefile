@@ -80,6 +80,7 @@ updatedirs: | $(hotdirs)
 
 ######################################################################
 
+## FIX choke point here!!
 migrateDirs: ../ehSim ../kappaCode
 	$(RM) sims kappa
 
