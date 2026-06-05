@@ -91,15 +91,17 @@ migrateDirs: ../ehSim ../kappaCode
 
 ## Reference stuff?
 
-## Dump DOIs here; it should find PMIDs for you. This is obviously not perfect
+## Dump DOIs here; it should find PMIDs for you. 
+## You then add them manually to main.rmu
+## NOT PERFECT!
 add.pmlist: add.pmsearch reff/pm.py
 Ignore += add.pmlist main.bib
 Sources += $(wildcard *.pmsearch)
 
-main.recs: main.rmu | Bio.pip
+## main.recs: main.rmu | Bio.pip
 ## main.tags.pgr: main.rmu
 ## main.downloads: main.rmu
-main.downloads: main.tags.pgr
+## main.downloads: main.tags.pgr
 ## main.gfm: main.rmu
 ## main.reff.html: main.rmu main.gfm
 main.bib:
