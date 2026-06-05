@@ -1,5 +1,4 @@
 \section{Introduction}
-%Maily adapted from main.tex on Overleaf
 
 Real outbreaks have significant heterogeneity in the number of secondary cases -- including \emph{superspreading,} marked by a small fraction of individuals causing a disproportionately large fraction of realized transmission \cite{lloydsmith2005superspreading, woolhouse1997heterogeneities}.
 %Superspreading can arise from several distinct factors, each of which affects outbreak dynamics differently \cite{kuylen2022different,wallace2025hotspot}.
@@ -13,36 +12,21 @@ In this way, variation from the stochastic process of successful transmission is
 
 Over longer timescales, the processes of susceptible depletion and replenishment, which are elegantly captured in mechanistic compartmental models, drive population-scale disease dynamics. Despite shared theory motivating models that highlight individual-level transmission, and those that emphasize population-level transmission dynamics, a gap persists in how each model framework treats individual-level transmission heterogeneity. 
 
-In its simplest form, the canonical ODE SIR (Susceptible-Infected-Removed) model assumes homogeneous rates of recovery and constant, uniform infectivity across all individuals during the infectious stage \cite{Hethcote2000, Kermack1927}. 
-Although single-infective-class compartmental models seem homogeneous, even the SIR model has two sources of \emph{emergent heterogeneity.}
+The canonical SIR (Susceptible-Infected-Removed) model is based on ordinary differential equations (ODEs). It assumes constant, uniform infectivity and recovery across all individuals during the infectious stage \cite{Hethcote2000, Kermack1927}. 
+Although single-infective-class compartmental models seem homogeneous, even the canonical SIR model has two sources of \emph{emergent heterogeneity.}
 The changing effective reproductive number arising from susceptible dynamics, drives variation between fractions of the population infected at different times; and the exponentially distributed recovery times assumed by the ODE, drive variation in the number of infections attributable to fractions of the population infected at a given time.
 In other words, even fully deterministic ODE models predict variation around basic reproductive number \Ro, the average number of secondary cases caused by a case in a fully susceptible population, in the expected secondary cases.
 
-In practice, many epidemiological modelers also include \emph{explicit heterogeneity} into their models, for example by considering age- or spatially-explicit compartments that may have different expected rates of mixing, transmission, or recovery \cite{schenzle1984agestructured}.
+In practice, many epidemiological modelers also include \emph{explicit heterogeneity}, for example by adding compartments for different demographic or geographic groups \cite{schenzle1984agestructured}, which can have different average rates of mixing, transmission, or recovery.
 Explicit heterogeneity reproduces superspreading in linear compartmental models \cite{meehan2023replicating}.
 
- We delineate the distinct sources of individual variation in transmission inscribed into a simple SIR model. We trace how these sources compose into observed or observable heterogeneity in different settings, for example contrasting how heterogeneity emerges in dynamical models versus linearized, or branching-process models. Throughout, we highlight the understudied but critically important role of disease dynamics \textit{per se} in generating individual-level heterogeneity. 
+Here we delineate these different sources of individual variation in transmission inscribed in simple dynamical models. We trace how these sources compose into observed or observable heterogeneity in different settings, for example contrasting how heterogeneity emerges in dynamical models versus linearized, or branching-process models. Throughout, we highlight the understudied but critically important role of disease dynamics \textit{per se} in generating individual-level heterogeneity. 
 We aim to spur the development of theory and methods that better integrate heterogeneity and dynamics, ultimately facilitating feedback between data on incidence and individual-level transmission chains, mechanistic model specification, identification, and validation, and intervention design.
 
 %\section{Box: Kappa tutorial}
 \begin{framed}
 	\noindent\textbf{Box 1. $\kappa$ tutorial.} 
-%Adapted from main.tex on Overleaf	
 
-%For a continuous distribution with mean $\mu$ and variance $\sigma^2,$ the (generalized)
-%\emph{dispersion parameter}, $\kappa$, is defined as the squared coefficient of variation $\sigma^2/\mu^2$. 
-%The dispersion parameter of a discrete distribution  with mean $\mu$ and variance $\sigma^2$ is defined as
-%$\kappa_\mathrm{discrete} = (\sigma^2-\mu)/\mu^2$.
-%
-%The statistics $\kappa$ and $\kappa_\mathrm{discrete}$ have desirable properties for a dispersion measure: They \emph{increase} with dispersion around the mean and equal zero for a Dirac delta function. 
-%
-%The dispersion parameter is \emph{invariant} under Poisson mixing.
-%When a gamma distribution is parameterized by its mean $\mu$ and dispersion $\kappa$, the resulting negative binomial distribution, derived from  Poisson mixing, is likewise parameterized by $\mu$ and $\kappa_\mathrm{discrete} = \kappa$.
-%The connection between $\kappa$ and $\kappa_\mathrm{discrete}$ holds for Poisson mixture with any mixing distribution. 
-%%Thus, we can use $\kappa$ statistics to compare models with different mean-variance structures.
-%
-%In our setting, the continuous distribution corresponds to the expected infectiousness, and the discrete distribution arises from the stochastic realization of that rate, i.e., by compounding a Poisson distribution with a rate parameter derived from the continuous distribution. 
-%Therefore, we use a single parameter $\kappa$ to characterize the dispersion in both secondary cases and expected infectiousness.
 The mean and variance of a mixed Poisson distribution whose mixing distribution has mean $\mu$ and variance $\sigma^2$ are, respectively, $\mu$ and  $\mu+\sigma^2$.
 Thus, both mixing and mixed Poisson distributions can be described using  two quantities: mean $\mu$ and 
  (generalized) \emph{dispersion} parameter, $\kappa$, defined as $\sigma^2/\mu^2$.

@@ -98,6 +98,9 @@ add.pmlist: add.pmsearch reff/pm.py
 Ignore += add.pmlist main.bib
 Sources += $(wildcard *.pmsearch)
 
+## Shouldn't share library on public repo
+mirrors += library
+
 ## main.recs: main.rmu | Bio.pip
 ## main.tags.pgr: main.rmu
 ## main.downloads: main.rmu
@@ -142,6 +145,7 @@ makestuff:
 -include makestuff/pandoc.mk
 -include makestuff/hotcold.mk
 -include makestuff/reff.mk
+-include makestuff/mirror.mk
 
 -include makestuff/git.mk
 -include makestuff/visual.mk
