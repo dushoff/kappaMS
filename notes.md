@@ -35,3 +35,5 @@ Jonathan
 	* Not reproduced in fresh directory; continue to track
 * Read through and think about changes (start with box)
 * Look at bib file from emergentHeterogeneity
+
+
