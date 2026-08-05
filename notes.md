@@ -36,4 +36,7 @@ Jonathan
 * Read through and think about changes (start with box)
 * Look at bib file from emergentHeterogeneity
 
+##### 2026 Aug 04 (Tue)
+
+Be more direct about the difference between shape parameters and dispersion parameters in box (use A for shape and κ for dispersion). Mention that kappa generalizes beyond the gamma/negBin case. 
 
