@@ -101,7 +101,7 @@ mirrors += library
 ## main.downloads: main.tags.pgr
 ## main.gfm: main.rmu
 ## main.reff.html: main.rmu main.gfm
-main.bib:
+Ignore += main.bib
 
 ######################################################################
 
