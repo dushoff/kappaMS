@@ -89,16 +89,10 @@ migrateDirs: ../ehSim ../kappaCode
 
 ######################################################################
 
-## Reference stuff?
-
-## Dump DOIs here; it should find PMIDs for you. 
-## You then add them manually to main.rmu
-## NOT PERFECT!
-add.pmlist: add.pmsearch reff/pm.py
-Ignore += add.pmlist main.bib
-Sources += $(wildcard *.pmsearch)
+## Reference stuff
 
 ## Shouldn't share library on public repo
+## Let me know if we need to find a way to share the library, or else curate your own
 mirrors += library
 
 ## main.recs: main.rmu | Bio.pip
