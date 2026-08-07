@@ -3,7 +3,7 @@
 
 current: target
 -include target.mk
-Ignore = target.mk
+Ignore = target.mk .gitignore
 
 pyvenv: ; $(cleanpyvenv)
 -include makestuff/pyvenv.mk
