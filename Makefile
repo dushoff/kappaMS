@@ -38,7 +38,7 @@ output: $(final).op
 ######################################################################
 
 ## https://github.com/dushoff/kappaMS/blob/main/outputs/draft.pdf
-Sources +=  $(wildcard *.tex)
+Sources +=  $(wildcard *.tex) add.bib
 ## draft.pdf: doc.tex draft.tex
 draft.texdeps.mk: doc.texdeps.mk supp.texdeps.mk
 
@@ -93,7 +93,7 @@ migrateDirs: ../ehSim ../kappaCode
 
 ## Shouldn't share library on public repo
 ## Let me know if we need to find a way to share the library, or else curate your own
-mirrors += library
+Ignore += library
 
 ## main.recs: main.rmu | Bio.pip
 ## main.tags.pgr: main.rmu
@@ -101,7 +101,6 @@ mirrors += library
 ## main.downloads: main.tags.pgr
 ## main.gfm: main.rmu
 ## main.reff.html: main.rmu main.gfm
-Ignore += main.bib
 
 ######################################################################
 
@@ -116,6 +115,14 @@ Ignore += legacy rc ## Mystery directories in JD's attic; probably crib files 20
 
 ######################################################################
 
+# Optional features (add your own MK file, or use someone else's)
+-include local.mk
+## jd.local: jd.MK
+%.local: %.MK
+	/bin/ln -fs $< local.mk
+
+######################################################################
+
 ### Makestuff
 
 Sources += Makefile
@@ -124,7 +131,7 @@ Ignore += makestuff
 msrepo = https://github.com/dushoff
 
 ## ln -s ../makestuff . ## Do this first if you want a linked makestuff
-Makefile: makestuff/08.stamp
+Makefile: makestuff/10.stamp
 makestuff/%.stamp: | makestuff
 	- $(RM) makestuff/*.stamp
 	cd makestuff && $(MAKE) pull
