@@ -23,6 +23,14 @@ If you come back to work after others have worked, say `make update`
 
 Please let Jonathan know if you have any make-related problems. I keep trying to make my tools better.
 
+## Bibliography
+
+It should work to add things manually to add.bib, or else to add identifiers to main.rmu. We should try to move to the `main` and not rely on manual, except for arxiv and web links, but this is not a high priority
+
+## Library
+
+If you play with the bib stuff, you may get a local copy of library/ with some of the reference pdfs. We can work later on trying to share this folder.
+
 ----------------------------------------------------------------------
 
 If you have done `make setup` you should be able to look at the MSEDITOR definition in makestuff/unix.mk
