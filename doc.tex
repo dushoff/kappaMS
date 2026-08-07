@@ -7,7 +7,7 @@ Real outbreaks have significant heterogeneity in the number of secondary cases -
 Superspreading is most salient for disease dynamics and control strategies at the beginning of outbreaks \cite{goyal2022multiscale} \comm{Check this citation}. 
 Correspondingly, theoretical treatment of superspreading emphasizes individual-level transmission patterns, often while assuming a fully susceptible population \cite{lloydsmith2005superspreading,james2007event}.
 Theoretical analysis of superspreading has focused on models that link observed secondary case counts to a continuous random variable, the \emph{individual reproductive number,}  via a Poisson sampling process.
- Canonically, the individual reproduction number is modeled as a gamma distribution, giving rise to negative binomial secondary case distributions \cite{lloydsmith2005superspreading}.
+ Canonically, the individual reproductive number is modeled as a gamma distribution, giving rise to negative binomial secondary case distributions \cite{lloydsmith2005superspreading}.
 In this way, variation from the stochastic process of successful transmission is conceptually separated from a more intrinsic individual-level heterogeneity [in expected infectiousness] that may emerge from a plethora of potential differences in biology, contact patterns, or behaviors between individuals \cite{chen2021heterogeneity, althouse2020superspreading,hamner2020high}.
 
 Over longer timescales, the processes of susceptible depletion and replenishment, which are elegantly captured in mechanistic compartmental models, drive population-scale disease dynamics. Despite shared theory motivating models that highlight individual-level transmission, and those that emphasize population-level transmission dynamics, a gap persists in how each model framework treats individual-level transmission heterogeneity. 
@@ -20,7 +20,7 @@ In other words, even fully deterministic ODE models predict variation around bas
 In practice, many epidemiological modelers also include \emph{explicit heterogeneity}, for example by adding compartments for different demographic or geographic groups \cite{schenzle1984agestructured}, which can have different average rates of mixing, transmission, or recovery.
 Explicit heterogeneity reproduces superspreading in linear compartmental models \cite{meehan2023replicating}.
 
-Here we delineate these different sources of individual variation in transmission inscribed in simple dynamical models. We trace how these sources compose into observed or observable heterogeneity in different settings, for example contrasting how heterogeneity emerges in dynamical models versus linearized, or branching-process models. Throughout, we highlight the understudied but critically important role of disease dynamics \textit{per se} in generating individual-level heterogeneity. 
+Here we delineate these \ag{is "these" necessary?} different sources of individual variation in transmission inscribed in simple dynamical models. We trace how these sources compose into observed or observable heterogeneity in different settings, for example contrasting how heterogeneity emerges in dynamical models versus linearized, or branching-process models. Throughout, we highlight the understudied but critically important role of disease dynamics \textit{per se} in generating individual-level heterogeneity. 
 We aim to spur the development of theory and methods that better integrate heterogeneity and dynamics, ultimately facilitating feedback between data on incidence and individual-level transmission chains, mechanistic model specification, identification, and validation, and intervention design.
 
 \input{varBox.tex}
@@ -42,7 +42,7 @@ The distributions of both expected infectiousness and the number of secondary ca
 Under a stochastic SIR model, where the number of secondary cases arises from  Poisson draws from expected infectiousness,
  inequality in secondary cases--that is, the relationship between the fraction of new infections and the fraction of infectors--depends on the mean, whereas inequality in expected infectiousness does not (\Fref{ls}, panel b).
 In fact, the share of Poisson noise in overall inequality shrinks as \Ro~increases, and the inequality in secondary cases approaches its theoretical limit, namely, the inequality in expected infectiousness (\Fref{ls}, panel b).
-When \Ro~is small, an increasing fraction of infected individuals generate no secondary infections, so the individuals who do transmit make up a smaller fraction of all infectors. Indeed, the ``20/80 rule''--that 80\% of secondary infections arise from only 20\% of infectious individuals--is attained when \Ro~falls just below $0.4$. \ag{don't know why}
+As \Ro~becomes smaller, an increasing fraction of infected individuals generate no secondary infections, so the individuals who do transmit make up a smaller fraction of all infectors. Indeed, the ``20/80 rule''--that 80\% of secondary infections arise from only 20\% of infectious individuals--is attained when \Ro~falls just below $0.4$. \ag{don't know why}
 However, even when \Ro~exceeds the epidemic threshold, the distribution of secondary cases can still display substantial heterogeneity.
 
 %The inequality in the secondary cases, i.e., the relationship between the fraction of new infections and the fraction of infectors, varied by \Ro; the inequality in the expected infectiousness did not.
@@ -62,7 +62,7 @@ This result is unexpected. Faster and larger dynamical changes occur when \Ro~is
  	\caption{
  		\textbf{Heterogeneity emerges even from a simple, linearized compartmental model} due to implicit variation in recovery times among infectors.
  		Panel a: Both expected infectiousness (density curves) and secondary case distributions (density histograms) for the outset of an SIR epidemic, where the population is fully susceptible depend on \Ro.
- 		Panel b: Inequality curves, defined as the cumulative fraction of new infections versus the cumulative fraction of infectors, computed from the expected infectiousness across varying \Ro~, are identical and visually indistinguishable due to overplotting. In contrast, inequality curves derived from the secondary case distribution exhibit differences. As \Ro~ increases, the inequality observed in the secondary case distribution decreases and approaches the expected infectiousness inequality curve. The cross marks ``20-80'' point, where 20\% of infectors cause 80\% of infections.
+ 		Panel b: Inequality curves, defined as the cumulative fraction of new infections versus the cumulative fraction of infectors, computed from the expected infectiousness across varying \Ro, are identical and visually indistinguishable due to overplotting. In contrast, inequality curves derived from the secondary case distribution exhibit differences. As \Ro~ increases, the inequality observed in the secondary case distribution decreases and approaches the expected infectiousness inequality curve. The cross marks ``20-80'' point, where 20\% of infectors cause 80\% of infections.
  		In panel a,  because the first bin (at zero) sits at the boundary of support for each distribution, we have plotted this bin as double the density and half the width; this adjustment preserves area-to-area correspondence with the probability density function, while facilitating visual comparison of the heights of the density and mass functions.
  	}\flab{ls}
  \end{figure}
@@ -127,7 +127,7 @@ However, after the peak, the susceptible depletion reduced the share of within-c
 	\caption{
 		\textbf{Forecasting the distribution of expected infectiousness evolves as the outbreak unfolds.}
 		Panel a: Cohort size infected during $[t,t+\Delta t]$ is measured as the area under the incidence curve over this interval ($\Delta t =2\times 10^{-4}t_{\mathrm{peak}}$, where $t_{\mathrm{peak}}$ is the time of peak incidence).
-		Panel b: At each time point, the mean and standard deviation of expected infectiousness are calculated using only cohorts infected up to that specific time, incorporating the subsequent contributions of these cohorts to disease transmission.
+		Panel b: At each time point, the mean and standard deviation of expected infectiousness are calculated by including cohorts infected up to that specific time, incorporating the subsequent contributions of these cohorts to disease transmission.
 		By ``rescaled,'' we mean that time has first been scaled by the mean infectious period and is then measured relative to the outbreak peak.
 		The mean of expected infectiousness is larger for early-infected cohorts and depends on the key parameter \Ro. 
 		As time goes by, later-infected cohorts, who have larger sizes,
