@@ -16,7 +16,7 @@
  
 %\usepackage{fancyhdr}
 %\pagestyle{fancy}
-% Modified by AA, main changes include: 
+% Modified by AA
 %
 \section{Analytical Results} \label{sec_proof}
 \subsection{Preliminaries}
@@ -190,13 +190,39 @@ Finally, replacing $C_0$, $C_1$, and $C_2$ by $Z$, $Z$, and $2Z$, respectively, 
 % --------------------------------------------------------------
 %                         Finish here
 % --------------------------------------------------------------
+\subsection*{Incorporating the Contribution of the Initial Infections}
+Let $y_0$ denote the proportion of the population that is infected at time $0$.
+ The contribution of these initial infections can be incorporated into the expressions above by changing the lower limit of integration to $0^-$ and taking $i(t)=y_0\delta(t)$ for $t\in(-\infty,0]$. Then,
+
+$$
+\int_{0^-}^t d\tau\; i(\tau)F(t-\tau)
+$$
+remains equal to $y(t)$. 
+The corresponding equation for the first moment $C_1$ which now also accounts for the initial infections, remains unchanged, provided that the initial infections are not accumulated in $Z$.
+
+The corresponding expression for the second moment $C_2$, which now also accounts for the initial infections, changes to
+\begin{equation} \label{eq:C2withI0}
+	\begin{aligned} 
+		C_2 = 2Z - 2y_0 \Ro \int_0^\infty dt\;x(t)e^{-t}
+	\end{aligned}
+\end{equation}
+The second term in the right-hand side of \autoref{eq:C2withI0} is twice the expected infectiousness of the initial infections. 
 \newpage
 \section*{Supplementary Figures}
 \begin{figure}[H]
 	\centering
+	\includegraphics{kappa/withinChk.Rout.pdf}
+	\caption{\textbf{The cohorts' variance in expected infectiousness evolves as the outbreak unfolds.} Panel a shows cohort size as a function of the time of infection. Panel b shows the cohorts' variance in expected infectiousness at four different cutoff times: $0.8,0.9,1$, and $1.1$ times the time of peak incidence, $t_{\mathrm{peak}}$. For a simple epidemic with $\Ro = 1.5$, $t_{\mathrm{peak}} \approx 38.16$, measured in the unit of infectious period.
+			}
+	\flab{CohortVarRc}
+\end{figure}
+\begin{figure}[H]
+	\centering
 	\includegraphics{kappa/TimeEvolution.Rout.pdf}
-	\caption{\textbf{The susceptible population changes during an outbreak.} Outbreaks with higher \Ro~values lead to greater variation in incidence and more rapid depletion of the susceptible pool. We modeled these outbreaks using a deterministic compartmental approach where time is in units of mean infectious period.}
-	\flab{SIRsim}
+	\caption{
+ Outbreaks with higher \Ro~values lead to greater variation in incidence and more rapid depletion of the susceptible pool. We modeled these outbreaks using a deterministic compartmental approach where time is in units of mean infectious period.}
+\flab{SIRsim}
+	\flab{CohortVarRc}
 \end{figure}
 
 \begin{figure}[H]

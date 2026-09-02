@@ -106,12 +106,12 @@ However, after the peak, the susceptible depletion reduced the share of within-c
 	\captionsetup{width=1.28\linewidth}
 	\caption{
 		\textbf{The expected infectiousness evolves over the course of the outbreak.}
-		Panel a: The size of the cohort infected during $[t,t+\Delta t]$ equals the area under the incidence curve on that interval. Time is in units of the mean infectious period, and $\Delta t = 2\times 10^{-4}t_{\mathrm{peak}}$ (where $t_{\mathrm{peak}}$ is the time of peak incidence).
+		Panel a: The size of the cohort infected during $[t,t+\Delta t]$ equals the area under the incidence curve on that interval.
+		 Time is in units of the mean infectious period, and $\Delta t = 10^{-4}t_{\mathrm{peak}}$ (where $t_{\mathrm{peak}}$ is the time of peak incidence).
 		Panel b: The mean and standard deviation of expected infectiousness at each time are computed using the realized cases up to that point. 
-		In stronger epidemics, $t_{\mathrm{peak}}$ is smaller, and almost all infected individuals are still infectious well before $t_{\mathrm{peak}}$, leading to lower heterogeneity compared to epidemics with smaller \Ro.
+		In stronger epidemics, $t_{\mathrm{peak}}$ is smaller, and almost all infected individuals are still infectious for $t \ll t_{\mathrm{peak}}$, leading to lower heterogeneity compared to epidemics with smaller \Ro.
 		Panel c:  $\kappa$ climbs over the course of the outbreak.
-		Epidemics with small \Ro~take longer to reach their peak. Even fractions of $t_{\mathrm{peak}}$ are long enough to reveal differences in infectious period among cohort members, resulting in a relatively large within component of $\kappa$ (measured as the ratio of within-cohort variance to the squared mean).
-		After the peak, the difference in infectious period among individuals in the largest cohort, who infected at the peak time, drives a slight increment in within-cohort variation.
+		For epidemics with small \Ro, even fractions of $t_{\mathrm{peak}}$ are long enough for differences in infectious periods among cohort members to become apparent. As a result, the within component of $\kappa$  (measured as the ratio of within-cohort variance to the squared mean) is larger compared to that in epidemics with larger \Ro.
 		For panels b and c, the simulation was stopped at each time point to compute the y-axis value. 
 		The y-axis value at each time point was computed by assigning to each cohort the realized case reproductive number up to that time.
 		In panels b and c, time units measured in the mean infectious period are again scaled relative to the peak time.
