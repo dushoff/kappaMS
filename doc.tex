@@ -95,7 +95,7 @@ From the beginning, in epidemics with large \Ro, the between-cohort variation wa
 By the end of the outbreak, heterogeneity in expected infectiousness among different \Ro~ values became indistinguishable (\fref{Naive}).
 
 We also examined an idealized scenario in which, for each cutoff point, we computed heterogeneity in expected infectiousness over the entire outbreak, but considering those cohorts that had become infectious up to that time.
-In epidemics with lower \Ro, the mean and standard deviation of expected infectiousness for early-infected cohorts almost matched those from the linearized model, i.e., mean and standard deviation equal \Ro~ (\fref{timeCutoff}).
+In epidemics with lower \Ro,  mean  expected infectiousness for early-infected cohorts almost matched those from the linearized model, i.e., mean  equals \Ro~ (\fref{timeCutoff}).
 Including cohorts infected later, but before the outbreak peak, reduced variability as measured by $\kappa$. Including cohorts infected after the peak increased variability.
 By the end of the outbreak, all epidemics with different \Ro~agreed on the heterogeneity in expected infectiousness, measured by $\kappa$.
 Regardless of \Ro, within-cohort variation primarily drove heterogeneity among early-infected cohorts.
@@ -105,16 +105,19 @@ However, after the peak, the susceptible depletion reduced the share of within-c
 	\includegraphics{kappa/PlotTrunc.Rout.pdf}
 	\captionsetup{width=1.28\linewidth}
 	\caption{
-		\textbf{The expected infectiousness evolves over the course of the outbreak.}
-		Panel a: The size of the cohort infected during $[t,t+\Delta t]$ equals the area under the incidence curve on that interval.
-		 Time is in units of the mean infectious period, and $\Delta t = 10^{-4}t_{\mathrm{peak}}$ (where $t_{\mathrm{peak}}$ is the time of peak incidence).
-		Panel b: The mean and standard deviation of expected infectiousness at each time are computed using the realized cases up to that point. 
-		In stronger epidemics, $t_{\mathrm{peak}}$ is smaller, and almost all infected individuals are still infectious for $t \ll t_{\mathrm{peak}}$, leading to lower heterogeneity compared to epidemics with smaller \Ro.
-		Panel c:  $\kappa$ climbs over the course of the outbreak.
-		For epidemics with small \Ro, even fractions of $t_{\mathrm{peak}}$ are long enough for differences in infectious periods among cohort members to become apparent. As a result, the within component of $\kappa$  (measured as the ratio of within-cohort variance to the squared mean) is larger compared to that in epidemics with larger \Ro.
-		For panels b and c, the simulation was stopped at each time point to compute the y-axis value. 
+		\textbf{Expected infectiousness evolves over the course of an outbreak.}
+		Panel a: The size of the cohort infected during $[t,t+\Delta t]$ is given by the area under the incidence curve over that interval, where
+		 $\Delta t = 10^{-4}t_{\mathrm{peak}}$ and $t_{\mathrm{peak}}$ denotes the time of peak incidence.
+		 Panel b: At each time point, mean expected infectiousness is computed using the cases realized by that time.
+		Early in the outbreak, the initial infectious cohort constitutes a relatively large fraction of all infected population up to that time. Because the infectors of this initial cohort are not included, the mean expected infectiousness is noticeably below one.
+		At early times   ($t \lesssim  0.4t_{\mathrm{peak}}$), 
+		epidemics with larger \Ro~have accumulated fewer infections,
+		making the effect of this omission more pronounced. 
+		Panel c:  $\kappa$ increased over the course of the outbreak.
+		For epidemics with smaller \Ro, a given fraction of $t_{\mathrm{peak}}$ corresponds to a longer elapsed time, allowing differences in infectious periods among cohort members to become apparent. As a result, the within component of $\kappa$  (measured as the ratio of within-cohort variance to the squared mean) is larger than that for epidemics with larger \Ro.
+		For panels b and c, the simulation was truncated at each plotted time.  
 		The y-axis value at each time point was computed by assigning to each cohort the realized case reproductive number up to that time.
-		In panels b and c, time units measured in the mean infectious period are again scaled relative to the peak time.
+		In all panels, time units measured in the mean infectious period are rescaled relative to the peak time, so that peak incidence occurs at $(t/t_{\mathrm{peak}}=1)$.
 	}\flab{Naive}
 \end{figure}
 %It's also possible to imagine realistic approaches between these two extremes, but let's put that off for later. There are methods (including by Dushoff and Park) for thinking about this at the cohort level, but not with a focus on individual variation. Maybe this is just for discussion. OR maybe we should also look at plots where we go up until a particular time and only count recovered infectors.
@@ -125,15 +128,14 @@ However, after the peak, the susceptible depletion reduced the share of within-c
 	\includegraphics{kappa/RcTimePlotVaryingPeak.Rout.pdf}
 		\captionsetup{width=1.28\linewidth}
 	\caption{
-		\textbf{Forecasting the distribution of expected infectiousness evolves as the outbreak unfolds.}
+		\textbf{Forecasts of the distribution of expected infectiousness evolve as an outbreak unfolds.}
 		Panel a: Cohort size infected during $[t,t+\Delta t]$ is measured as the area under the incidence curve over this interval ($\Delta t =2\times 10^{-4}t_{\mathrm{peak}}$, where $t_{\mathrm{peak}}$ is the time of peak incidence).
-		Panel b: At each time point, the mean and standard deviation of expected infectiousness are calculated across all cohorts infected by that time
+		Panel b: At each time point,  mean  expected infectiousness is calculated across all cohorts infected by that time,
 		including the initial infectious cohort of size $10^{-9}$, while accounting for each cohort's subsequent contributions to disease transmission.
-		By ``rescaled,'' we mean that time has first been scaled by the mean infectious period and is then measured relative to the outbreak peak.
-		Mean expected infectiousness is larger for early-infected cohorts and depends on the key parameter \Ro. 
-		As time goes by, later-infected cohorts, who have larger sizes,
-		experience susceptible pool depletion, decreasing expected infectiousness. 
-		After the peak, the susceptible population size stabilizes, and the mean and standard deviation approach one. 
+			Cohorts infected earlier have higher mean expected infectiousness, with values depending on key parameter \Ro. 
+		As incidence increases, later-infected cohorts, who have larger sizes,
+		encounter susceptible pool depletion, decreasing expected infectiousness. 
+		After the peak, the susceptible population size stabilizes, and the mean  approaches one. 
 		Panel c: The within-cohort component of the squared coefficient of variation $\kappa_{with}$, measured as the ratio of the within-cohort variance to the squared mean, is the main driver of heterogeneity among the early-infected cohorts, as they experience a similar size of susceptible population. As the outbreak unfolds, the decline in the susceptible population drives between-cohort variation, which is more pronounced in epidemics with large \Ro.  $\kappa$ reaches its minimum around the outbreak peak; large cohorts experience sharp depletion of susceptibles, and the impact of variation in recovery time fades, declining the variance, and hence $\kappa$. After the peak, $\kappa$ rebounds to one. 
 		For panels b and c, the y-axis value at each time point was computed using only the cohorts that had been infected up to that time.
 	}\flab{timeCutoff}
