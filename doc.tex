@@ -127,9 +127,10 @@ However, after the peak, the susceptible depletion reduced the share of within-c
 	\caption{
 		\textbf{Forecasting the distribution of expected infectiousness evolves as the outbreak unfolds.}
 		Panel a: Cohort size infected during $[t,t+\Delta t]$ is measured as the area under the incidence curve over this interval ($\Delta t =2\times 10^{-4}t_{\mathrm{peak}}$, where $t_{\mathrm{peak}}$ is the time of peak incidence).
-		Panel b: At each time point, the mean and standard deviation of expected infectiousness are calculated by including cohorts infected up to that specific time, incorporating the subsequent contributions of these cohorts to disease transmission.
+		Panel b: At each time point, the mean and standard deviation of expected infectiousness are calculated across all cohorts infected by that time
+		including the initial infectious cohort of size $10^{-9}$, while accounting for each cohort's subsequent contributions to disease transmission.
 		By ``rescaled,'' we mean that time has first been scaled by the mean infectious period and is then measured relative to the outbreak peak.
-		The mean of expected infectiousness is larger for early-infected cohorts and depends on the key parameter \Ro. 
+		Mean expected infectiousness is larger for early-infected cohorts and depends on the key parameter \Ro. 
 		As time goes by, later-infected cohorts, who have larger sizes,
 		experience susceptible pool depletion, decreasing expected infectiousness. 
 		After the peak, the susceptible population size stabilizes, and the mean and standard deviation approach one. 
