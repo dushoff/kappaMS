@@ -30,9 +30,9 @@ The standard SIR model is described by the following equations:
 where $x(t)$ and $y(t)$ denote the proportion of susceptible and infectious individuals, respectively. 
 Time has been normalized by the recovery rate.
 Let $i(t)$ denote the incidence $\Ro x(t)y(t)$, and define the size of the epidemic as follows:
-\[Z = \int_0^\infty dt i(t).\]
+\[Z = \int_{0}^\infty dt i(t).\]
 
-Let $f$ denote the distribution of residence times in the infectious compartment. Define $F(t)$ as the corresponding survival distribution, that is
+Let $f$ denote the probability density function of the infectious period. Define $F(t)$ as the corresponding survival distribution, that is
 \begin{equation} \label{eq:survial}
     F(t) = 1 - \int_0^t d\tau f(\tau) = \int_t^\infty d\tau f(\tau).
 \end{equation}
@@ -63,6 +63,7 @@ The excess variation of the individual case reproductive number in the standard 
 \subsection{Proof}
 We will calculate $C_0$, $C_1$ and $C_2$. We can calculate $C_0$ and $C_1$ without making any assumptions about the functional form of $f$ (we don't have to assume that the wait times are exponentially distributed). We do need $F$ to be memoryless, i.e., obey $F(a+b) = F(a)F(b)$, to get the ``right'' value of $C_2$.
 Calculating each of these moments essentially involves multiple manipulations of the limits of the integrals involved. 
+To proceed, we assume that  size of the initial infectious cohort is negligible.
 
 %\subsubsection{Proof of $C_0 = Z$} \label{sec:C0}
 From \autoref{eq:Moments}, we have
@@ -76,7 +77,7 @@ Substituting $\omega + \tau $ for $\rho$ in the inner integral, results in
 \begin{align*}
         C_0 &=\int_0^\infty d\tau \;i(\tau) \int_0^\infty d\omega \; f(\omega).
 \end{align*}
-Since $f$ is the residence time distribution (note we're not invoking the fact that $f$ is an exponential distribution!), the inner integral is simply 1.
+Since $f$ is the residence time distribution, the inner integral is simply 1.
 It follows that
 \begin{align*}
  %   \begin{split} \label{eq:C0calc}
@@ -191,14 +192,16 @@ Finally, replacing $C_0$, $C_1$, and $C_2$ by $Z$, $Z$, and $2Z$, respectively, 
 %                         Finish here
 % --------------------------------------------------------------
 \subsection*{Incorporating the Contribution of the Initial Infections}
+ Mathematical derivation in the previous section was based on the assumption that the initial infectious cohort was negligible.
+ In what follows, we revisit the results while relaxing this assumption.
 Let $y_0$ denote the proportion of the population that is infected at time $0$.
- The contribution of these initial infections can be incorporated into the expressions above by changing the lower limit of integration to $0^-$ and taking $i(t)=y_0\delta(t)$ for $t\in(-\infty,0]$. Then,
+ The contribution of these initial infections can be incorporated into the expressions above by changing the lower limit of integrations to $0^-$ and taking $i(t)=y_0\delta(t)$ for $t\in(-\infty,0]$, where $\delta(t)$ denotes the Dirac Delta function. Then, the integral
 
 $$
 \int_{0^-}^t d\tau\; i(\tau)F(t-\tau)
 $$
 remains equal to $y(t)$. 
-The corresponding equation for the first moment $C_1$ which now also accounts for the initial infections, remains unchanged, provided that the initial infections are not accumulated in $Z$.
+The corresponding equation for the first moment $C_1$ which now also accounts for the initial infections, remains unchanged, provided that the initial infections are not accumulated in $Z$, i.e., final size doesn't include the initial infections.
 
 The corresponding expression for the second moment $C_2$, which now also accounts for the initial infections, changes to
 \begin{equation} \label{eq:C2withI0}

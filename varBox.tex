@@ -1,14 +1,17 @@
 \begin{framed}
 \noindent\textbf{Box 1. Linking variance.} 
 
-Individual-level activity is typically estimated using a negative-binomial distribution, with a shape, or “dispersion” parameter $k$.
-This distribution is implicitly or explicitly linked 
-The mean and variance of a mixed Poisson distribution whose mixing distribution has mean $\mu$ and variance $\sigma^2$ are, respectively, $\mu$ and  $\mu+\sigma^2$.
-Thus, both mixing and mixed Poisson distributions can be described using  two quantities: mean $\mu$ and 
-(generalized) \emph{dispersion} parameter, $\kappa$, defined as $\sigma^2/\mu^2$.
+Individual-level activity is typically estimated using a negative-binomial distribution, with  mean $\mu$ and  shape, or “dispersion” parameter $k$.
+This distribution can be represented as a Poisson mixture whose mixing distribution is Gamma  with the same mean and shape parameter values.
+ The  variance of the negative binomial and Gamma distributions are $\mu + \mu^2/k$ and $mu^2/k$, respectively.
+Thus, both  distributions can be parametrized  by their mean $\mu$ and 
+a (generalized) \emph{dispersion} parameter, $\kappa$, defined as $k^{-1}$.
 
-The statistic $\kappa$ increases with variability around the mean and equals zero for a Dirac delta function, making it a desirable measure of dispersion.
+For the Gamma mixing distribution, $\kappa$ equals the squared coefficient of variation.
+For the negative binomial distribution, $\kappa$ is equal to the excess variance with respect to the Poisson distribution with mean $\mu$, divided by $\mu^2$.
+The statistic $\kappa$ increases with variability around the mean.
+In particular,
+as $\kappa$ approaches zero, Gamma distribution converges to a point mass at $\mu$, and the negative binomial distribution converges to the Poisson distribution with  mean $\mu$.
 
-The secondary-case distribution is a mixed Poisson distribution, with expected infectiousness as the mixing distribution. 
-%Here, the continuous mixing distribution describes expected infectiousness, and the mixed Poisson distribution represents the secondary-case, resulting from the stochastic realization (Poissonification) of expected infectiousness.
-Hence, we use a single parameter, $\kappa$, to characterize dispersion in both secondary cases and expected infectiousness throughout this paper.
+We, therefore, use $\kappa$, throughout this paper, to characterize dispersion in both secondary cases and expected infectiousness.
+
