@@ -131,7 +131,7 @@ By the end of the outbreak, all epidemics with different \Ro~agreed on both mean
 		\captionsetup{width=1.28\linewidth}
 	\caption{
 		\textbf{Forecasts of the distribution of expected infectiousness evolve as an outbreak unfolds.}
-		Panel a: Cohort size infected during $[t,t+\Delta t]$ is measured as the area under the incidence curve over this interval ($\Delta t =2\times 10^{-4}t_{\mathrm{peak}}$, where $t_{\mathrm{peak}}$ is the time of peak incidence).
+		Panel a: Cohort size infected during $[t,t+\Delta t]$ is measured as the area under the incidence curve over this interval ($\Delta t =10^{-4}t_{\mathrm{peak}}$, where $t_{\mathrm{peak}}$ is the time of peak incidence).
 		Panel b: At each time point,  mean  expected infectiousness is calculated across all cohorts infected by that time,
 		including the initial infectious cohort of size $10^{-9}$, while accounting for each cohort's subsequent contributions to disease transmission.
 			Cohorts infected earlier have higher mean expected infectiousness, with values depending on key parameter \Ro. 
@@ -139,7 +139,7 @@ By the end of the outbreak, all epidemics with different \Ro~agreed on both mean
 		encounter susceptible pool depletion, decreasing expected infectiousness. 
 		After the peak, the susceptible population size stabilizes, and the mean  approaches one. 
 		Panel c: The within-cohort component of the squared coefficient of variation $\kappa_{with}$, measured as the ratio of the within-cohort variance to the squared mean, is the main driver of heterogeneity among the early-infected cohorts, as they experience a similar size of susceptible population. As the outbreak unfolds, the decline in the susceptible population drives between-cohort variation, which is more pronounced in epidemics with large \Ro.  $\kappa$ reaches its minimum around the outbreak peak; large cohorts experience sharp depletion of susceptibles, and the impact of variation in recovery time fades, declining the variance, and hence $\kappa$. After the peak, $\kappa$ rebounds to one. 
-		For panels b and c, the y-axis value at each time point was computed using only the cohorts that had been infected up to that time.
+		For panels b and c, the y-axis value at each time point was quantified using only the cohorts that had been infected up to that time.
 	}\flab{timeCutoff}
 \end{figure}
 
