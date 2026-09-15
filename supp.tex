@@ -32,7 +32,7 @@ Time has been normalized by the recovery rate.
 Let $i(t)$ denote the incidence $\Ro x(t)y(t)$, and define the size of the epidemic as follows:
 \[Z = \int_{0}^\infty dt i(t).\]
 
-Let $f$ denote the probability density function of the infectious period. Define $F(t)$ as the corresponding survival distribution, that is
+Let $f(\cdot)$ denote the probability density function of the infectious period. Define $F(t)$ as the corresponding survival distribution, that is
 \begin{equation} \label{eq:survial}
     F(t) = 1 - \int_0^t d\tau f(\tau) = \int_t^\infty d\tau f(\tau).
 \end{equation}
@@ -51,7 +51,9 @@ The $k^\text{th}$ weighted raw moment of $C$ is then defined as
 where $w(\tau,\rho) = i(\tau)f(\rho-\tau)$ is the size of the cohort that became infectious at time $\tau$ and recovered at time $\rho$.
 
 \subsection{The Statement}
-The excess variation of the individual case reproductive number in the standard SIR model outbreak is 1. Mathematically, this amounts to proving that
+The excess variation of the individual case reproductive number in the standard SIR model outbreak is 1, 
+provided that the initially infectious cohort size is negligible.
+Mathematically, this amounts to proving that
 
 \begin{align}\label{eq:target}
 \boxed{\kappa= \frac{C_0C_2}{C_1^2} - 1 = 1.}
@@ -191,25 +193,126 @@ Finally, replacing $C_0$, $C_1$, and $C_2$ by $Z$, $Z$, and $2Z$, respectively, 
 % --------------------------------------------------------------
 %                         Finish here
 % --------------------------------------------------------------
-\subsection*{Incorporating the Contribution of the Initial Infections}
- Mathematical derivation in the previous section was based on the assumption that the initial infectious cohort was negligible.
+
+\subsection*{Contribution of Initial Infections}
+ Mathematical derivation in the previous section was based on the assumption that the proportion of the population who were infectious initially  was negligible.
  In what follows, we revisit the results while relaxing this assumption.
-Let $y_0$ denote the proportion of the population that is infected at time $0$.
- The contribution of these initial infections can be incorporated into the expressions above by changing the lower limit of integrations to $0^-$ and taking $i(t)=y_0\delta(t)$ for $t\in(-\infty,0]$, where $\delta(t)$ denotes the Dirac Delta function. Then, the integral
-
+ 
+Let $y_0$ denote the proportion of the population that were infectious at time $0$.
+ The contribution of these initial infections can be incorporated into the expressions above if we change the lower limits of integration to $0^-$ and assume that the epidemic starts abruptly at time $t=0$, i.e.,
+ \begin{equation} \label{eq_incidence_dirac}
+ 	i(t)=y_0\delta(t), \quad t\in(-\infty,0],
+ \end{equation}
+where $\delta(t)$ denotes the Dirac delta distribution \cite{Champredon2018}.
+ Then, we have
 $$
-\int_{0^-}^t d\tau\; i(\tau)F(t-\tau)
+y(t) = \int_{0^-}^t d\tau\; i(\tau)F(t-\tau).
 $$
-remains equal to $y(t)$. 
-The corresponding equation for the first moment $C_1$ which now also accounts for the initial infections, remains unchanged, provided that the initial infections are not accumulated in $Z$, i.e., final size doesn't include the initial infections.
+As shown below, the equation for the first moment $C_1$, remains unchanged when the contribution of the initially infectious cohort is included, provided that the these initial infections are not counted in $Z$, i.e.,
+$$
+Z = \int_{0^+}^t d\tau\; i(\tau).
+$$
+Here $0^+$ indicates that the size of the initially infected cohort is not included in $Z$.
 
-The corresponding expression for the second moment $C_2$, which now also accounts for the initial infections, changes to
+However, the  expression for the second moment $C_2$ changes to
 \begin{equation} \label{eq:C2withI0}
 	\begin{aligned} 
-		C_2 = 2Z - 2y_0 \Ro \int_0^\infty dt\;x(t)e^{-t}
+		C_2 = 2Z - 2y_0 \Ro \int_0^\infty dt\;x(t)F(t)
 	\end{aligned}
 \end{equation}
-The second term in the right-hand side of \autoref{eq:C2withI0} is twice the expected infectiousness of the initial infections. 
+The second term in the right-hand side of \autoref{eq:C2withI0} is twice the expected infectiousness of the initially infected cohort.
+
+The total weight $C_0$ will now includes the initially infectious cohort size as well, i.e,
+\begin{align*}
+	C_0 = Z + y_0.
+\end{align*}
+
+The first raw moment $C_1$ is given by
+\begin{align*}
+	C_1 &= \int_{0^-}^\infty d\tau \int_\tau^\infty d\rho \; w(\tau,\rho) C(\tau,\rho)\\
+	& =\Ro\int_{0^-}^\infty d\tau \int_\tau^\infty dt i(\tau) x(t) \int_t^\infty d\rho f(\rho-\tau)\\
+		&=  \Ro\int_{0^-}^\infty d\tau \int_\tau^\infty dt i(\tau)x(t) F(t-\tau)\\
+	&=  \Ro\int_0^\infty dt x(t) \int_{0^-}^t d\tau i(\tau)F(t-\tau)\\
+	 &= \Ro\int_{0^-}^\infty dt\; x(t) y(t).
+\end{align*}
+The proportion of the population who were infectious at $t \in (-\infty, 0)$ is zero, and both $x(t)$ and $y(t)$ are  bounded.
+Thus, without loss of generality, the lower limit can be replaced with $0^+$. This gives us
+the last term is equal to
+\begin{align*}
+C_1	&= \Ro\int_{0^+}^\infty dt\; x(t) y(t) \\
+&=
+\int_{0^+}^\infty dt\; i(t)\\
+	&=Z.
+\end{align*}
+Now we move on to recalculate  $C_2$, while taking the initially infectious cohort into account.
+We have
+\begin{align*}
+	C_2 &= \int_{0^-}^\infty d\tau \int_\tau^\infty d\rho \; w(\tau,\rho) \left(C(\tau,\rho)\right)^2\\
+	&= \Ro^2 \int_0^\infty d\tau \int_\tau^\infty d\rho \;i(\tau) f(\rho-\tau) \left(\int_\tau^{\rho} dt x(t)\right)^2 \\
+	& = 2\Ro^2 \int_{0^-}^\infty ds\;x(s)\int_{0^-}^s dt \; x(t) \int_{0^-}^t d\tau\;i(\tau)F(s-t)F(t-\tau)\\
+	& = 2\Ro^2 \int_{0^-}^\infty ds\;x(s)\int_{0^-}^s dt \; x(t) F(s-t)y(t)
+\end{align*}
+We split the innermost integral into two integrals
+ \begin{align*}
+ 	C_2 & = 2\Ro^2 \int_{0^-}^\infty ds\;x(s)\int_{0^-}^s dt \; x(t) F(s-t)y(t) \\
+ 	& = 2\Ro^2 \int_{0^-}^\infty ds\;x(s) \left( \underbrace{\int_{0^-}^{0^+} dt \; x(t) F(s-t)y(t)}_{0} + {\int_{0^+}^s dt \;  x(t) F(s-t)y(t)} \right)\\
+ 	& = 2\Ro^2 \int_{0^-}^\infty ds\;x(s) \int_0^s dt\; x(t)y(t) F(s-t) \\
+ 		& = 2\Ro \int_{0^-}^\infty ds\;x(s) \int_0^s dt\; i(t)F(s-t)
+ \end{align*}
+The innermost integral gives the  proportion of the population who entered the infectious state at some time $t>0$ and remain infectious at time $s$. Hence, it equals the total proportion infectious  at time $s$ minus the proportion of the population who were initially infectious and remain infectious at time $s$.
+Then
+ \begin{align*}
+	C_2 & = 2\Ro \int_{0^-}^\infty ds\;x(s) \left( y(s) - y_0F(s) \right) \\
+	& = 2\Ro \int_{0^-}^\infty ds\;x(s)y(s) -2\Ro \int_{0^-}^\infty ds\;x(s) y_0F(s) \\
+		& = 2 Z -2\Ro \int_{0}^\infty ds\;x(s) y_0F(s) 
+\end{align*}
+Note that changing the lower limit of integration from $0^-$ to $0$ does not affect the result because the integrand is bounded.
+
+\subsection*{The moments of expected infectiousness at some point during the outbreak}
+In this section, we derive the moments of $C$ at an arbitrary time $j \in [0,\infty)$ during the outbreak, while accounting for the initially infectious cohort.
+Up to time $j$, the expected infectiousness of individuals who became infectious  at time $0 < \tau < j$ and remain infectious at time $j$ is the equal to that of the individuals who became infectious at $\tau$ and recovered at time $j$.
+To capture this observation, we introduce a modified infectious period density function, denoted $g_j(t)$.
+This function equals the true infectious period density  function  $f(t)$  for $t < j$, and assigns the remaining probability mass to  $t = j$. Hence, its cumulative distribution function reaches $1$ at $j$, i.e.,
+\begin{equation*}
+	g_j(t) = \begin{cases}
+		f(t), &\text{if }t<j, \\
+		F(j)\delta(t-j), & \text{otherwise.}
+	\end{cases}
+\end{equation*}
+Accordingly, we
+ redefine the size of the cohort that became infectious at time $\tau$ and recovered at time $\rho$ as follows
+\begin{equation*}
+	w_j(\tau, \rho) = i(\tau) g_j(\rho-\tau), \quad \tau \leq \rho \leq j. 
+\end{equation*}
+Note that $\int_t^j g_j(s)\;ds$ is equal to $F(t)$ for $t\leq j$.
+It can be shown that the total weight, $C_0(j)$ equals 
+$$
+\int_{0^{-}}^{j} dt\;i(t).
+$$ 
+The first raw moment $C_1(j)$ is given by
+\begin{align*}
+	C_1(j) &= \int_{0^-}^j d\tau \int_\tau^j d\rho \; w_j(\tau,\rho) C(\tau,\rho)\\
+	 &= \Ro\int_{0^-}^j d\tau \int_\tau^j d\rho i(\tau) g_j(\rho-\tau) \int_\tau^{\rho} dt x(t)\\
+	& =\Ro\int_{0^-}^j d\tau \int_\tau^j dt i(\tau) x(t) \int_t^j d\rho g_j(\rho-\tau)\\
+	&=  \Ro\int_{0^-}^j d\tau \int_\tau^j dt i(\tau)x(t) F(t-\tau)\\
+	&=  \Ro\int_0^j dt x(t) \int_{0^-}^t d\tau i(\tau)F(t-\tau)\\
+	&= \Ro\int_{0^-}^jdt\; x(t) y(t)\\
+	&=\int_{0^+}^j dt\; i(t).
+\end{align*}
+Now we move on to calculate  $C_2(j)$.
+We have
+\begin{align*}
+	C_2(j) &= \int_{0^-}^j d\tau \int_\tau^j d\rho \; w_j(\tau,\rho) \left(C(\tau,\rho)\right)^2\\
+	&= \Ro^2 \int_{0^-}^j d\tau \int_\tau^j d\rho \;i(\tau) g_j(\rho-\tau) \left(\int_\tau^{\rho} dt x(t)\right)^2 \\
+	& = 2\Ro^2 \int_{0^-}^j ds\;x(s)\int_{0^-}^s dt \; x(t) \int_{0^-}^t d\tau\;i(\tau)F(s-t)F(t-\tau)\\
+	& = 2\Ro^2 \int_{0^-}^j ds\;x(s)\int_{0^-}^s dt \; x(t) F(s-t)y(t)\\
+	& = 2\Ro^2 \int_{0^-}^j ds\;x(s) \int_0^s dt\; x(t)y(t) F(s-t) \\
+	& = 2\Ro \int_{0^-}^j ds\;x(s) \int_0^s dt\; i(t)F(s-t)
+\\
+ &= 2\Ro \int_{0^-}^j ds\;x(s) \left( y(s) - y_0F(s) \right) \\
+	& = 2\Ro \int_{0^-}^j ds\;x(s)y(s) -2\Ro \int_{0^-}^j ds\;x(s) y_0F(s) \\
+	& = 2 \int_{0^+}^j i(s)\;ds -2\Ro \int_{0}^j ds\;x(s) y_0F(s) 
+\end{align*}
 \newpage
 \section*{Supplementary Figures}
 %\begin{figure}[H]
@@ -246,5 +349,6 @@ The second term in the right-hand side of \autoref{eq:C2withI0} is twice the exp
 	}
 	\flab{Cohort}
 \end{figure}
+
 
 

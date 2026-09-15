@@ -1,17 +1,17 @@
 \begin{framed}
 \noindent\textbf{Box 1. Linking variance.} 
 
-Individual-level activity is typically estimated using a negative-binomial distribution, with  mean $\mu$ and  shape, or “dispersion” parameter $k$.
-This distribution can be represented as a Poisson mixture whose mixing distribution is Gamma  with the same mean and shape parameter values.
- The  variance of the negative binomial and Gamma distributions are $\mu + \mu^2/k$ and $mu^2/k$, respectively.
-Thus, both  distributions can be parametrized  by their mean $\mu$ and 
-a (generalized) \emph{dispersion} parameter, $\kappa$, defined as $k^{-1}$.
+During the early stages of an outbreak, individual-level secondary-cases counts are typically modeled using a negative-binomial distribution, with  mean $\mu$ and  shape, or “dispersion”, parameter $k$. 
+This distribution is, implicitly or explicitly, linked to a Gamma distribution with the same mean and shape parameter values.
+Indeed, the Gamma distribution describes the variation among individuals in expected infectiousness.
 
-For the Gamma mixing distribution, $\kappa$ equals the squared coefficient of variation.
-For the negative binomial distribution, $\kappa$ is equal to the excess variance with respect to the Poisson distribution with mean $\mu$, divided by $\mu^2$.
-The statistic $\kappa$ increases with variability around the mean.
-In particular,
-as $\kappa$ approaches zero, Gamma distribution converges to a point mass at $\mu$, and the negative binomial distribution converges to the Poisson distribution with  mean $\mu$.
 
-We, therefore, use $\kappa$, throughout this paper, to characterize dispersion in both secondary cases and expected infectiousness.
+The statistic $k^{-1}$ increases with variability around the mean in both distributions. In particular,
+for the negative binomial distribution, $k^{-1}$ is equal to the excess variance with respect to the Poisson distribution with mean $\mu$, divided by $\mu^2$.
+For the Gamma distribution, $k^{-1}$ equals the squared coefficient of variation.
+As $k^{-1}$ approaches zero, the negative binomial distribution converges to the Poisson distribution with  mean $\mu$, while Gamma distribution converges to a point mass at $\mu$.
 
+We therefore advocate using $\kappa = k^{-1}$,  as a (generalized) \emph{dispersion} parameter, with larger values indicating greater heterogeneity in expected infectiousness and secondary cases.
+%The  variances of the negative-binomial and Gamma distributions are $\mu + \mu^2/k$ and $\mu^2/k$, respectively.
+%Thus, both  distributions can be parametrized  by their mean $\mu$ and 
+%a (generalized) \emph{dispersion} parameter, $\kappa$, defined as $k^{-1}$.
