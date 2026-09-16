@@ -44,6 +44,10 @@ draft.texdeps.mk: doc.texdeps.mk supp.texdeps.mk
 
 Sources += quarto.mk
 
+
+## doc.ld.tex: doc.tex.d86178ad.oldfile
+
+
 ######################################################################
 
 autopipeR += defined
