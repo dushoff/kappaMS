@@ -40,3 +40,8 @@ Jonathan
 
 Be more direct about the difference between shape parameters and dispersion parameters in box (use a for shape and κ for dispersion). Mention that kappa generalizes beyond the gamma/negBin case. 
 
+##### 2026 Sep 16 (Wed)
+
+JD: Try to work more on box
+
+AA: Work a little bit on figure labels and captions. Read through and _edit_ the new markdown

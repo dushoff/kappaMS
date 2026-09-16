@@ -5,16 +5,15 @@
 \usepackage{caption}
 \input{inc.tex}
 
-\input{makestuff/style.tex}
+\newcommand{\sigmaAct}{\ensuremath{\sigma_\mathrm{act}}}
+
 \newcommand{\dt}{dt\,}
 \newcommand{\ds}{ds\,}
 \newcommand{\pkg}[1]{\texttt{#1}}
 \newcommand{\fun}[1]{\texttt{#1}}
 \newcommand{\E}{\mathbb{E}}
-\newcommand{\tb}[1]{\cite{[#1]}}
-%\newcommand{\tb}[1]{\cite{#1}}
-%% Using this style for comments means we can easily turn them off and render
-%% Feel free to pick your own color
+
+\input{makestuff/style.tex}
 \newcommand{\jd}[1]{\comment{cyan}{JD}{#1}}
 \newcommand{\tg}[1]{\comment{magenta}{TG}{#1}}
 \newcommand{\ag}[1]{\comment{red}{AA}{#1}}

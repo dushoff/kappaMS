@@ -39,7 +39,7 @@ output: $(final).op
 
 ## https://github.com/dushoff/kappaMS/blob/main/outputs/draft.pdf
 Sources +=  $(wildcard *.tex) add.bib draft.bib
-## draft.pdf: doc.tex draft.tex
+## draft.pdf: doc.tex draft.tex draft.md
 draft.texdeps.mk: doc.texdeps.mk supp.texdeps.mk
 
 Sources += quarto.mk
@@ -95,7 +95,8 @@ migrateDirs: ../ehSim ../kappaCode
 ## Let me know if we need to find a way to share the library, or else curate your own
 Ignore += library
 
-## main.recs: main.rmu | Bio.pip
+main.reff.bib: | Bio.pip
+## main.recs: main.rmu
 ## main.tags.pgr: main.rmu
 ## main.downloads: main.rmu
 ## main.downloads: main.tags.pgr

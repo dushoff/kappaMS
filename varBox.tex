@@ -5,6 +5,7 @@ During the early stages of an outbreak, individual-level secondary-cases counts 
 This distribution is, implicitly or explicitly, linked to a Gamma distribution with the same mean and shape parameter values.
 Indeed, the Gamma distribution describes the variation among individuals in expected infectiousness.
 
+We note a couple of points. First, the squared coefficient of variation of the underlying Gamma distribution is $\kappa=1/k$, so that its variance $\sigmaAct^2 = \kappa \mu^2$. The resulting variance in secondary-case counts is $\sigma^2 = \kappa\mu^2 + \mu$, with the last term arising from the Poisson step of the negative-binomial construction. Second, this relationship between the SCV of 
 
 The statistic $k^{-1}$ increases with variability around the mean in both distributions. In particular,
 for the negative binomial distribution, $k^{-1}$ is equal to the excess variance with respect to the Poisson distribution with mean $\mu$, divided by $\mu^2$.
