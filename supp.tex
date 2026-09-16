@@ -194,7 +194,7 @@ Finally, replacing $C_0$, $C_1$, and $C_2$ by $Z$, $Z$, and $2Z$, respectively, 
 %                         Finish here
 % --------------------------------------------------------------
 
-\subsection*{Contribution of Initial Infections}
+\subsection{Incorporating the Size of Initial Infections}
  Mathematical derivation in the previous section was based on the assumption that the proportion of the population who were infectious initially  was negligible.
  In what follows, we revisit the results while relaxing this assumption.
  
@@ -268,7 +268,7 @@ Then
 \end{align*}
 Note that changing the lower limit of integration from $0^-$ to $0$ does not affect the result because the integrand is bounded.
 
-\subsection*{The moments of expected infectiousness at some point during the outbreak}
+\subsection{Moments of expected infectiousness at some point during the outbreak}
 In this section, we derive the moments of $C$ at an arbitrary time $j \in [0,\infty)$ during the outbreak, while accounting for the initially infectious cohort.
 Up to time $j$, the expected infectiousness of individuals who became infectious  at time $0 < \tau < j$ and remain infectious at time $j$ is the equal to that of the individuals who became infectious at $\tau$ and recovered at time $j$.
 To capture this observation, we introduce a modified infectious period density function, denoted $g_j(t)$.
@@ -311,7 +311,7 @@ We have
 \\
  &= 2\Ro \int_{0^-}^j ds\;x(s) \left( y(s) - y_0F(s) \right) \\
 	& = 2\Ro \int_{0^-}^j ds\;x(s)y(s) -2\Ro \int_{0^-}^j ds\;x(s) y_0F(s) \\
-	& = 2 \int_{0^+}^j i(s)\;ds -2\Ro \int_{0}^j ds\;x(s) y_0F(s) 
+	& = 2 \int_{0^+}^j i(s)\;ds -2\Ro \int_{0}^j ds\;x(s) y_0F(s). 
 \end{align*}
 \newpage
 \section*{Supplementary Figures}
@@ -336,13 +336,13 @@ We have
 	\includegraphics{kappa/CohortPlot.Rout.pdf}
 	\caption{
 		\textbf{Expected infectiousness of cohorts.} 
-		Panel a depicts cohort size as a function of the time of infection, in units of the mean infectious period divided by the incidence peak time. Individuals infected during $[t,t+\Delta t]$ form a cohort, with $\Delta t = 2\times 10^{-4}$.
+		Panel a) depicts cohort size as a function of the time of infection, in units of the mean infectious period divided by the incidence peak time ($t_{\mathrm{peak}}$). Individuals infected during $[t,t+\Delta t]$ form a cohort, with $\Delta t = 2\times 10^{-4}t_{\mathrm{{peak}}}$.
 		In Panel b,  mean expected infectiousness associated with each cohort is plotted.	
 		%	In an
 		%	epidemic with \Ro~close to 1, there is little susceptible depletion well after the outbreak onset, and the variation in infectious period mainly drives
 		%	the variation in \Rx{c}.
-		Early in the outbreak, the susceptible pool shrinks slowly, and differences in recovery time mainly cause variations in case numbers. As a result, the average for cases is about the same as in a simple linearized model.
-		Near the outbreak's peak, faster susceptible loss partly compensates for the inequality stemming from the infectious period, and hence, the squared coefficient of variation $\kappa$
+		Early in the outbreak, the susceptible pool shrinks slowly, and differences in recovery time mainly cause variations in expected infectiousness. As a result, mean expected infectiousness is about the same as in a simple linearized model.
+		Near the outbreak's peak, faster susceptible loss partly compensates for the inequality stemming from the infectious period, and hence, dispersion $\kappa$
 		decreases (Panel c).
 		After the peak, once the susceptible pool has become nearly constant again, variation in the infectious period once more drives variation within cohorts; $\kappa$ approaches one.
 		In stronger outbreaks (higher \Ro), it takes longer (in rescaled time units) for the susceptible population to stabilize, explaining the slower move of $\kappa$ toward one.
