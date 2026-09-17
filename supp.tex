@@ -220,7 +220,7 @@ However, the  expression for the second moment $C_2$ changes to
 		C_2 = 2Z - 2y_0 \Ro \int_0^\infty dt\;x(t)F(t)
 	\end{aligned}
 \end{equation}
-The second term in the right-hand side of \autoref{eq:C2withI0} is twice the expected infectiousness of the initially infected cohort.
+The second term in the right-hand side of \autoref{eq:C2withI0} is twice the expected case reproductive number of the initially infected cohort.
 
 The total weight $C_0$ will now includes the initially infectious cohort size as well, i.e,
 \begin{align*}
@@ -268,9 +268,9 @@ Then
 \end{align*}
 Note that changing the lower limit of integration from $0^-$ to $0$ does not affect the result because the integrand is bounded.
 
-\subsection{Moments of expected infectiousness at some point during the outbreak}
-In this section, we derive the moments of $C$ at an arbitrary time $j \in [0,\infty)$ during the outbreak, while accounting for the initially infectious cohort.
-Up to time $j$, the expected infectiousness of individuals who became infectious  at time $0 < \tau < j$ and remain infectious at time $j$ is the equal to that of the individuals who became infectious at $\tau$ and recovered at time $j$.
+\subsection{Moments of time-truncated case reproductive number at some point during the outbreak}
+In this section, we derive moments of truncated $C$ at an arbitrary time $j \in [0,\infty)$ during the outbreak, while accounting for the initially infectious cohort.
+Up to time $j$, the expected realized infections of individuals who became infectious  at time $0 < \tau < j$ and remain infectious at time $j$ is the equal to that of the individuals who became infectious at $\tau$ and recovered at time $j$.
 To capture this observation, we introduce a modified infectious period density function, denoted $g_j(t)$.
 This function equals the true infectious period density  function  $f(t)$  for $t < j$, and assigns the remaining probability mass to  $t = j$. Hence, its cumulative distribution function reaches $1$ at $j$, i.e.,
 \begin{equation*}
