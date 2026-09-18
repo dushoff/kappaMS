@@ -45,3 +45,29 @@ Be more direct about the difference between shape parameters and dispersion para
 JD: Try to work more on box
 
 AA: Work a little bit on figure labels and captions. Read through and _edit_ the new markdown
+
+##### 2026 Sep 18 (Fri)
+
+High-level decisions 
+
+	Aim for PNAS; don't add full proof
+
+Main points
+
+	Heterogeneity emerges ✓
+
+	We can extend some of our thinking beyond the invasion phase ✓
+
+	The realized case distribution (but not infectiousness) looks more
+	variable for lower R0 ✓
+
+	kappa is more friendly than k (and they can both be easily extended
+	beyond the gammaNB ✓
+
+	Big thing that needs better explanation
+
+	Initial conditions are much peskier than anybody thinks
+
+		Real implications (if this is hard to solve numerically, it must relevant in the world)
+
+	What are practical applications when looking at epidemic?
