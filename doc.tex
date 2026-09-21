@@ -101,45 +101,34 @@ By the end of the outbreak, this mean approached one (the almost equality betwee
 Regardless of \Ro,  within-cohort variation primarily drove heterogeneity among early-infected cohorts.
 After the peak incidence, susceptible depletion reduced the share of within-cohort variation, a reduction that was more pronounced in epidemics with large \Ro.
 By the end of the outbreak, all epidemics with different \Ro~agreed on both mean and  heterogeneity of total infections. 
-\begin{figure}
-	\centering
-	\includegraphics{kappa/PlotTrunc.Rout.pdf}
-	\captionsetup{width=1.28\linewidth}
-	\caption{
-		\textbf{Mean and heterogeneity of realized infections evolve over the course of an outbreak.}
-		Panel a: The size of the cohort infected during $[t,t+\Delta t]$ is given by the area under the incidence curve over that interval, where
-		 $\Delta t = 10^{-4}t_{\mathrm{peak}}$ and $t_{\mathrm{peak}}$ denotes the time of peak incidence.
-		 Panel b: At each time point, mean realized infections is computed using the cases had occurred by that time.
-		Early in the outbreak, the initial infectious cohort constitutes a relatively large fraction of all infected population up to that time. Because we assume a ``jump-start'' outbreak, the infectors of this initial cohort are not included, and hence, the mean realized infections is noticeably below one.
-		At early times   ($t \lesssim  0.4t_{\mathrm{peak}}$), 
-		epidemics with larger \Ro~have accumulated fewer infections,
-		making the effect of this omission more pronounced. 
-		Panel c:  $\kappa$ of realized infections increases over the course of the outbreak.
-		For epidemics with smaller \Ro, a given fraction of $t_{\mathrm{peak}}$ corresponds to a longer elapsed time, allowing differences in infectious periods among cohort members to become apparent. As a result, the within component of $\kappa$  (measured as the ratio of within-cohort variance to the squared mean) is larger than that for epidemics with larger \Ro.
-		For panels b and c, the simulation was truncated at each plotted time.  
-		The y-axis value at each time point was computed by assigning to each cohort their realized number of infections up to that time.
-		In all panels, time units measured in the mean infectious period are rescaled relative to the peak time, so that peak incidence occurs at $(t/t_{\mathrm{peak}}=1)$. The outbreaks were modeled using standardized compartmental models.
-	}\flab{Naive}
-\end{figure}
-%It's also possible to imagine realistic approaches between these two extremes, but let's put that off for later. There are methods (including by Dushoff and Park) for thinking about this at the cohort level, but not with a focus on individual variation. Maybe this is just for discussion. OR maybe we should also look at plots where we go up until a particular time and only count recovered infectors.
-%\ag{Does \fref{timeCutoffV1} do what we are looking for?}
 
-\begin{figure}
+
+\begin{figure}[H]
 	\centering
-	\includegraphics{kappa/RcTimePlotVaryingPeak.Rout.pdf}
-		\captionsetup{width=1.28\linewidth}
+	\includegraphics{kappa/TimeEvolution.Rout.pdf}
 	\caption{
-		\textbf{Forecasts of the distribution of total infections evolve as an outbreak unfolds.}
-		Panel a: Cohort size infected during $[t,t+\Delta t]$ is measured as the area under the incidence curve over this interval ($\Delta t =10^{-4}t_{\mathrm{peak}}$, where $t_{\mathrm{peak}}$ is the time of peak incidence).
-		Panel b: At each time point,  mean total infections is calculated across all cohorts infected by that time,
-		including the initial infectious cohort of size $10^{-9}$, while accounting for each cohort's subsequent contributions to disease transmission.
-			Cohorts infected earlier have higher mean total infections, with values depending on key parameter \Ro. 
-		As incidence increases, later-infected cohorts, who have larger sizes,
-		encounter susceptible pool depletion, decreasing mean total infections. 
-		After the peak, the susceptible population size stabilizes, and the mean  approaches one. 
-		Panel c: The within-cohort component of the squared coefficient of variation $\kappa_{with}$, measured as the ratio of the within-cohort variance to the squared mean, is the main driver of heterogeneity among the early-infected cohorts, as they experience a similar size of susceptible population. As the outbreak unfolds, the decline in the susceptible population drives between-cohort variation, which is more pronounced in epidemics with large \Ro.  $\kappa$ reaches its minimum around the outbreak peak; large cohorts experience sharp depletion of susceptibles, and the impact of variation in recovery time fades, declining the variance, and hence $\kappa$. After the peak, $\kappa$ rebounds to one. 
-		For panels b and c, the y-axis value at each plotted time point was quantified using only the cohorts that had been infected up to that time. The outbreaks were modeled using standardized compartmental models.
-	}\flab{timeCutoff}
+ Outbreaks with higher \Ro~values lead to greater variation in incidence and more rapid depletion of the susceptible pool. We modeled these outbreaks using a deterministic compartmental approach where time is in units of mean infectious period.}
+\flab{SIRsim}
+	\flab{CohortVarRc}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{kappa/CohortPlot.Rout.pdf}
+	\caption{
+		\textbf{Expected infectiousness of cohorts.} 
+		Panel a) depicts cohort size as a function of the time of infection, in units of the mean infectious period divided by the incidence peak time ($t_{\mathrm{peak}}$). Individuals infected during $[t,t+\Delta t]$ form a cohort, with $\Delta t = 2\times 10^{-4}t_{\mathrm{{peak}}}$.
+		In Panel b,  mean expected infectiousness associated with each cohort is plotted.	
+		%	In an
+		%	epidemic with \Ro~close to 1, there is little susceptible depletion well after the outbreak onset, and the variation in infectious period mainly drives
+		%	the variation in \Rx{c}.
+		Early in the outbreak, the susceptible pool shrinks slowly, and differences in recovery time mainly cause variations in expected infectiousness. As a result, mean expected infectiousness is about the same as in a simple linearized model.
+		Near the outbreak's peak, faster susceptible loss partly compensates for the inequality stemming from the infectious period, and hence, dispersion $\kappa$
+		decreases (Panel c).
+		After the peak, once the susceptible pool has become nearly constant again, variation in the infectious period once more drives variation within cohorts; $\kappa$ approaches one.
+		In stronger outbreaks (higher \Ro), it takes longer (in rescaled time units) for the susceptible population to stabilize, explaining the slower move of $\kappa$ toward one.
+	}
+	\flab{Cohort}
 \end{figure}
 
 
