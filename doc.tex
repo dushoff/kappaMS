@@ -39,7 +39,7 @@ Visualized through inequality curves (\Fref{ls}b), this heterogeneity means that
 
  \begin{figure}[h]
  	\centering
- 	\includegraphics[width = 0.8\textwidth]{lsFig.Rout.pdf}
+ 	\includegraphics[width = 0.8\textwidth]{kappa/lsFig.Rout.pdf}
  	\caption{
  		\textbf{Heterogeneity emerges even from a simple, linearized compartmental model} due to implicit variation in recovery times among infectors.
  		Panel a: Both expected infectiousness (density curves) and secondary case distributions (density histograms) for the outset of an SIR epidemic, where the population is fully susceptible depend on $\mathcal{R}_0$.
@@ -88,7 +88,7 @@ We can prove that the mean and variance of expected infectiousness across the en
 Thus, the dispersion $\kappa$ is also one.
 \begin{figure}
 \centering
-\includegraphics{RcAverage.Rout.pdf}
+\includegraphics{kappa/RcAverage.Rout.pdf}
 \caption{
 \textbf{Heterogeneity in the number of secondary cases is independent of $\mathcal{R}_0$~when quantified across an entire outbreak.}
 Panel a: Indistinguishable empirical secondary-case distributions for epidemics of different strengths. Epidemic outbreaks were simulated for a population of $10000$, and the number of secondary cases per infector was recorded at the time of outbreak extinction.
@@ -119,7 +119,7 @@ By the end of the outbreak, all epidemics with different $\mathcal{R}_0$~agreed 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics{TimeEvolution.Rout.pdf}
+	\includegraphics{kappa/TimeEvolution.Rout.pdf}
 	\caption{
  Outbreaks with higher $\mathcal{R}_0$~values lead to greater variation in incidence and more rapid depletion of the susceptible pool. We modeled these outbreaks using a deterministic compartmental approach where time is in units of mean infectious period.}
 \flab{SIRsim}
@@ -128,7 +128,7 @@ By the end of the outbreak, all epidemics with different $\mathcal{R}_0$~agreed 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics{CohortPlot.Rout.pdf}
+	\includegraphics{kappa/CohortPlot.Rout.pdf}
 	\caption{
 		\textbf{Expected infectiousness of cohorts.} 
 		Panel a) depicts cohort size as a function of the time of infection, in units of the mean infectious period divided by the incidence peak time ($t_{\mathrm{peak}}$). Individuals infected during $[t,t+\Delta t]$ form a cohort, with $\Delta t = 2\times 10^{-4}t_{\mathrm{{peak}}}$.
