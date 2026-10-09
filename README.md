@@ -35,6 +35,26 @@ If you play with the bib stuff, you may get a local copy of library/ with some o
 
 If you have done `make setup` you should be able to look at the MSEDITOR definition in makestuff/unix.mk
 
+## Editing notes from Tapan 
+
+10/09/2026
+
+We havent defined infectiousness at any point in the paper. I propose that we get rid of the term altogether and instead talk about things in terms of cases/case. 
+
+- General notes for figures:
+  - Increase font sizes of axis labels, ticks, legends etc.
+  - Change color scheme. Greyscale across different R0s might be better.
+- Figure 1:
+  - Change "expected infectiousness" to ... 
+- Figure 2:
+  - Panel a: say mu = 1 and kappa = 1 on each plot to emphasize that the mean and kappa are constant across R0
+  - Panel b: Too much ink for too little information. Convert to area plot with within- and between-cohort variances across multiple values of R0 (maybe do 2,3,4,5... 10?)
+- Figure 3:
+  -	Mark a vertical slice in panel (a) to show a cohort.
+- Figure 4:
+  - Is panel b the mean infectiousness or is it the cohort mean cases/case?
+  - We need a plot of the "weighted" within cohort variance. Currently, panel (c) tells us the within cohort dispersion but it doesnt make it any easier to understand how that translates to the contribution of within cohort variance to the total variance.
+
 ## Editing notes from Tapan
 09/22/2026
 
