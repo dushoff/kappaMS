@@ -45,7 +45,7 @@ We havent defined infectiousness at any point in the paper. I propose that we ge
   - Increase font sizes of axis labels, ticks, legends etc.
   - Change color scheme. Greyscale across different R0s might be better.
 - Figure 1:
-  - Change "expected infectiousness" to ... 
+  - Change "expected infectiousness" to "intrinsic infectiousness"
 - Figure 2:
   - Panel a: say mu = 1 and kappa = 1 on each plot to emphasize that the mean and kappa are constant across R0
   - Panel b: Too much ink for too little information. Convert to area plot with within- and between-cohort variances across multiple values of R0 (maybe do 2,3,4,5... 10?)
