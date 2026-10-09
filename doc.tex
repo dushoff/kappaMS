@@ -1,42 +1,25 @@
 \section{Introduction}
 
-Real outbreaks have significant heterogeneity in the number of secondary cases -- including superspreading, marked by a small fraction of individuals causing a disproportionately large fraction of realized transmission \cite{lloydsmith2005superspreading, woolhouse1997heterogeneities}.
-%Superspreading can arise from several distinct factors, each of which affects outbreak dynamics differently \cite{kuylen2022different,wallace2025hotspot}.
- Superspreading can help explain why epidemics take off in some situations and not in others, despite apparently similar contexts \cite{lemieux2021phylogenetic, endo2020estimating}. Leveraging knowledge of superspreading can make control efforts more effective \cite{garske2008effect, nielsen2023counterintuitive, sneppen2021overdispersion}. 
+Real outbreaks have significant heterogeneity in the number of secondary cases -- including superspreading, marked by a small fraction of individuals causing a disproportionately large fraction of realized transmission \cite{lloydsmith2005superspreading, woolhouse1997heterogeneities}. %Superspreading can arise from several distinct factors, each of which affects outbreak dynamics differently \cite{kuylen2022different,wallace2025hotspot}.
+Superspreading can help explain why epidemics take off in some situations and not in others, despite apparently similar contexts \cite{lemieux2021phylogenetic, endo2020estimating}. Leveraging knowledge of super spreading can make control efforts more effective \cite{garske2008effect, nielsen2023counterintuitive, sneppen2021overdispersion}. It is especially important for disease dynamics and control strategies at the beginning of outbreaks  \cite{goyal2022multiscale}. Correspondingly, theoretical treatment of superspreading emphasizes individual-level transmission patterns, often while assuming a fully susceptible population \cite{lloydsmith2005superspreading,james2007event}. Theoretical analysis of superspreading has focused on models that link observed secondary case counts to a continuous random variable, the \emph{individual reproductive number}, via a Poisson sampling process. Canonically, the individual reproductive number is modeled as a gamma distribution, giving rise to negative binomial secondary case distributions \cite{lloydsmith2005superspreading}.
+In this way, variation arising from the stochastic transmission process is conceptually separated from \textit{intrinsic heterogeneity} in expected infectiousness that may emerge from potential differences in biology or behaviors between individuals \cite{chen2021heterogeneity, althouse2020superspreading,hamner2020high}.
 
-Superspreading is salient for disease dynamics and control strategies at the beginning of outbreaks \cite{goyal2022multiscale}. 
-Correspondingly, theoretical treatment of superspreading emphasizes individual-level transmission patterns, often while assuming a fully susceptible population \cite{lloydsmith2005superspreading,james2007event}.
-Theoretical analysis of superspreading has focused on models that link observed secondary case counts to a continuous random variable, the \emph{individual reproductive number,}  via a Poisson sampling process.
- Canonically, the individual reproductive number is modeled as a gamma distribution, giving rise to negative binomial secondary case distributions \cite{lloydsmith2005superspreading}.
-In this way, variation from the stochastic process of successful transmission is conceptually separated from a more intrinsic individual-level heterogeneity [in expected infectiousness] that may emerge from a plethora of potential differences in biology, contact patterns, or behaviors between individuals \cite{chen2021heterogeneity, althouse2020superspreading,hamner2020high}.
+However, these models assume a constant pool of susceptible individuals and do not account for disease dynamics beyond the very initial stages of an outbreak. Over longer timescales, the susceptible depletion and replenishment drive population-scale disease dynamics. Changes in the size of susceptible population changes the statistics of the contact processes that lead to successful disease transmission. As a result, variation in realized secondary cases arises between early and late infectors, even when the underlying individual reproductive number distribution is identical. In practice, many deterministic epidemiological models also include \emph{explicit heterogeneity}, for example by adding compartments for different demographic or geographic groups \cite{schenzle1984agestructured}, which can have different average rates of mixing, transmission, or recovery. When implemented in terms of individual events, the inclusion of explicit heterogeneity reproduces superspreading in linear compartmental models \cite{meehan2023replicating}. Despite shared theory motivating models that highlight individual-level transmission, and those that emphasize population-level transmission dynamics, a gap persists in how each model framework treats individual-level transmission heterogeneity. 
 
-Over longer timescales, the processes of susceptible depletion and replenishment, which are elegantly captured in mechanistic compartmental models, drive population-scale disease dynamics. Despite shared theory motivating models that highlight individual-level transmission, and those that emphasize population-level transmission dynamics, a gap persists in how each model framework treats individual-level transmission heterogeneity. 
+The canonical SIR (Susceptible-Infected-Removed) model uses ordinary differential equations (ODEs) to describe disease dynamics. It assumes constant, uniform infectivity and recovery times across all individuals during the infectious stage \cite{Hethcote2000, Kermack1927}. Although it appears homogeneous, even the canonical SIR model has two sources of \emph{emergent heterogeneity.} The changing effective reproductive number arising from susceptible dynamics, drives variation between fractions of the population infected at different times; and the exponentially distributed recovery times assumed by the ODE drive variation in the number of infections attributable to fractions of the population infected at a given time. In other words, even the fully deterministic SIR model predicts variation in the expected number of secondary cases.
 
-The canonical SIR (Susceptible-Infected-Removed) model is based on ordinary differential equations (ODEs). It assumes constant, uniform infectivity and recovery across all individuals during the infectious stage \cite{Hethcote2000, Kermack1927}. 
-Although single-infective-class compartmental models seem homogeneous, even the canonical SIR model has two sources of \emph{emergent heterogeneity.}
-The changing effective reproductive number arising from susceptible dynamics, drives variation between fractions of the population infected at different times; and the exponentially distributed recovery times assumed by the ODE, drive variation in the number of infections attributable to fractions of the population infected at a given time.
-In other words, even fully deterministic ODE models predict variation around basic reproductive number $\mathcal{R}_0$, the average number of secondary cases caused by a case in a fully susceptible population, in the expected secondary cases.
-
-In practice, many epidemiological modelers also include \emph{explicit heterogeneity}, for example by adding compartments for different demographic or geographic groups \cite{schenzle1984agestructured}, which can have different average rates of mixing, transmission, or recovery.
-Explicit heterogeneity reproduces superspreading in linear compartmental models \cite{meehan2023replicating}.
-
-Here we delineate these different sources of individual variation in transmission inscribed in simple dynamical models. We trace how these sources compose into observed or observable heterogeneity in different settings, for example contrasting how heterogeneity emerges in dynamical models versus linearized, or branching-process models. Throughout, we highlight the understudied but critically important role of disease dynamics \textit{per se} in generating individual-level heterogeneity. 
-We aim to spur the development of theory and methods that better integrate heterogeneity and dynamics, ultimately facilitating feedback between data on incidence and individual-level transmission chains, mechanistic model specification, identification, validation, and intervention design.
-
-\input{varBox.tex}
-\end{framed}
+Here we delineate sources of individual variation in transmission inscribed in simple dynamical models. We trace how these sources compose into observed or observable heterogeneity in different settings, for example contrasting how heterogeneity emerges in dynamical models versus linearized, or branching-process models. We begin by revisiting early findings that intrinsic heterogeneity (e.g., due to differences in the basic reproductive number, $\mathcal{R}_0$ ) drives differences in variation in the secondary case distribution. However, when accounting for the feedback of transmission on disease dynamics, we find that emergent heterogeneity is an invariant across a full SIR outbreak and independent of differences in intrinsic heterogeneity. As we show, expected differences in superspreading may be a consequence, in part, of focusing on early rather than the full scope of outbreaks.  Throughout, we highlight the understudied but critically important role of disease dynamics \textit{per se} in generating individual-level heterogeneity. We aim to spur the development of theory and methods that better integrate heterogeneity and dynamics, ultimately facilitating feedback between data on incidence and individual-level transmission chains, mechanistic model specification, identification, validation, and intervention design.
 
 \section{Results}
 
 \subsection{Heterogeneity in the secondary case distribution in the linearized SIR model}
+
 The early outbreak phase of an S(usceptible)-I(nfectious)-R(emoved) epidemic is modeled using a linearized SIR model, which assumes that the pool of susceptible individuals is very large and does not change appreciably at the outset of an epidemic. The early dynamics of the epidemic can be characterized by a transmission rate and an infectious period. Demographic stochasticity generates heterogeneity in this model despite the lack of explicit accounting of individual-level variation in transmission rates and infectious periods. The model implicitly assumes that the infectious period follows an exponential distribution which results in an exponentially distributed expected infectiousness  (or \emph{individual reproductive number}) with mean $\mu = \mathcal{R}_0$ and dispersion $\kappa = 1$. Infectious individuals spread the disease by coming into contact with susceptible (and other infectious individuals), which is modelled as a Poisson process. The resulting distribution of secondary cases (i.e., the number of new cases caused by a single infectious individual over their infectious lifetime) is geometric and has a mean equal to $\mathcal{R}_0$. Thus, the expected infectious and secondary case distributions are characterized by $\mathcal{R}_0$ (Figure \Fref{ls}a). 
 
 % We explicate the notion that this is predictable (see Box).
 
-  \jd{Is that really what Box is doing, though? Or more about linking the emergent stochasticity in the deterministic vs.\ demographic-stochastic models?}
-
-The heterogeneity in the secondary case distribution also depends on $\mathcal{R}_0$. Visualized through inequality curves (\Fref{ls}b), this heterogeneity means that a large fraction of the initial secondary cases are generated by only a few infectors. Due to the Poisson contact process, the inequality curve for the realized secondary case distribution deviates from the inequality curve of the exponentially distributed expected infectiousness, in an $\mathcal{R}_0$ dependent manner (\Fref{ls}b). As $\mathcal{R}_0$~ increases, the inequality observed in the secondary case distribution decreases and approaches the expected infectiousness inequality curve (\Fref{ls}b). This heterogeneity arises simply from the implicit underlying differences in expected infectiousness and the stochasticity of the transmission process. However, as the epidemic progresses, another source of heterogeneity emerges -- the pool of susceptible individuals shrinks and fewer contact effects lead to new infections. In the subsequent sections we consider the effect of susceptible depletion by analyzing the secondary case distribution over the course of the entire epidemic, rather than just focusing on the early phase. 
-
+The heterogeneity in the secondary case distribution means that a large fraction of the initial secondary cases are generated by only a few infectors. Due to the Poisson contact process, the inequality curve for the realized secondary case distribution deviates from the inequality curve of the exponentially distributed expected infectiousness, in an $\mathcal{R}_0$ dependent manner (\Fref{ls}b). As $\mathcal{R}_0$~ increases, the inequality observed in the secondary case distribution decreases and approaches the expected infectiousness inequality curve (\Fref{ls}b). This heterogeneity arises from the implicit underlying differences in expected infectiousness and the stochasticity of the transmission process. As $\mathcal{R}_0$ becomes smaller, an increasing fraction of infected individuals generate no secondary infections, so the individuals who do trans-
+mit make up a smaller fraction of all infectors. Indeed, the 20/80 rule that 80\% of secondary infections arise from only 20\% of infectious individuals is attained when $\mathcal{R}_0$ falls just below 0.4. [AA: don't know why] However, even when $\mathcal{R}_0$ exceeds the epidemic threshold, the distribution of secondary cases can still display substantial heterogeneity. However, as the epidemic progresses, we must account for emergent heterogeneity as the pool of susceptible individuals shrinks.
  \begin{figure}[h!]
  	\centering
  	\includegraphics[width = 0.8\textwidth]{kappa/lsFig.Rout.pdf}
@@ -49,9 +32,9 @@ The heterogeneity in the secondary case distribution also depends on $\mathcal{R
  \end{figure}
 
 %The inequality in the secondary cases, i.e., the relationship between the fraction of new infections and the fraction of infectors, varied by $\mathcal{R}_0$; the inequality in the expected infectiousness did not.
-\subsection{Heterogeneity in secondary cases over the entire duration of the epidemic is independent of $\mathcal{R}_0$}
-Individual-based simulations of the SIR model suggest that the distribution of secondary cases over the entire epidemic is independent of $\mathcal{R}_0$ (\Fref{RcAverage} a), when the epidemic starts with a single infected individual in a large pool of susceptible individuals. It is intuitive that the mean of the distribution is independent of $\mathcal{R}_0$ (and is equal to 1). However, it is surprising that dispersion of the distribution is also independent of $\mathcal{R}_0$. In fact the dispersion is also always equal to one (\Fref{RcAverage} a). This lack of dependence of the mean and dispersion of the secondary case distribution on $\mathcal{R}_0$ was verified numerically for the ODE-based SIR model as well (\Fref{RcAverage} b). We present an analytical proof of this result in the following section. 
-
+\subsection{Heterogeneity in secondary cases over an epidemic is independent of $\mathcal{R}_0$ - simulation} 
+Next we consider the impact of depletion of susceptible population during outbreaks on secondary case distributions? We simulated stochastic SIR epidemics with different $\mathcal{R}_0$ values in a population of 10000 individuals. For each infected individual, we recorded the number of secondary cases they generated during the outbreak. Panel (a) of Figure 2 shows realized distributions of secondary cases caused by individual infectors over the entire outbreaks. Unlike in the linearized scenario shown in Figure 1, where the susceptible pool remains fully populated, the secondary case distributions, computed across the entire outbreak, are indistinguishable across a broad range of the key parameter $\mathcal{R}_0$ (compare panels (a) of Figure 1 and Figure 2). This result is unexpected. In the absence of susceptiple depletion, heterogeneity is expected to be larger for smaller values of $\mathcal{R}_0$ as shown in Figure 1b. However, faster and larger dynamical changes in susecptible depletion during the epidemic occur when $\mathcal{R}_0$ is large (Figure S1), which drives larger variation in the expected infectiousness distribution and, hence, secondary-case distribution.  The observed stochastically realized secondary case distribution shown in Figure 2 includes multiple notable features. First, the mean of the secondary case distribution is  approximately 1. Because we are considering a single outbreak seeded by single initial case, then every case must have its origin within the outbreak. 
+Second, the variance of the secondary case distribution is equal to 1, consistent with the emergence of what appears to be an exponential distribution in the secondary case distribution considered across an epidemic independent of $\mathcal{R}_0$.
 \begin{figure}
 \centering
 \includegraphics{kappa/RcAverage.Rout.pdf}
@@ -62,150 +45,52 @@ Individual-based simulations of the SIR model suggest that the distribution of s
 }\flab{RcAverage}
 \end{figure}
 
+\input{varBox.tex}
 
-\subsection{Heterogeneity in secondary cases over the entire duration of the epidemic is independent of $\mathcal{R}_0$ - Proof}
-The ODE-based SIR model is described by the following equations:
+\subsection{Heterogeneity in secondary cases over an epidemic is independent of $\mathcal{R}_0$ - Proof}
+We set out to explore the basis for the finding that both the mean and variance of secondary cases in the stochastically realized SIR model is invariant with respect to changes in $\mathcal{R}_0$. To do so, consider the deterministic ODE-based SIR model:
 \begin{align}
     \begin{split}
         \frac{dx}{dt} &= - \mathcal{R}_0 x(t)y(t), \\
         \frac{dy}{dt} &= \mathcal{R}_0 x(t)y(t) - y(t), \\
-        x(t = 0) &= 1 - \epsilon, \; \; y(t = 0) = \epsilon,
     \end{split}
 \end{align}
-where $x(t)$ is the proportion of susceptible individuals at time $t$, $y(t)$ is the proportion of infectious individuals at time $t$, $\epsilon \rightarrow 0$ is the infinitesimally small initial proportion of infectious individuals, $t$ is time measured in units of the mean infectious duration and $\mathcal{R}_0$ is the basic reproduction number. $i(t) = \mathcal{R}_0 x(t)y(t)$ denotes incidence of infection at time $t$. Then the size of the epidemic can be calculated as:
+where $x(t)$ is the proportion of susceptible individuals at time $t$, $y(t)$ is the proportion of infectious individuals at time $t$, $t$ is time measured in units of the mean infectious duration and $\mathcal{R}_0$ is the basic reproduction number.
+
+To calculate the mean and variance of the secondary cases, we must track infections and the infectors that caused those infections. While individual infectors and cases cannot be tracked in this deterministic SIR model, we can track cohorts of infectors and the cases caused by them. By calculating the weighted moments of the secondary cases per case caused by each cohort, we can obtain the heterogeneity of the secondary cases per case over the epidemic. 
+
+A cohort, $c_{\tau_1,\tau_2}$, is defined as the fraction of infectors that become infectious at time $\tau_1$ and stop being infectious at time $\tau_2$. The weight of the cohort, $w(\tau_1,\tau_2)$ is simply the number of infectors in the cohort. The number of infectors who become infectious at time $\tau_1$ is $i(\tau_1) = \mathcal{R_0}x(\tau_1)y(\tau_1)$. This quantity, $i(\tau+1)$ is also called the incidence of infection, or the number of new cases that appear at time $\tau_1$. Only a fraction of these infectors remain infectious till time $\tau_2$. If $f(.)$ denotes the probability density function of the infectious period, then
 \begin{equation}
-    Z = \int_0^t dt \; i(t).
+    w(\tau_1,\tau_2) = i(\tau_1)f(\tau_2-\tau_1)
 \end{equation}
 
-Let $f(.)$ denote the probability density function of the infectious period. Then, the probability that an individual has an infectious period between $t$ and $t + dt$ is given by $f(t)dt$. For the SIR model described by (ref ODE equations), $f(t) = e^{-t}$ since the infectious period is exponentially distributed. Define $F(t)$ as the corresponding survival distribution:
+Now that we have the cohort weights, we need to calculate the number of cases per case caused by the cohort. The total number of cases caused by the cohort $c_{\tau_1,\tau_2}$ over the course of the epidemic is 
 \begin{equation}
-    F(t) = 1 - \int_0^\infty d\tau \; f(\tau) = \int_t^\infty d\tau \; f(\tau). \label{eq:survival}
+    \hat{C}(\tau_1, \tau_2) = \int_{\tau_1}^{\tau_2} \mathcal{R}_0 x(t') w(\tau_1,\tau_2)dt' = \mathcal{R}_0 w(\tau_1, \tau_2) \int_{\tau_1}^{\tau_2} x(t')dt'
 \end{equation}
-$F(t)$ is the probability that an individual infected at time $0$ remains infectious after time $t$.
+Then the secondary cases per case caused by cohort $c_{\tau_1,\tau_2}$ is
+\begin{equation}
+    C(\tau_1,\tau_2) = \frac{\hat{C}(\tau_1,\tau_2)}{w(\tau_1,\tau_2)} = \mathcal{R}_0 \int_{\tau_1}^{\tau_2} x(t')dt' 
+\end{equation}
 
-We define the \textit{expected case reproductive number} between times $\tau$ and $\rho$ as 
+Now that we have the number of secondary cases per case and weight for each cohort, we can calculate the moments of the secondary cases per case distribution. The $k^{\text{th}}$ weighted raw moment of the secondary cases per case distribution, $C_k$ is
 \begin{equation}
-    C(\tau, \rho) = \int_\tau^\rho dt x(t),
+    C_k = \iint\limits_{0 < \tau_1 \leq \tau_2 < \infty}  d\tau_1 d\tau_2 \; w(\tau_1,\tau_2) (C(\tau_1 ,\tau_2))^k,
 \end{equation}
-Then, the weighted $k^\text{th}$ raw moment of $C$ is defined as
-\begin{equation}
-    C_k = \iint\limits_{0 < \tau \leq \rho < \infty}  d\tau d\rho \; w(\tau,\rho) (C(\tau\,\rho))^k,
-\end{equation}
-where $w(\tau,\rho) = i(\tau)f(\rho-\tau)$, is the size of the cohort that became infectious at time $\tau$ and recovered at time $\rho$. Here, $i(\tau)$ is the incidence of infection at time $\tau$ and $f$ denotes the probability density function of the infectious period. Note that for an SIR epidemic, the infectious period is exponentially distributed. These moments correspond to the moments of the secondary case distribution over the entire epidemic.
 
-Mathematically, the assertion that the heterogeneity of the secondary case distribution over the entire epidemic is invariant is equivalent to:
+With this definition of the raw moments, the assertion that the heterogeneity of the secondary case per case distribution over the entire epidemic is invariant is equivalent to:
 \begin{equation}
     \kappa = \frac{C_0 C_2}{C_1^2} - 1 = 1 \label{eq:target_main}
 \end{equation}
 
-\subsubsection{Calculating $C_0$}
-From the definition of the moments, we have
-\begin{align*}
-        C_0 &= \int_0^\infty d\tau \int_\tau^\infty d\rho \; w(\tau,\rho) \\
-        &= \int_0^\infty d\tau \int_\tau^\infty d\rho \; i(\tau) f(\rho - \tau)
-\end{align*}
+The detailed calculation of the moments and the proof can be found in (\tg{(refer to the appropriate section)}). We note that the result follows from two assumptions: (a) the distribution of the infectious duration is memoryless, and (b) the initial infectious cohort is infinitesimal, i.e., $y(t = 0) \rightarrow 0$. The first assumption is true for the canonical SIR model where the duration of infectious periods is exponentially distributed. The second assumption is generally true when considering large naive populations in which a very small number of infectious individuals are introduced. Intuitively, $C_0$ is the total number of cases over the course of the epidemic and $C_1$ is the total number of \textit{secondary} cases over the course of the epidemic. When the initial population of infectious individuals is infinitesimally small, all the cases can be attributed as secondary cases of some infectious individual who became infectious during the course of the epidemic and thus $C_0 = C_1 = Z$. (\tg{(Is there an intuitive explanation for why C2 is what it is?)}). However,  if the initial proportion of infectious individuals is not infinitesimally small, this equality no longer holds. The difference between $C_0$ and $C_1$ quantifies the size of the initial infectious cohort and $C_2$ deviates from $2Z$  with a deviation proportional to the size of the initial infectious population (refer to the SI section).
 
-Substituting $\rho = \omega + \tau $ in the inner integral, we get
-
-\begin{align*}
-        C_0 &=\int_0^\infty d\tau \;i(\tau) \int_0^\infty d\omega \; f(\omega).
-\end{align*}
-The integral over $f$ is simply the integral over a normalized distribution which is $1$. It follows that
-\begin{align*}
- %   \begin{split} \label{eq:C0calc}
-        C_0 &=\int_0^\infty d\tau \;i(\tau) \\
-        &= Z. 
-  %  \end{split}
-\end{align*}
-
-\subsubsection{Calculating $C_1$}\label{sec:C1}
-From the definition of the moments,
-\begin{align*}
-        C_1 &= \int_0^\infty d\tau \int_\tau^\infty d\rho \; w(\tau,\rho) C(\tau,\rho)\\
-        &= \mathcal{R}_0\int_0^\infty d\tau \int_\tau^\infty d\rho i(\tau) f(\rho-\tau) \int_\tau^{\rho} dt x(t).
-\end{align*}
-Instead of first integrating over $t$ from $\tau$ to $\rho$ and then over $\rho$ from $\tau$ to $\infty$, we can first integrate over $\rho$ from $t$ to $\infty$ and then integrate over $t$ from $\tau$ to $\infty$, i.e.,
-\begin{equation*}
-    C_1 =\mathcal{R}_0\int_0^\infty d\tau \int_\tau^\infty dt i(\tau) x(t) \int_t^\infty d\rho f(\rho-\tau). 
-\end{equation*}
-Substitute $\rho = \omega + \tau$ in the innermost integral and using \autoref{eq:survival}, we get
-\begin{align*}
-    \begin{split}
-        C_1 &= \mathcal{R}_0\int_0^\infty d\tau \int_\tau^\infty dt\; i(\tau)x(t) \int_{t-\tau}^\infty d\omega f(\omega)\\
-        &=  \mathcal{R}_0\int_0^\infty d\tau \int_\tau^\infty dt\; i(\tau)x(t) F(t-\tau).
-    \end{split}
-\end{align*}
-Note again that we have not used the fact that $f$ is exponential, we have merely used the definition of $F$ as an integral of $f$.
-By interchanging the order of the integrals once more, we have
-\begin{align*}
-        C_1 &= \mathcal{R}_0\int_0^\infty dt\; x(t) \int_0^t d\tau\; i(\tau)F(t-\tau). 
-\end{align*}
-Note that the inner integrand counts the number of individuals that entered the infectious state at some time $\tau < t$ and remain infectious  at time $t$. When we integrate over all times $\tau < t$, we simply get the number of individuals who are infections at time $t$, i.e., $y(t)$.
- So,
-\begin{align*}
-        C_1 &= \mathcal{R}_0\int_0^\infty dt\; x(t) \int_0^t d\tau\; i(\tau)F(t-\tau) \label{eq:C1calc_prev}\\
-        &= \mathcal{R}_0\int_0^\infty dt\; x(t)y(t)     \label{eq:C1calc}\\
-        &= \int_0^\infty dt\; i(t)\\
-        &=Z.
-\end{align*}
-\subsubsection{Calculating $C_2$}\label{sec:C2}
-Given \autoref{eq:Moments}, we have
-\begin{align*}
-        C_2 &= \int_0^\infty d\tau \int_\tau^\infty d\rho \; w(\tau,\rho) \left(C(\tau,\rho)\right)^2\\
-        &= \mathcal{R}_0^2 \int_0^\infty d\tau \int_\tau^\infty d\rho \;i(\tau) f(\rho-\tau) \left(\int_\tau^{\rho} dt x(t)\right)^2
-\end{align*}
-Rewriting the square integral as a double integral, we get,
-%\begin{align} \label{eq:SquareToTriangle}
-    \begin{equation*}
-        C_2 = 2\mathcal{R}_0^2 \int_0^\infty d\tau \int_\tau^\infty d\rho \int_\tau^\rho ds \int_\tau^s dt \; i(\tau) f(\rho-\tau) x(t)x(s).
-    \end{equation*}
-%\end{align}
-Changing the order of integration and changing the corresponding limits,
-\begin{align*}
-    \begin{split}
-        C_2 &= 2\mathcal{R}_0^2 \int_0^\infty d\tau \; i(\tau) \int_\tau^\infty ds \; x(s) \int_\tau^s dt \; x(t)\int_s^\infty d\rho f(\rho-\tau). 
-    \end{split}
-\end{align*}
-By substituting $\rho = \omega + \tau$ and using \autoref{eq:survival}, we get
-\begin{align*}
-    \begin{split}
-        C_2 &= 2\mathcal{R}_0^2 \int_0^\infty d\tau \; i(\tau) \int_\tau^\infty ds \; x(s) \int_\tau^s dt \; x(t)F(s-\tau).
-    \end{split}
-\end{align*}
-Changing the order of integration again, 
-\begin{align*}
-  %  \begin{split} 
-        C_2 = 2\mathcal{R}_0^2 \int_0^\infty ds\;x(s)\int_0^s dt \; x(t) \int_0^t d\tau\;i(\tau)F(s-\tau).
- %   \end{split}
-\end{align*}
-Now, we use the fact that the survival function $F$ is memoryless, i.e., $F(a+b) = F(a)F(b)$, and replace $F(s-\tau)$ with $F(s-t)F(t-\tau)$
-%\begin{align} \label{eq:NeedMarkov}
-    \begin{equation*}
-        C_2 = 2\mathcal{R}_0^2 \int_0^\infty ds\;x(s)\int_0^s dt \; x(t) \int_0^t d\tau\;i(\tau)F(s-t)F(t-\tau).
-    \end{equation*}
-%\end{align}
-Noting again that $\int_0^t d\tau \; i(\tau)F(t-\tau)$ is simply the number of infectors at time $t$, which is $y(t)$, we get
-\begin{align*}
-        C_2 &= 2\mathcal{R}_0^2 \int_0^\infty ds\;x(s)\int_0^s dt \; x(t) F(s-t)y(t)\\
-        &= 2\mathcal{R}_0 \int_0^\infty ds\;x(s)\int_0^s dt \; i(t) F(s-t)\\
-        &= 2\mathcal{R}_0 \int_0^\infty ds\;x(s)y(s)\\
-        &= 2 \int_0^\infty ds\;i(s)\\
-        &= 2Z.
-\end{align*}
-
-Finally, replacing $C_0$, $C_1$, and $C_2$ by $Z$, $Z$, and $2Z$, respectively, in \autoref{eq:target_main}, gives us $\kappa = 1$.
-
-While the detailed proof can be found in (\tg{(refer to the appropriate section)}), it is worth noting the the result follows from two assumptions:
-\begin{itemize}
-    \item The survival distribution $F(.)$ is memory less and,
-    \item The initial infectious cohort is infinitesimal, i.e., $y(t = 0) = \epsilon \rightarrow 0$.
-\end{itemize}
-The first assumption is true for the canonical SIR model where the duration of infectious periods is exponentially distributed. The second assumption is generally true when considering large naive populations in which a very small number of infectious individuals are introduced.Intuitively, $C_0$ is the total number of cases over the course of the epidemic and $C_1$ is the total number of \textit{secondary} cases over the course of the epidemic. When the initial population of infectious individuals is infinitesimally small, all the cases can be attributed as secondary cases of some infectious individual who became infectious during the course of the epidemic and thus $C_0 = C_1 = Z$. (\tg{(Is there an intuitive explanation for why C2 is what it is?)}). However,  if the initial proportion of infectious individuals is not infinitesimally small, this equality does not hold anymore. The difference between $C_0$ and $C_1$ quantifies the size of the initial infectious cohort and $C_2$ deviates from $2Z$  with a deviation proportional to the size of the initial infectious population (refer to the SI section).
 
 \subsection{Balance between within- and between-cohort components of the variance in secondary cases explains why heterogeneity in secondary cases is independent of $\mathcal{R}_0$}
+
 To understand why the heterogeneity in secondary cases over the course of the epidemic is independent of $\mathcal{R}_0$, we split the heterogeneity into two components: a within-cohort component and a between-cohort component. A cohort refers to a group of individuals that become infectious at the same time (TG: make vertical slices in Figure 3a to mark cohorts). Individuals within a cohort have access to the same susceptible pool but have differences in their secondary case counts as a result of their exponentially distribution infectious periods. Thus, the within-cohort variance can be attributed to inherent individual-level differences in infectious periods. On the other hand, cohorts that arise at different times have realized differences in the number of secondary cases due to differences in the size of the susceptible pools that they have access to. It is important to note that both early and late cohorts have the same distributions of infectious periods and expected infectiousness but due to the depletion of the susceptible pool over time (Point to figure 3b, susceptibles over time), later cohorts, on average, have much lower realized secondary cases than earlier cohorts. Thus, the between-cohort variance can be attributed to susceptible depletion. 
 
-Numerical calculation of the within- and between-cohort components of the variance in secondary cases using the ODE-based SIR model (see methods for details of the calculation) shows that as $\mathcal{R}_0$ increases, the between-cohort component of the variance increases and the within-cohort component of the variances decreases (Ref figure 2b, which should be changed to an area plot of the variance for many more values of R0). However, the sum of the two components, remains constant across $\mathcal{R}_0$.
+Numerical calculation of the within- and between-cohort components of the variance in secondary cases using the ODE-based SIR model (see methods for details of the calculation) shows that as $\mathcal{R}_0$ increases, the between-cohort component of the variance increases and the within-cohort component of the variances decreases (Ref figure 2b, which should be changed to an area plot of the variance for many more values of $\mathcal{R}_0$). However, the sum of the two components, remains constant across $\mathcal{R}_0$.
 As $\mathcal{R}_0$ increases, the variance in the size of infectious cohorts (fig 3a) and well as the speed and severity of susceptible depletion also increases (fig 3b). As a result of the susceptible depletion, the mean number of secondary cases also decreases rapidly across cohorts (fig 4b), with earlier cohorts having a much higher mean of secondary cases compared to later cohorts. Further, the decline in the mean number of secondary cases across cohorts becomes sharper as $\mathcal{R}_0$ increases. As a result, the between-cohort variance in the number of secondary cases increases with $\mathcal{R}_0$. 
 
 The within-cohort variance, on the other hand, decreases as $\mathcal{R}_0$ increases (fig 2b). Since the mean number of secondary cases varies widely between early and late cohorts, we look at the within-cohort dispersion in secondary cases to better understand how within-cohort heterogeneity changes between early vs late cohorts for an epidemic with a given $\mathcal{R}_0$, and how the total contribution of within-cohort variance changes as a function of $\mathcal{R}_0$. For a given $\mathcal{R}_0$, early cohorts have high dispersion in secondary cases, driven by access to a large susceptible pool (fig 4c). As the epidemic progresses, the size of the cohorts increases (fig 4a), the susceptible pool depletes (fig 3b) and the within-cohort dispersion in secondary cases decreases (fig 4c). The within-cohort dispersion is minimum for the largest cohort of infectors. The dispersion increases again for later cohorts as the cohort size decreases, this time driven by the shrinking within-cohort mean in the number of secondary cases. As $\mathcal{R}_0$ increases, so does the reduction in dispersion as well as the size of the largest cohort. As a result, the cohort size weighted contribution of within-cohort variance towards the total variance decreases as the $\mathcal{R}_0$ increases. 
@@ -243,7 +128,7 @@ Together, the decrease in the within-cohort variances balances the increase in t
 	\centering
 	\includegraphics{kappa/TimeEvolution.Rout.pdf}
 	\caption{ \textbf{Dynamics of an SIR epidemic}
- (a) Incidence and (b) proportion of susceptibles as functions of time, for different values of $\mathcal{R}_0$. The epidemics were modelled using an ODE-based SIR model time is in units of mean infectious period.}
+ (a) Incidence and (b) proportion of susceptibles as functions of time, for different values of $\mathcal{R}_0$. The epidemics were modeled using an ODE-based SIR model. Time is in units of mean infectious period.}
 \flab{SIRsim}
 	\flab{CohortVarRc}
 \end{figure}
@@ -297,9 +182,7 @@ Together, the decrease in the within-cohort variances balances the increase in t
 
 %We rigorously contrast emergent heterogeneity from compartmental models and the observed heterogeneity secondary case distributions from stochastic realizations of those models.
 
-To do so, we first describe  a statistic, $\kappa$, for quantifying the emergent heterogeneity entailed in the SIR models and their stochastic realizations.
- Next,  we compare the emergent heterogeneity from deterministic ODE SIR models to the dispersion in secondary case distributions resulted from their stochastic realizations. 
- Finally, we consider how different time frames dictate different views of emergent heterogeneity, and how expected infectiousness evolves through time in epidemics of different strengths.
+
  
  We observed that 
  early in the outbreak, mean and variance of the expected infectiousness vary by $\mathcal{R}_0$, so do those of secondary-case distributions.
@@ -317,7 +200,7 @@ It is not clear how heterogeneity in mixing propensity might impact the independ
 Working with SIR models implicitly implies an exponential infectious period. 
 Investigating the impact of infectious period distribution on the heterogeneity in expected infectiousness is left for future work.
 
-\tg{Can we make a note about for epidemics with large R0, if you don't start tracking cases right from the beginning, you'll already underestimate cases/case }
+\tg{Can we make a note about for epidemics with large $\mathcal{R}_0$, if you don't start tracking cases right from the beginning, you'll already underestimate cases/case }
 \jd{Yes, this should go into the paper.}
 
 In SIR-type epidemics, the effective reproduction number declines as the susceptible population becomes depleted. Consequently, if surveillance begins after the initial transmission generations, estimates of secondary-cases will represent the reduced effective reproduction number rather than $\mathcal{R}_0$ \cite{pellis}. As a result, delayed surveillance may yield substantially lower estimates, especially when $\mathcal{R}_0$~is large, due to rapid depletion of the susceptible pool.
