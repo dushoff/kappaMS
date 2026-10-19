@@ -14,7 +14,7 @@ Here we delineate sources of individual variation in transmission inscribed in s
 
 \subsection{Heterogeneity in the secondary case distribution in the linearized SIR model}
 
-The early outbreak phase of an S(usceptible)-I(nfectious)-R(emoved) epidemic is modeled using a linearized SIR model, which assumes that the pool of susceptible individuals is very large and does not change appreciably at the outset of an epidemic. The early dynamics of the epidemic can be characterized by a transmission rate and an infectious period. Demographic stochasticity generates heterogeneity in this model despite the lack of explicit accounting of individual-level variation in transmission rates and infectious periods. The model implicitly assumes that the infectious period follows an exponential distribution which results in an exponentially distributed expected infectiousness  (or \emph{individual reproductive number}) with mean $\mu = \mathcal{R}_0$ and dispersion $\kappa = 1$. Infectious individuals spread the disease by coming into contact with susceptible (and other infectious individuals), which is modelled as a Poisson process. The resulting distribution of secondary cases (i.e., the number of new cases caused by a single infectious individual over their infectious lifetime) is geometric and has a mean equal to $\mathcal{R}_0$. Thus, the expected infectious and secondary case distributions are characterized by $\mathcal{R}_0$ (Figure \Fref{ls}a). 
+The early outbreak phase of an S(usceptible)-I(nfectious)-R(emoved) epidemic is modeled using a linearized SIR model, which assumes that the pool of susceptible individuals is very large and does not change appreciably at the outset of an epidemic. The early dynamics of the epidemic can be characterized by a transmission rate and an infectious period. Demographic stochasticity generates heterogeneity in this model despite the lack of explicit accounting of individual-level variation in transmission rates and infectious periods. The model implicitly assumes that the infectious period follows an exponential distribution which results in an exponentially distributed expected infectiousness  (or \emph{individual reproductive number}) with mean $\mu = \mathcal{R}_0$ and dispersion $\kappa = 1$. Infectious individuals spread the disease by coming into contact with susceptible (and other infectious individuals), which is modelled as a Poisson process. The resulting distribution of secondary cases (i.e., the number of new cases caused by a single infectious individual over their infectious lifetime) is geometric and has a mean equal to $\mathcal{R}_0$. Thus, the expected infectious and secondary case distributions are characterized by  $\mathcal{R}_0$ (Figure \Fref{ls}a). 
 
 % We explicate the notion that this is predictable (see Box).
 
@@ -22,7 +22,7 @@ The heterogeneity in the secondary case distribution means that a large fraction
 mit make up a smaller fraction of all infectors. Indeed, the 20/80 rule that 80\% of secondary infections arise from only 20\% of infectious individuals is attained when $\mathcal{R}_0$ falls just below 0.4. [AA: don't know why] However, even when $\mathcal{R}_0$ exceeds the epidemic threshold, the distribution of secondary cases can still display substantial heterogeneity. However, as the epidemic progresses, we must account for emergent heterogeneity as the pool of susceptible individuals shrinks.
  \begin{figure}[h!]
  	\centering
- 	\includegraphics[width = 0.8\textwidth]{kappa/lsFig.Rout.pdf}
+ 	\includegraphics[width = 0.8\textwidth]{lsFig.Rout.pdf}
  	\caption{
  		\textbf{Heterogeneity in the linearized SIR model} due to implicit variation in recovery times among infectors.
  		(a) Both expected infectiousness (density curves) and secondary case distributions (density histograms) for the outset of an SIR epidemic, where the population is fully susceptible.
@@ -37,7 +37,7 @@ Next we consider the impact of depletion of susceptible population during outbre
 Second, the variance of the secondary case distribution is equal to 1, consistent with the emergence of what appears to be an exponential distribution in the secondary case distribution considered across an epidemic independent of $\mathcal{R}_0$.
 \begin{figure}
 \centering
-\includegraphics{kappa/RcAverage.Rout.pdf}
+\includegraphics{RcAverage.Rout.pdf}
 \caption{
 \textbf{Heterogeneity in the number of secondary cases over the entire epidemic is independent of $\mathcal{R}_0$.}
 (a) Histograms of secondary cases realized from individual-based simulations of the SIR model across different $\mathcal{R}_0$s. Simulations performed for a total population of $10^4$ individuals with one initial infectious individual. 
