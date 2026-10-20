@@ -3,17 +3,14 @@ library(ggplot2); theme_set(theme_bw())
 library(patchwork)
 loadEnvironments()
 
-startGraphics(height=5)
+startGraphics(height=3)
 
 label_wrap <- function(wrap_level) {
   sapply(wrap_level,function(x){
     paste("R0 =",x)
   })}
-stackplot <- rdsRead("stackbar")
+
 rcHistplot <- rdsRead("rcHist")
  
-print(((rcHistplot + theme(legend.position = "none"))/stackplot) +
-				 plot_annotation(tag_levels = 'a', tag_suffix = ")" 
-													)
-			)
+print(rcHistplot + theme(legend.position = "none"))
 

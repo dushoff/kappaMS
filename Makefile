@@ -54,7 +54,7 @@ Sources += $(wildcard *.R)
 
 lsFig.Rout: lsFig.R kappa/lsCurves.rds kappa/lsDensity.rds
 
-RcAverage.Rout: RcAverage.R kappa/stackbar.rds kappa/rcHist.rds
+RcAverage.Rout: RcAverage.R  kappa/rcHist.rds
 
 ######################################################################
 
