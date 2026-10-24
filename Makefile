@@ -58,7 +58,6 @@ RcAverage.Rout: RcAverage.R  kappa/rcHist.rds
 
 ######################################################################
 
-:x
 
 
 hotdirs += sims
