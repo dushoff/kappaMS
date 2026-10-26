@@ -35,6 +35,41 @@ If you play with the bib stuff, you may get a local copy of library/ with some o
 
 If you have done `make setup` you should be able to look at the MSEDITOR definition in makestuff/unix.mk
 
+
+## Meeting notes (10/26/2026)
+Hi all,
+
+Great meeting. Notes and to-do-list from today:
+
+1. Fig 1: Remove R0 = 1 lines
+2. Fig 4: Remove panel d.
+3. Fig 4: Mention why R0 = 1.5 case is only plotted till t/t_peak = 2. Maybe truncate plot to t = 3. 
+4. Fig 4: replace "unweighted k_{within}" in y-label with "unweighted within-cohort dispersion".
+
+5. Switch JSW and JD on author list. List as co-corresponding
+6. Change title and narrative of section 2.2 to say that heterogeneity "appears" to be independent of R0. Make appropriate change in the opening of Section 2.3 (finding --> observation).
+7. Box/Section 2.1: talk about the notions of "expected infectiousness" vs "realized infectiousness" vs "case reproductive number". Check the reference for law of total variation.
+8. Section 2.3: We dont actually have an intuitive explanation for C2. This is the opportunity to cite Azadeh's proof paper which explains C2 in more detail.
+
+9. Discussion: Focus on the bridge between individual based- vs population level perspectives. Even without explicit heterogeneity, SIR model has emergent heterogeneity due to disease dynamics. The invariance result is a special case resulting from the Markovian infection process. The result does not hold for other infectious period distributions but establishes a baseline for comparison. More work is needed.
+
+10. Title: Emergent heterogeneity in compartmental disease models. 
+
+
+To-do list:
+1. JD will work on the manuscript on Monday (focus on box + differences in infectiousness vs case reproductive numbers. Discussion if time permits).
+@Jonathan Dushoff  - can you please add Stephen  (sjbeckett, beckett@umd.edu) to the kappaCode repository. 
+
+2. TG - Tuesday.
+3. JSW - Wednesday.
+4. Azadeh - Fri
+5. SJB - can work on looking through the code.
+
+Regards
+Tapan
+
+
+
 ## Editing notes from Tapan 
 
 10/09/2026
@@ -54,6 +89,7 @@ We havent defined infectiousness at any point in the paper. I propose that we ge
 - Figure 4:
   - Is panel b the mean infectiousness or is it the cohort mean cases/case?
   - We need a plot of the "weighted" within cohort variance. Currently, panel (c) tells us the within cohort dispersion but it doesnt make it any easier to understand how that translates to the contribution of within cohort variance to the total variance.
+
 
 ## Editing notes from Tapan
 09/22/2026
