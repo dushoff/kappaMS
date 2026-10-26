@@ -2,8 +2,8 @@
 \begin{framed}
 \noindent\textbf{Box 1. Linking variance across discrete and continuous time models} 
 
-During the early stages of an outbreak, secondary-cases counts are typically modeled using a negative-binomial distribution, with mean $\mu$ and shape, or “dispersion,” parameter $k$,. 
-This distribution corresponds mechanistically to a gamma-distributed  “intrinsic infectiousness”, with the same mean and shape parameters, and a Poisson distribution of realized cases based on this infectiousness \cite{lloydsmith2005superspreading}.
+During the early stages of an outbreak, secondary-cases counts are typically modeled using a negative-binomial distribution, with mean $\mu$ and shape, or “dispersion,” parameter $k$. 
+This distribution corresponds mechanistically to a gamma-distributed  “expected number of (secondary) cases”, with the same mean and shape parameters. The “realized number of (secondary) cases” then convolves this expected number with a Poisson distribution (reflecting necessary, individual-level stochasticity) \cite{lloydsmith2005superspreading}.
 
 This is illustrated in \fref{ls} for the case where intrinsic infectiousness arises from random recovery times under simple SIR assumptions, and is thus exponentially distributed. Expected infectiousness scales exactly with \Ro, so that the smooth curves in panel b, are all exactly the same, but the proportional amount of randomness added by the Poisson step increases when \Ro\ is small.
 

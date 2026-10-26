@@ -39,8 +39,8 @@ output: $(final).op
 
 ## https://github.com/dushoff/kappaMS/blob/main/outputs/draft.pdf
 Sources +=  $(wildcard *.tex) add.bib draft.bib
+## draft.pdf: doc.tex draft.tex varBox.tex
 ## draft.pdf: doc.tex draft.tex discussion.md
-draft.texdeps.mk: doc.texdeps.mk supp.texdeps.mk varBox.texdeps.mk
 
 Sources += quarto.mk
 
@@ -48,17 +48,18 @@ Sources += quarto.mk
 
 ######################################################################
 
-autopipeR += defined
+## Don't use autopipeR when calling hot directories
+## autopipeR += defined
 
 Sources += $(wildcard *.R)
 
 lsFig.Rout: lsFig.R kappa/lsCurves.rds kappa/lsDensity.rds
+	$(pipeR)
 
 RcAverage.Rout: RcAverage.R  kappa/rcHist.rds
+	$(pipeR)
 
 ######################################################################
-
-
 
 hotdirs += sims
 ehgit = https://github.com/dushoff/ehSim
@@ -144,7 +145,7 @@ makestuff:
 -include makestuff/os.mk
 
 -include makestuff/pipeR.mk
--include makestuff/texj.mk
+-include makestuff/texk.mk
 -include makestuff/pandoc.mk
 -include makestuff/hotcold.mk
 -include makestuff/reff.mk
