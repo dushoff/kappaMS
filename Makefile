@@ -97,6 +97,7 @@ migrateDirs: ../ehSim ../kappaCode
 ## Let me know if we need to find a way to share the library, or else curate your own
 Ignore += library
 
+Sources += $(wildcard notes/*.md)
 main.reff.bib: | Bio.pip
 ## main.recs: main.rmu
 ## main.tags.pgr: main.rmu
