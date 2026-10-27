@@ -16,6 +16,7 @@ Here we delineate sources of individual variation in transmission inscribed in s
 
 \subsection{Heterogeneity in the secondary case distribution in the linearized SIR model}
 
+\jd{I'm voting for distinguishing our distributions primarily by the words expected vs.~realized (see below).}
 The early outbreak phase of an epidemic is modeled using a linearized SIR model, which assumes that the pool of susceptible individuals does not change appreciably. Early dynamics can thus be characterized by a transmission rate and an infectious period. Demographic stochasticity generates heterogeneity in this model despite the lack of explicit accounting of individual-level variation in transmission rates and infectious periods. Since recovery is Markovian, the model implicitly assumes an exponentially distributed infectious period, resulting in an exponentially distributed expected infectiousness  (or \emph{individual reproductive number}) with mean $\mu = \Ro$ and dispersion $\kappa = 1$. The resulting distribution of secondary cases is geometric and has a mean equal to $\mathcal{R}_0$ (see Box). Thus, the expected and realized secondary-case distributions are characterized by $\mathcal{R}_0$ (\Fref{ls}a). 
 \jd{Flagging that I cut a lot of stuff around here, see if you think anything important is missing.}
 
@@ -39,19 +40,20 @@ Next we consider the impact of depletion of susceptible population during outbre
 \jd{Talking about the higher variation driven by small \Ro\ feels like a red herring here and I cut it out. The key point is that we expected within-cohort $\kappa$ to be the same, and between-cohort $\kappa$ to increase with \Ro. Is it time to talk about cohorts here?}
 The mean of the secondary case distribution is  approximately 1. This is expected. Because we are considering a single outbreak seeded by single initial case, the number of infectors must almost equal the number of infectees. 
 Additionally, the variance of the realized secondary case distribution is approximately 2, corresponding to a variance of 1 in the expected case distribution, independent of \Ro. This result is unexpected.
-In the absence of susceptible depletion, heterogeneity in expected case number is constant across values of \Ro (Figure 1b). During the full epidemic, we expect large-\Ro simulations to cause large dynamical changes (Figure S1), leading to larger variation in expected (and thus realized) case numbers. This is a real effect, and it is not clear what could balance it to leave the variance at least roughly constant. 
+In the absence of susceptible depletion, heterogeneity in expected case number is constant across values of \Ro\ (Figure 1b). During the full epidemic, we expect large-\Ro\ simulations to cause large dynamical changes (Figure S1), leading to larger variation in expected (and thus realized) case numbers. This is a real effect, and it is not clear what could balance it to leave the variance constant. 
 \begin{figure}
 \centering
 \includegraphics{kappa/rcHist.Rout.pdf}
 \caption{
-\textbf{Heterogeneity in the number of secondary cases over the entire epidemic is independent of $\mathcal{R}_0$.}
-Histograms of secondary cases realized from individual-based simulations of the SIR model across different $\mathcal{R}_0$s. Simulations performed for a total population of $10^4$ individuals with one initial infectious individual. $\mu$ and $\kappa$ denote the mean and dispersion of the secondary case distribution obtained from a single realization of the individual-based model for each $\mathcal{R}_0$.
+\textbf{Heterogeneity in the number of secondary cases over an entire epidemic is independent of $\mathcal{R}_0$.}
+Realized secondary cases realized from individual-based simulations of the SIR model; $\mu$ and $\kappa$ denote the mean and dispersion of the secondary case distribution obtained from a single realization, conditional on a large outbreak occurring, of the individual-based model for each $\mathcal{R}_0$, in a population of $10^4$ individuals with one initial infectious individual. 
 }\flab{RcAverage}
 \end{figure}
 
 \input{varBox.tex}
 
-\subsection{Heterogeneity in secondary cases over an epidemic is independent of $\mathcal{R}_0$ - Proof}
+\jd{We need to be very careful about the word cohort (and I am going to run out of time for the night)}. I am thinking that we should call the two-ended cohorts “interval cohorts” and the one-ended cohorts “forward cohorts”. Will try to add a few examples.
+\subsection{Heterogeneity in secondary cases over an epidemic is independent of $\mathcal{R}_0$ -- Proof}
 We set out to explore the basis for the finding that both the mean and variance of secondary cases in the stochastically realized SIR model is invariant with respect to changes in $\mathcal{R}_0$. To do so, consider the deterministic ODE-based SIR model:
 \begin{align}
     \begin{split}
@@ -63,7 +65,7 @@ where $x(t)$ is the proportion of susceptible individuals at time $t$, $y(t)$ is
 
 To calculate the mean and variance of the secondary cases, we must track infections and the infectors that caused those infections. While individual infectors and cases cannot be tracked in this deterministic SIR model, we can track cohorts of infectors and the cases caused by them. By calculating the weighted moments of the secondary cases per case caused by each cohort, we can obtain the heterogeneity of the secondary cases per case over the epidemic. 
 
-We define a cohort, $c_{\tau_1,\tau_2}$, as the fraction of infectors that become infectious at time $\tau_1$ and stop being infectious at time $\tau_2$. The weight of the cohort, $w(\tau_1,\tau_2)$ is the number of infectors in the cohort. The number of infectors who become infectious at time $\tau_1$ is $i(\tau_1) = \mathcal{R_0}x(\tau_1)y(\tau_1)$. This quantity, $i(\tau_1)$ is also called the incidence of infection, or the number of new cases that appear at time $\tau_1$. Only a fraction of these infectors remain infectious till time $\tau_2$. If $f(.)$ denotes the probability density function of the infectious period, then
+We define an “interval cohort”, $c_{\tau_1,\tau_2}$, as the fraction of infectors that become infectious at time $\tau_1$ and stop being infectious at time $\tau_2$. The weight of the cohort, $w(\tau_1,\tau_2)$ is the number of infectors in the cohort. The number of infectors who become infectious at time $\tau_1$ is $i(\tau_1) = \mathcal{R_0}x(\tau_1)y(\tau_1)$. This quantity, $i(\tau_1)$ is also called the incidence of infection, or the number of new cases that appear at time $\tau_1$. Only a fraction of these infectors remain infectious till time $\tau_2$. If $f(.)$ denotes the probability density function of the infectious period, then
 \begin{equation}
     w(\tau_1,\tau_2) = i(\tau_1)f(\tau_2-\tau_1)
 \end{equation}
@@ -86,8 +88,9 @@ With this definition of the raw moments, the assertion that the heterogeneity of
 \begin{equation}
     \kappa = \frac{C_0 C_2}{C_1^2} - 1 = 1 \label{eq:target_main}
 \end{equation}
+\jd{Took out the intuition for $C_1=C_0$. We already have it above, and it will disappoint some people who will start off think we're going to get to the interesting part of the result.}
+We calculate the moments and confirm the result in (\tg{(refer to the appropriate section)}). We note that the result follows from two assumptions: the distribution of the infectious duration is memoryless, and the initial infectious cohort is infinitesimal, i.e., $y(t = 0) \rightarrow 0$. The first assumption is true for the canonical SIR model where the duration of infectious periods is exponentially distributed. We discuss relaxing the second assumption is generally true when considering large naive populations in which a very small number of infectious individuals are introduced. Intuitively, $C_0$ is the total number of cases over the course of the epidemic and $C_1$ is the total number of \textit{secondary} cases over the course of the epidemic. When the initial population of infectious individuals is infinitesimally small, all the cases can be attributed as secondary cases of some infectious individual who became infectious during the course of the epidemic and thus $C_0 = C_1 = Z$. (\tg{(Is there an intuitive explanation for why C2 is what it is?)}). However,  if the initial proportion of infectious individuals is not infinitesimally small, this equality no longer holds. The difference between $C_0$ and $C_1$ quantifies the size of the initial infectious cohort and $C_2$ deviates from $2Z$  with a deviation proportional to the size of the initial infectious population (refer to the SI section).
 
-The detailed calculation of the moments and the proof can be found in (\tg{(refer to the appropriate section)}). We note that the result follows from two assumptions: (a) the distribution of the infectious duration is memoryless, and (b) the initial infectious cohort is infinitesimal, i.e., $y(t = 0) \rightarrow 0$. The first assumption is true for the canonical SIR model where the duration of infectious periods is exponentially distributed. The second assumption is generally true when considering large naive populations in which a very small number of infectious individuals are introduced. Intuitively, $C_0$ is the total number of cases over the course of the epidemic and $C_1$ is the total number of \textit{secondary} cases over the course of the epidemic. When the initial population of infectious individuals is infinitesimally small, all the cases can be attributed as secondary cases of some infectious individual who became infectious during the course of the epidemic and thus $C_0 = C_1 = Z$. (\tg{(Is there an intuitive explanation for why C2 is what it is?)}). However,  if the initial proportion of infectious individuals is not infinitesimally small, this equality no longer holds. The difference between $C_0$ and $C_1$ quantifies the size of the initial infectious cohort and $C_2$ deviates from $2Z$  with a deviation proportional to the size of the initial infectious population (refer to the SI section).
 
 
 \subsection{Balance between within- and between-cohort components of the variance in secondary cases explains why heterogeneity in secondary cases is independent of $\mathcal{R}_0$}
