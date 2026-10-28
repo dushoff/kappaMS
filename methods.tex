@@ -1,8 +1,9 @@
 %Author: AA partly adapted from main.tex on the Overleaf
 \section{Materials and Methods}
 
-\subsection{Individual based SIR model}
-\tg{Need details of the Individual based SIR simulations here}
+\subsection{Individual-based SIR model}
+\tg{@Azadeh: Please feel free to edit if I've gotten any details wrong}
+We simulate an individual-based SIR model for a population of $N$ individuals. Each individual is assigned a numerical index and an intrinsic recovery time, drawn from an exponential distribution with a mean recovery time $\frac{1}{\gamma}$. Next, we assign contact events. The time interval between successive contact events is drawn from an exponential distribution with a mean $\beta N$, where $\beta$ is the transmission rate. The individuals involved in each contact event are identified by picking 2 numbers between 1 and $N$, without replacement. The numbers picked correspond to the numerical indices of the individuals that come in contact. Throughout the simulation, we track the infection status and number of infections caused by each individual. We initialize the simulation by assigning a single random individual to be infectious. We then run the simulation forward in time, with successive time steps corresponding to successive contact events. At each timestep, we assess the infection status of each individual based on when they became infectious and their assigned recovery time. Then, we check the infection statuses of the individuals that come in contact: if both individuals are susceptible or infectious or recovered/removed, we move to the next timestep. If one of the individuals is recovered/removed, we move to the next timestep. However, if one of the individuals is infectious and the other is susceptible, we change the infection status of the susceptible individual to infectious, noting the time when they become infectious. We also increase the tally of secondary cases caused by the infectious individual by 1. Then, we move to the next timestep. We stop this process when no more infectious individuals remain. 
 
 \subsection{Deterministic SIR model}
 The deterministic ODE-based SIR model is:
@@ -111,5 +112,3 @@ $\mu(\tau)$ and $\E[\Rx{c}^2(\tau)]$ were provided in Equation \eqref{eq_statist
 We solved all integrals across a range of values for $\Ro$, using the starting values $y_0 = 10^{-9}; x_0 = 1-10^{-9}$  to represent the limiting case in which there are no exogenous cases.
 %, and therefore the mean case reproduction number over the course of the epidemic must be 1.
  In building these simulations, we used a range of time step sizes, noting convergence towards known and conjectured values (e.g., epidemic final size, mean case reproduction number, variance in case reproduction number) as resolution increased. 
-
-

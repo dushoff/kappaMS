@@ -3,6 +3,8 @@
 \usepackage{framed} %box
 \usepackage{float} %Here specifier
 \usepackage{caption}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{orcidlink}
 \input{inc.tex}
 
 \newcommand{\sigmaAct}{\ensuremath{\sigma_\mathrm{act}}}
@@ -13,7 +15,35 @@
 \newcommand{\fun}[1]{\texttt{#1}}
 \newcommand{\E}{\mathbb{E}}
 
-\input{makestuff/style.tex}
+%\input{makestuff/style.tex}
+%%%%%%%%%%%%%%%from https://github.com/dushoff/makestuff/blob/master/style.tex%%%%%%%%%%%%%%%
+%% Needs xcolor 
+\newcommand{\comment}{RENEW the comment command}
+\renewcommand{\comment}[3]{}
+\renewcommand{\comment}[3]{\textcolor{#1}{\textbf{[#2: }\textit{#3}\textbf{]}}}
+
+%% Some colors chosen by people
+% blue JD
+% Violet SS
+% OliveGreen DE
+% Cerulean IP
+% RubineRed BB
+% cyan JD
+
+\newcommand{\RR}{\ensuremath{{\mathcal R}}}
+\newcommand{\Rx}[1]{\ensuremath{\RR_{\mathrm{#1}}}}
+\newcommand{\Ro}{\Rx{0}}
+
+\newcommand{\flab}[1]{\label{fig:#1}}
+\newcommand{\fref}[1]{Figure~\ref{fig:#1}}
+\newcommand{\Fref}[1]{Figure~\ref{fig:#1}}
+%%%%%%%%%%%%%%%
+
+\usepackage{comment}
+\renewcommand{\comment}{\showcomment}
+\newcommand{\showcomment}[3]{\textcolor{#1}{\textbf{[#2: }\textsl{#3}\textbf{]}}}
+\newcommand{\nocomment}[3]{}
+
 \newcommand{\jd}[1]{\comment{cyan}{JD}{#1}}
 \newcommand{\tg}[1]{\comment{magenta}{TG}{#1}}
 \newcommand{\ag}[1]{\comment{red}{AA}{#1}}
@@ -32,6 +62,17 @@
 \input{front.tex}
 \input{doc.tex}
 \input{methods.tex}
+
+\section*{Declaration of competing interests}
+No competing interests declared.
+
+\section*{Data and code availability}
+All code and simulation files can be found at \url{https://github.com/dushoff/kappaCode} and have been archived via Zenodo [X].
+
+
+\section*{Acknowledgments}
+S.J.B. and J.S.W. are investigators at the University of Maryland-Institute for Health Computing, which is supported by funding from Montgomery County, Maryland and The University of Maryland Strategic Partnership: MPowering the State, a formal collaboration between the University of Maryland, College Park and the University of Maryland, Baltimore.
+
 \newpage
 \input{supp.tex}
 \newpage
