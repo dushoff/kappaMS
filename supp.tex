@@ -62,8 +62,8 @@ Mathematically, this amounts to proving that
 
 
 \subsection{Proof} \label{proof_timeInf_initial0}
-We will calculate $C_0$, $C_1$ and $C_2$. We can calculate $C_0$ and $C_1$ without making any assumptions about the functional form of $f$ (we don't have to assume that the wait times are exponentially distributed). We do need $F$ to be memoryless, i.e., obey $F(a+b) = F(a)F(b)$, to get the ``right'' value of $C_2$.
-Calculating each of these moments essentially involves multiple manipulations of the limits of the integrals involved. 
+We set out to calculate $C_0$, $C_1$ and $C_2$. We can calculate $C_0$ and $C_1$ without making any assumptions about the functional form of $f$ (we do not have to assume that the wait times are exponentially distributed). We do assume that $F$ is memoryless, i.e., obey $F(a+b) = F(a)F(b)$.
+Calculating each of these moments involves multiple manipulations of the limits of the integrals. 
 To proceed, we assume that  size of the initial infectious cohort is negligible.
 
 %\subsubsection{Proof of $C_0 = Z$} \label{sec:C0}
@@ -78,7 +78,7 @@ Substituting $\omega + \tau $ for $\rho$ in the inner integral, results in
 \begin{align*}
         C_0 &=\int_0^\infty d\tau \;i(\tau) \int_0^\infty d\omega \; f(\omega).
 \end{align*}
-Since $f$ is the residence time distribution, the inner integral is simply 1.
+Since $f$ is the residence time distribution, the inner integral is equal to 1.
 It follows that
 \begin{align*}
  %   \begin{split} \label{eq:C0calc}
@@ -112,7 +112,7 @@ By interchanging the order of the integrals once more, we have
         C_1 &= \Ro\int_0^\infty d\tau \int_\tau^\infty dt\; i(\tau)x(t) \int_{t-\tau}^\infty d\omega f(\omega)\\
         &=  \Ro\int_0^\infty dt\; x(t) \int_0^t d\tau\; i(\tau)F(t-\tau). 
 \end{align*}
-Note that the inner integrand counts the number of individuals that entered the infectious state at some time $\tau < t$ and remain infectious  at time $t$. When we integrate over all times $\tau < t$, we simply get the number of individuals who are infections at time $t$, i.e., $y(t)$.
+Note that the inner integrand counts the number of individuals that entered the infectious state at some time $\tau < t$ and remain infectious  at time $t$. When we integrate over all times $\tau < t$, we get the number of individuals who are infections at time $t$, i.e., $y(t)$.
  So,
 \begin{align}
         C_1 &= \Ro\int_0^\infty dt\; x(t) \int_0^t d\tau\; i(\tau)F(t-\tau) \label{eq:C1calc_prev}\\
@@ -194,21 +194,20 @@ Finally, replacing $C_0$, $C_1$, and $C_2$ by $Z$, $Z$, and $2Z$, respectively, 
 % --------------------------------------------------------------
 
 \subsection{Incorporating the Size of Initial Infections}\label{sec_initial_y0}
- In the previous section, 
  \autoref{eq:target} 
-was proved under the assumption that the initially infectious population  was negligibly small.
+was based on the assumption that the population who were infectious initially  was negligible.
 In what follows, we revisit the results while relaxing this assumption.
  To account for the initial infections, we assume that the epidemic starts abruptly at time $t=0$, i.e.,
  \begin{equation} \label{eq_incidence_dirac}
  	i(t)=y_0\delta(t), \quad t\in(-\infty,0].
  \end{equation}
 Here, $y_0$ denotes the proportion of the population that were infectious at the beginning of the outbreak,  $ t = 0$, and $\delta(t)$ denotes the Dirac delta distribution \cite{Champredon2018}.
- Then, accounting for the initially infectious cohort, the proportion of the population that is infectious at $t$ is given by
+ Then, accounting for the initially infectious cohort, the proportion of the infected population that is infectious is given by
 $$
 y(t) = \int_{0^-}^t d\tau\; i(\tau)F(t-\tau).
 $$
 
-Here, the lower limit of integration is $0^-$ to include the contribution of the Dirac delta distribution at $t= 0$.
+Here, the lower limit of the integral is $0^-$ to include the Dirac delta function at $t= 0$.
 The total weight $C_0$ will now includes the initially infectious cohort size as well, i.e,
 \begin{align} \label{eq_C0_y0_notnegligible}
 	C_0 = \int_{0^-}^{\infty} dt \; i(t)
@@ -255,13 +254,13 @@ The innermost integral gives the  proportion of the population who entered the i
 		& = 2 \int_{0^+}^\infty i(s)ds -2\Ro y_0 \int_{0^+}^\infty ds\;x(s) F(s)  \\
 		& = 2C_1 - 2\Ro y_0\int_{0^+}^\infty ds\;x(s) F(s).
 \end{align*}
-Note that changing the lower limit of integration from $0^-$ to $0^+$ does not affect the result because the integrand is bounded near $t = 0$.
-The second term in the right hand side is the twice the expected infectiousness of the initial cohort.
+Note that changing the lower limit of integration from $0^-$ to $0^+$ does not affect the result because the integrand is bounded.
+The second term in the left hand side is the twice the expected infectiousness of the initial cohort.
 Here we notice that the second raw moment is $\emph{dependent}$ on the key parameter \Ro. However, 
  as the initial cohort size $y_0$ tends to zero,  (i) the difference between $C_2$ and twice the first raw moment $2C_1$ approaches zero; (ii) the total weight $C_0$~ \eqref{eq_C0_y0_notnegligible} converges to $C_1$. Thus, \autoref{eq:target} is retrieved.
 
 \subsection{Moments of time-truncated case reproductive number at some point during the outbreak}
-In this section, we derive the moments of the time-truncated case reproductive number at a given time $j \in (0,\infty)$ during the outbreak, accounting for the initially infectious cohort.
+In this section, we derive moments of truncated $C$ at an arbitrary time $j \in (0,\infty)$ during the outbreak, while accounting for the initially infectious cohort.
 Up to time $j$, the expected realized infections due to individuals who became infectious  at time $\tau \in (0,j)$ and remain infectious at time $j$ is the equal to that of the individuals who became infectious at $\tau$ and recovered at time $j$.
 To capture this observation, we introduce a modified infectious period density function, denoted $g_j(t,\tau)$.
 This function equals the true infectious period density  function  $f(t-\tau)$  for $t < j$, and assigns the remaining probability mass to  $t = j$. Hence, its cumulative distribution function reaches $1$ at $j$, i.e.,
@@ -310,9 +309,9 @@ C_2(j)	& = 2\Ro \int_{0^-}^j ds\;x(s) \int_{0^+}^s dt\; i(t)F(s-t)
 	& = 2 \int_{0^+}^j i(s)\;ds -2\Ro y_0\int_{0}^j ds\;x(s) F(s)\\
 	&= 2 C_1(j) -2\Ro y_0\int_{0}^j ds\;x(s) F(s). 
 \end{align*}
- The second raw moment is $\emph{dependent}$ on the key parameter \Ro.
-However,
-as the initial cohort size $y_0$ tends to zero, both  $C_2(j) - 2C_1(j)$ and  $C_0(j) - C_1(j)$ approach zero.
+ The second raw moment is $\emph{dependent}$ on the key parameter \Ro. However, 
+as the initial cohort size $y_0$ tends to zero, the difference between $C_2(j)$ and twice the truncated first raw moment $2C_1(j)$ approaches zero.
+Apart from  taking the limit of $C_2(j)$ as the initial infectious cohort size tends to zero,  if we increase the truncation time $j$, the value of $C_1(j)$ increase, thereby  the deviation introduced by $y_0$ diminishes.
 Hence, $\kappa(j)$, defined as
 \begin{align*}
 	\kappa(j) = \frac{C_0(j) C_2(j)}{C_1^2(j)} - 1,
@@ -332,7 +331,7 @@ approaches 1.
 
 \begin{figure}
 	\centering
-	\includegraphics{kappa/PlotTrunc.Rout.pdf}
+	\includegraphics{PlotTrunc.Rout.pdf}
 	\captionsetup{width=1.28\linewidth}
 	\caption{
 		\textbf{Mean and heterogeneity of realized infections evolve over the course of an outbreak.}
