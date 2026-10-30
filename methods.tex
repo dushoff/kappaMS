@@ -46,73 +46,46 @@ To generate \fref{RcAverage}, we used the individual-based SIR model as detailed
 \ref{subsec_ibm} and computed the number of secondary cases in a population of size $10^4$. 
 
 
-We used a simple deterministic SIR model to compute the mean and variance of expected infectiousness $C$. \ag{Replace   and replace expected infectiousness with secondary case per case to be consistent with the main text?}
+We used a simple deterministic SIR model to compute the mean and variance of expected secondary cases $C$.
 First, we scaled time by the mean infectious period, so the resulting SIR model then depends on one parameter, \Ro. 
 The SIR differential equations were numerically solved for the proportions of susceptible $x(t)$ and infectious $y(t)$ at each time point $t$. 
 We then used the \texttt{R} function \fun{approxfun} to construct a function,  ${X}(t)$, that linearly interpolates the time-series $(t,\Ro x(t))$.
-We associated a cohort to each of the first $60\%$ time points in the time-series $t$ (We used a $60\%$ cutoff to ensure cohorts had almost recovered by the end of the simulation period) and calculated the cohort-specific mean  and variance.
+We associated a (forward) cohort to each of the first $60\%$ time points in the time-series $t$ (We used a $60\%$ cutoff to ensure cohorts had almost recovered by the end of the simulation period) and calculated the cohort-specific mean  and variance.
 
 More specifically, for the cohort infected at time point $\tau$, the
-mean, $\mu(\tau)$, and variance $\sigma^2(\tau)$ of $C$ read as:
+mean, $\mu(\tau)$, and variance $\sigma^2(\tau)$ of expected secondary cases read as:
 \begin{subequations} \label{eq_statistics}
 	\begin{align}
- 		\mu(\tau) &=  \int_{t>\tau} f(t-\tau) \int_{\tau}^{t} \Ro x(s) \ds \dt, \\
- 		\E[C^2(\tau)] &= \int_{t>\tau} f(t-\tau) \left(\int_{\tau}^{t} \Ro x(s) \ds \right)^2\dt,\\
+ 		\mu(\tau) &=  \int_{t>\tau} f(t-\tau)  C(\tau, t) \dt, \\
+ 		\E[C^2(\tau)] &= \int_{t>\tau} f(t-\tau)  C^2(\tau, t)\dt,\\
   		\sigma^2(\tau) &=  \E[C^2(\tau)] - \mu^2(\tau).
   	\end{align}
 \end{subequations}
 Here $f(\cdot)$ is the probability density function of the infectious period.
-To calculate these quantities for the forward cohort infected at $\tau$, the interpolating function $X(t)$ was integrated from $\tau$ to $t$, which is the case reproductive potential \ag{Azadeh: watch out for the wording} associated with the cohort fraction recovered at time point $t$.
-The mean expected case per case for each cohort $\mu(\tau)$ was then the integral of the case reproductive potential \ag{Azadeh: watch out for the wording}  weighted by the infectious period density function.
+To calculate these quantities for the forward cohort infected at $\tau$, the interpolated $\Ro x(t)$ was integrated from $\tau$ to $t$.
+This gives us  the expected total number of cases caused by the cohort fraction recovered at time point $t$, i.e., $C(\tau,t)$.
+The mean expected case per case for each cohort $\mu(\tau)$ was then the integral of interval cohorts' expected total numbers of cases  weighted by the infectious period density function.
 We used the same approach to compute $\E[C^2(\tau)]$ and  variance of $C$ for each cohort ($\sigma^2(\tau)$).
 In \fref{Cohort}, the middle panel (panel b) was generated using this approach.
 
-We obtained  mean expected infectiousness $C$ by integrating the cohort-specific mean $\mu(\tau)$ against the incidence, $i(\tau) = \Ro x(\tau)y(\tau)$, and normalizing the result by the final size, $\int i(t) \dt$.
-To compute the between cohort variance, we integrated the squared cohort mean $\mu^2(\tau)$ weighted by the incidence $i(\tau)$ and divided it  by the final size.
-The result minus the squared mean of $C$ equaled the between cohort variance.
-The within-cohort variance  was computed by taking an integral over the cohorts' variance $\sigma^2(\tau)$ weighted by the incidence.
+We obtained  mean expected secondary cases $C$ by integrating the cohort-specific mean $\mu(\tau)$ against the incidence, $i(\tau) = \Ro x(\tau)y(\tau)$, and normalizing the result by the final size, $\int i(t) \dt$.
+To compute the between-cohort component of variance, we integrated the squared cohort mean $\mu^2(\tau)$ weighted by the incidence $i(\tau)$ and divided it  by the final size.
+The result minus the squared mean of $C$ gave us the between-cohort component of variance.
+The within-cohort component of the variance  was computed by taking an integral over the cohorts' variance $\sigma^2(\tau)$ weighted by the incidence.
 The result was also normalized by the final size.
-The total variance was the sum of the between- and within-variances. 
+The total variance was the sum of the between- and within-cohort components of variance. 
 We also calculated the total variance independently; 
   we integrated $\E[C^2(\tau)]$ weighted by the incidence and divided it by the final size. 
  The result minus the squared mean of  $C$ yielded the total variance.
 Both approaches produced the same value for the total variance.
 
-
-We used deterministic simulations to compute the y-axis values in the panels b and c of \Fref{Naive}.
-Specifically, at each time point $t_f$, we considered the cohorts infected up to time $t_f$, including the initial infectious cohort.
-We then computed cohort statistics by calculating the cases generated by these cohorts up to time $t_f$.
-For example, for a cohort infected at time point $\tau < t_f$, the mean, $	\mu(\tau,t_f)$, and variance of $C$, 	$\sigma^2(\tau, t_f)$, read as:
-\begin{subequations} \label{eq_naive}
-	\begin{align}
-	\mu(\tau,t_f) &=  \int_{t=\tau}^{t_f} f(t-\tau)dt \int_{\tau}^{t} \Ro x(s) ds + F(t_f - \tau)\int_\tau^{t_f}\Ro x(s)ds,  \\
-	\E[C^2(\tau,t_f)] \!&=\!\int_{t=\tau}^{t_f} \!f(t-\tau)dt \left(\int_{\tau}^{t} \!\Ro x(s) ds \right)^2 \nonumber\\
-	 & \quad + F(t_f-\tau)\!\left(\int_{\tau}^{t_f} \Ro x(s) ds \right)^2,  \\
-	\sigma^2(\tau, t_f) &=  \E[C^2(\tau,t_f)] - \mu^2(\tau,t_f),
-\end{align}
-\end{subequations}
-where $F(\cdot)$ is the survival function associated with the  infectious period density $f(\cdot)$.
-The mean and variance of expected case distribution are then 
-\begin{subequations} \label{eq_statistics_naive}
-	\begin{align}
-	\mu(t_f) &= \frac{\int_0^{t_f}i(\tau)\mu(\tau,t_f)d\tau}{\int_0^{t_f}i(t)dt},\\
-	\sigma^2(t_f) &= \frac{\int_0^{t_f}i(\tau)\E[C^2(\tau,t_f)]d\tau}{\int_0^{t_f}i(t)dt} - \mu^2(t_f).
-	\end{align}
-\end{subequations}
-The between-cohort component of $\kappa$ at time point $t_f$ is
-$	\kappa_{\rm bet}(t_f) = \sigma^2_{\rm bet}(t_f)/\mu^2(t_f), $
-where 
-\begin{align*}
-	\sigma^2_{\rm bet}(t_f) = \frac{\int_0^{t_f} i(\tau)\mu(\tau,t_f)^2}{\int_0^{t_f}i(t)dt} - \mu^2(t_f).
-\end{align*}
-To generate panels (b) and (c) of \Fref{timeCutoff}, as with the corresponding panels of \Fref{Naive}, at each time point $t_f$, we considered only cohorts infected by $t_f$, including the initial infectious cohort.
-Instead, we counted the total cases caused by these cohorts during the outbreak.
-To do so, we substituted $\mu(\tau)$ and $\E[C^2(\tau)]$ for $\mu(\tau,t_f)$ and $\E[C^2(\tau,t_f)]$ in Equation \eqref{eq_statistics_naive}, where
-$\mu(\tau)$ and $\E[C^2(\tau)]$ were provided in Equation \eqref{eq_statistics}.
+\ag{removed simulations details  for the supp figures; will put them back if we decide to keep those figures}
 
  All integrations were done using \fun{lsoda} method with the \texttt{R} package \pkg{deSolve}.
   All simulations were carried out using \texttt{R} \texttt{4.5.2}.
     Code for all numerical simulations is housed at: \url{https://github.com/dushoff/kappaCode}.   
 We solved all integrals across a range of values for $\Ro$, using the starting values $y_0 = 10^{-9}; x_0 = 1-10^{-9}$  to represent the limiting case in which there are no exogenous cases.
 %, and therefore the mean case reproduction number over the course of the epidemic must be 1.
+
+ \ag{What about taking this part out?}
  In building these simulations, we used a range of time step sizes, noting convergence towards known and conjectured values (e.g., epidemic final size, mean case reproduction number, variance in case reproduction number) as resolution increased. 
