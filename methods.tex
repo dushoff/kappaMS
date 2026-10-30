@@ -2,7 +2,7 @@
 \section{Materials and Methods}
 
 \subsection{Individual-based SIR model} \label{subsec_ibm}
-\tg{@Azadeh: Please feel free to edit if I've gotten any details wrong} \ag{@ Tapan: I edited it based on my understanding of Michael's code} 
+\tg{@Azadeh: Please feel free to edit if I've gotten any details wrong} \ag{@Tapan: I edited it based on my understanding of Michael's code} 
 We simulate an individual-based SIR model for a population of $N$ individuals. Each individual is assigned a numerical index and an intrinsic recovery time, drawn from an exponential distribution with a mean recovery time $\frac{1}{\gamma}$. Next, we build a matrix containing all $N(N-1)/2$ possible pairs of individuals. We then generate a pool of contact events by randomly sampling pairs from this matrix with replacement. 
 The contact rate for each pair of individual is $\beta/(N-1)$,  where $\beta$ is the transmission rate. Therefore, the total rate of contact events in the population is obtained by multiplying this rate by the total number of possible pairs, $N(N-1)/2$, giving $\beta N/2$.
 The time interval between successive contact events is then drawn from an exponential distribution with a rate $\beta N/2$,
@@ -46,7 +46,7 @@ To generate \fref{RcAverage}, we used the individual-based SIR model as detailed
 \ref{subsec_ibm} and computed the number of secondary cases in a population of size $10^4$. 
 
 
-We used a simple deterministic SIR model to compute the mean and variance of expected infectiousness \Rx{c}.
+We used a simple deterministic SIR model to compute the mean and variance of expected infectiousness \Rx{c}. \ag{maybe replace \Rx{c} with C  and replace expected infectiousness with secondary case per case to be consistent with the main text?}
 First, we scaled time by the mean infectious period, so the resulting SIR model then depends on one parameter, \Ro. 
 The SIR differential equations were numerically solved for the proportions of susceptible $x(t)$ and infectious $y(t)$ at each time point $t$. 
 We then used the \texttt{R} function \fun{approxfun} to construct a function,  ${X}(t)$, that linearly interpolates the time-series $(t,\Ro x(t))$.
@@ -62,8 +62,8 @@ mean, $\mu(\tau)$, and variance $\sigma^2(\tau)$ of \Rx{c} read as:
   	\end{align}
 \end{subequations}
 Here $f(\cdot)$ is the probability density function of the infectious period.
-To calculate these quantities for the cohort infected at $\tau$, the interpolating function $X(t)$ was integrated from $\tau$ to $t$, which is the case reproductive potential associated with the cohort fraction recovered at time point $t$.
-The mean \Rx{c} for each cohort $\mu(\tau)$ was then the integral of the case reproductive potential weighted by the infectious period density function.
+To calculate these quantities for the forward cohort infected at $\tau$, the interpolating function $X(t)$ was integrated from $\tau$ to $t$, which is the case reproductive potential \ag{Azadeh: watch out for the wording} associated with the cohort fraction recovered at time point $t$.
+The mean \Rx{c} for each cohort $\mu(\tau)$ was then the integral of the case reproductive potential \ag{Azadeh: watch out for the wording}  weighted by the infectious period density function.
 We used the same approach to compute $\E[\Rx{c}^2(\tau)]$ and  variance of \Rx{c} for each cohort ($\sigma^2(\tau)$).
 In \fref{Cohort}, the middle panel (panel b) was generated using this approach.
 
