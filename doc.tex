@@ -40,13 +40,13 @@ Next we consider the impact of depletion of susceptible population during outbre
 
 Two key features of the secondary case distributions across an entiure outbreak are salient. First, the mean of the secondary case distribution is approximately 1, as expected. Since we are considering a single outbreak seeded by single initial case, the number of infectors must almost equal the number of infectees. 
 Second, the variance of the realized secondary case distribution is approximately 2, corresponding to a variance of 1 in the expected case distribution, independent of \Ro. This result is unexpected.
-In the absence of susceptible depletion, heterogeneity in expected case number is constant across values of \Ro\ (\Fref{ls}b). During the full epidemic, we expect large-\Ro\ simulations to cause large dynamical changes (\Fref{Naive}) \ag{Tapan: Shouldn't we refer to panel a of \Fref{SIRsim}?}, leading to larger variation in expected (and thus realized) case numbers. At first glance, it is not clear what could balance the dynamical variation in susceptibles for different values of $\mathcal{R}_0$ to leave the variance constant. 
+In the absence of susceptible depletion, heterogeneity in expected case number is constant across values of \Ro\ (\Fref{ls}b). During the full epidemic, we expect large-\Ro\ simulations to cause large dynamical changes (\Fref{SIRsim}b), leading to larger variation in expected (and thus realized) case numbers. At first glance, it is not clear what could balance the dynamical variation in susceptibles for different values of $\mathcal{R}_0$ to leave the variance constant. 
 \begin{figure}
 \centering
 \includegraphics{kappa/rcHist.Rout.pdf}
 \caption{
 \textbf{Heterogeneity in the number of secondary cases over an entire epidemic is independent of $\mathcal{R}_0$.}
-Realized secondary cases collected from individual-based simulations of the SIR model for $\mathcal{R}_0 = 1.5, 3,$ and $8$ (from left to right respectively); $\mu$ and $\kappa$ denote the mean and dispersion of the secondary case distribution obtained from a single realization, conditional on a large outbreak occurring, of the individual-based model for each $\mathcal{R}_0$, in a population of $10^4$ individuals with one initial infectious individual. 
+Realized secondary cases collected from individual-based simulations of the SIR model for $\mathcal{R}_0 = 1.5, 3,$ and $8$ (from left to right respectively); $\mu$ and $\kappa$ denote the mean and dispersion of the realized case distribution obtained from a single realization, conditional on a large outbreak occurring, of the individual-based model for each $\mathcal{R}_0$, in a population of $10^4$ individuals with one initial infectious individual. 
 }\flab{RcAverage}
 \end{figure}
 
@@ -54,7 +54,7 @@ Realized secondary cases collected from individual-based simulations of the SIR 
 
 \jd{We need to be very careful about the word cohort (and I am going to run out of time for the night). I am thinking that we should call the two-ended cohorts “interval cohorts” and the one-ended cohorts “forward cohorts”. Will try to add a few examples.}
 \subsection{Heterogeneity in secondary cases over an epidemic is independent of $\mathcal{R}_0$ -- Proof}
-We set out to explore the basis for the observation that both the mean and variance of secondary cases in the stochastically realized SIR model appear to be invariant with respect to changes in $\mathcal{R}_0$. To do so, consider the deterministic ODE-based SIR model:
+We set out to explore the basis for the observation that both the mean and variance of realized cases in the stochastically realized SIR model appear to be invariant with respect to changes in $\mathcal{R}_0$. To do so, consider the deterministic ODE-based SIR model:
 \begin{align}
     \begin{split}
         \frac{dx}{dt} &= - \mathcal{R}_0 x(t)y(t), \\
@@ -63,7 +63,7 @@ We set out to explore the basis for the observation that both the mean and varia
 \end{align}
 where $x(t)$ is the proportion of susceptible individuals at time $t$, $y(t)$ is the proportion of infectious individuals at time $t$, $t$ is time measured in units of the mean infectious duration and $\mathcal{R}_0$ is the basic reproduction number.
 
-To calculate the mean and variance of the secondary cases, we must track infections and the infectors that caused those infections. While individual infectors and cases cannot be tracked in this deterministic SIR model, we can track cohorts of infectors and the cases caused by them. By calculating the weighted moments of the secondary cases per case caused by each cohort, we can obtain the heterogeneity of the secondary cases per case over the epidemic. 
+To calculate the mean and variance of the secondary cases, we must track infections and the infectors that caused those infections. While individual infectors and cases cannot be tracked in this deterministic SIR model, we can track cohorts of infectors and the cases caused by them. By calculating the weighted moments of the expected cases per case caused by each cohort, we can obtain the heterogeneity of the secondary cases per case over the epidemic. 
 
 We define an “interval cohort”, $c_{\tau_1,\tau_2}$, as the fraction of infectors that become infectious at time $\tau_1$ and stop being infectious at time $\tau_2$. The weight of the cohort, $w(\tau_1,\tau_2)$ is the number of infectors in the cohort. The number of infectors who become infectious at time $\tau_1$ is $i(\tau_1) = \mathcal{R}_0 x(\tau_1)y(\tau_1)$. This quantity, $i(\tau_1)$ is also called the incidence of infection, or the number of new cases that appear at time $\tau_1$. Only a fraction of these infectors remain infectious till time $\tau_2$. If $f(\cdot)$ denotes the probability density function of the infectious period, then
 \begin{equation}
@@ -74,12 +74,12 @@ Now that we have the cohort weights, we need to calculate the number of cases pe
 \begin{equation}
     \hat{C}(\tau_1, \tau_2) = \int_{\tau_1}^{\tau_2} \mathcal{R}_0 x(t') w(\tau_1,\tau_2)dt' = \mathcal{R}_0 w(\tau_1, \tau_2) \int_{\tau_1}^{\tau_2} x(t')dt'
 \end{equation}
-Then the secondary cases per case caused by cohort $c_{\tau_1,\tau_2}$ is
+Then the expected cases per case caused by cohort $c_{\tau_1,\tau_2}$ is
 \begin{equation}
     C(\tau_1,\tau_2) = \frac{\hat{C}(\tau_1,\tau_2)}{w(\tau_1,\tau_2)} = \mathcal{R}_0 \int_{\tau_1}^{\tau_2} x(t')dt' 
 \end{equation}
 
-Now that we have the number of secondary cases per case and weight for each cohort, we can calculate the moments of the secondary cases per case distribution. The $k^{\text{th}}$ weighted raw moment of the secondary cases per case distribution, $C_k$ is
+Now that we have the number of expected cases per case and weight for each cohort, we can calculate the moments of the distribution of expected secondary cases. The $k^{\text{th}}$ weighted raw moment of this distribution is
 \begin{equation}
     C_k = \iint\limits_{0 < \tau_1 \leq \tau_2 < \infty}  d\tau_1 d\tau_2 \; w(\tau_1,\tau_2) (C(\tau_1 ,\tau_2))^k,
 \end{equation}
@@ -91,16 +91,15 @@ With this definition of the raw moments, the assertion that the heterogeneity of
 \jd{Took out the intuition for $C_1=C_0$. We already have it above, and it will disappoint some people who will start off think we're going to get to the interesting part of the result.}
 We calculate the moments and confirm the result in section S1.1. We note that the result follows from two assumptions: the distribution of the infectious duration is memoryless, and the initial infectious cohort is infinitesimal, i.e., $y(t = 0) \rightarrow 0$. The first assumption is true for the canonical SIR model where the duration of infectious periods is exponentially distributed. We discuss relaxing the second assumption in section S1.2.
 
-\subsection{Balance between within- and between-cohort components of the variance in secondary cases explains why heterogeneity in secondary cases is independent of $\mathcal{R}_0$}
+\subsection{Balance between within- and between-cohort components of the variance in secondary cases illuminates how heterogeneity in secondary cases is independent of $\mathcal{R}_0$}
 
-To understand why the heterogeneity in secondary cases over the course of the epidemic is independent of $\mathcal{R}_0$, we divide the population into “forward cohorts” of individuals infected at the same time, and use variance partitioning to split the heterogeneity into two components: a within-cohort component and a between-cohort component. Individuals within a cohort have access to the same susceptible pool initially but have differences in their secondary case counts as a result of their exponentially distributed infectious periods. Thus, the within-cohort variance can be \ag{mainly?} attributed to inherent individual-level differences in infectious periods. On the other hand, cohorts that arise at different times have realized differences in the number of secondary cases due to differences in the size of the susceptible pools that they have access to during the period in which the cohorts are active. It is important to note that both early and late cohorts have the same distributions of infectious periods and expected infectiousness but due to the depletion of the susceptible pool over time (\Fref{SIRsim}b), later cohorts, on average, have much lower realized secondary cases than earlier cohorts. Thus, the between-cohort variance can be attributed to susceptible depletion. 
-
+To understand why the heterogeneity in secondary cases over the course of the epidemic is independent of $\mathcal{R}_0$, we divide the population into “forward cohorts” of individuals infected at the same time, and use variance partitioning to split the heterogeneity into two components: a within-cohort component and a between-cohort component. Individuals within a cohort have access to the same susceptible pool initially but have differences in their secondary case counts as a result of their exponentially distributed infectious periods. Individuals in different forward cohorts also differ in the starting size of the susceptible pools that they have access to. It is important to note that both early and late cohorts have the same distributions of infectious periods and expected infectiousness but due to the depletion of the susceptible pool over time (\Fref{SIRsim}b), later cohorts, on average, have much lower secondary cases than earlier cohorts. Thus, the between-cohort variance can be attributed to susceptible depletion. 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics{kappa/TimeEvolutionStack.Rout.pdf}
+\includegraphics{kappa/TimeEvolutionStack.Rout.pdf}
 	\caption{ \textbf{Deterministic SIR dynamics and within- and between-cohort variance}
- (a) Incidence and (b) proportion of susceptibles as functions of time, for different values of $\mathcal{R}_0$. The epidemics were modeled using an ODE-based SIR model. Time is in units of mean infectious period.(c) Stacked bar plot showing within- and between-cohort components of variance in secondary cases calculated numerically for different values of $\mathcal{R}_0$. \ag{Should we change y-label for panel c to variance in secondary case-per-case?}}
+ (a) Incidence and (b) proportion of susceptibles as functions of time, for different values of $\mathcal{R}_0$. The epidemics were modeled using an ODE-based SIR model. Time is in units of mean infectious period.(c) Stacked bar plot showing within- and between-cohort components of variance in secondary cases calculated numerically for different values of $\mathcal{R}_0$. }
 \flab{SIRsim}
 	%\flab{CohortVarRc}
 \end{figure}
@@ -113,7 +112,7 @@ Numerical calculation of the within- and between-cohort components of the varian
 	\caption{
 		\textbf{Expected infectiousness of cohorts.} 
 		(a) Cohort size as a function of time of infection. Time has been normalized by the time of peak incidence ($t_{\mathrm{peak}}$). Individuals infected during $[t,t+\Delta t]$ form a cohort, with $\Delta t = 2\times 10^{-4}t_{\mathrm{{peak}}}$.
-		(b) Mean expected infectiousness for each cohort. \ag{Should I change it to mean number of secondary  cases per case?}
+		(b) Mean expected cases per case for each cohort. 
         (c) Within-cohort dispersion of secondary cases.
         Note that the x-axes refer to cohort infection time. For example, the mean expected infectiousness at $t/t_{\text{peak}} = 1$ does not refer to the mean expected infectiousness at time $t = t_{\text{peak}}$. Instead, it refers to the mean expected infectiousness of the cohort that became infectious at time $t = t_{\text{peak}}$.
 		%	In an
