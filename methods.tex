@@ -1,9 +1,12 @@
 %Author: AA partly adapted from main.tex on the Overleaf
 \section{Materials and Methods}
 
-\subsection{Individual-based SIR model}
-\tg{@Azadeh: Please feel free to edit if I've gotten any details wrong}
-We simulate an individual-based SIR model for a population of $N$ individuals. Each individual is assigned a numerical index and an intrinsic recovery time, drawn from an exponential distribution with a mean recovery time $\frac{1}{\gamma}$. Next, we assign contact events. The time interval between successive contact events is drawn from an exponential distribution with a mean $\beta N$, where $\beta$ is the transmission rate. The individuals involved in each contact event are identified by picking 2 numbers between 1 and $N$, without replacement. The numbers picked correspond to the numerical indices of the individuals that come in contact. Throughout the simulation, we track the infection status and number of infections caused by each individual. We initialize the simulation by assigning a single random individual to be infectious. We then run the simulation forward in time, with successive time steps corresponding to successive contact events. At each timestep, we assess the infection status of each individual based on when they became infectious and their assigned recovery time. Then, we check the infection statuses of the individuals that come in contact: if both individuals are susceptible or infectious or recovered/removed, we move to the next timestep. If one of the individuals is recovered/removed, we move to the next timestep. However, if one of the individuals is infectious and the other is susceptible, we change the infection status of the susceptible individual to infectious, noting the time when they become infectious. We also increase the tally of secondary cases caused by the infectious individual by 1. Then, we move to the next timestep. We stop this process when no more infectious individuals remain. 
+\subsection{Individual-based SIR model} \label{subsec_ibm}
+\tg{@Azadeh: Please feel free to edit if I've gotten any details wrong} \ag{@ Tapan: I edited it based on my understanding of Michael's code} 
+We simulate an individual-based SIR model for a population of $N$ individuals. Each individual is assigned a numerical index and an intrinsic recovery time, drawn from an exponential distribution with a mean recovery time $\frac{1}{\gamma}$. Next, we build a matrix containing all $N(N-1)/2$ possible pairs of individuals. We then generate a pool of contact events by randomly sampling pairs from this matrix with replacement. 
+The contact rate for each pair of individual is $\beta/(N-1)$,  where $\beta$ is the transmission rate. Therefore, the total rate of contact events in the population is obtained by multiplying this rate by the total number of possible pairs, $N(N-1)/2$, giving $\beta N/2$.
+The time interval between successive contact events is then drawn from an exponential distribution with a rate $\beta N/2$,
+ Throughout the simulation, we track the infection status and number of infections caused by each individual. We initialize the simulation by assigning a single random individual to be infectious. We then run the simulation forward in time, with successive time steps corresponding to successive contact events. At each timestep, we assess the infection status of each individual based on when they became infectious and their assigned recovery time. Then, we check the infection statuses of the individuals that come in contact: if both individuals are susceptible or infectious or recovered/removed, we move to the next timestep. If one of the individuals is recovered/removed, we move to the next timestep. However, if one of the individuals is infectious and the other is susceptible, we change the infection status of the susceptible individual to infectious, noting the time when they become infectious. We also increase the tally of secondary cases caused by the infectious individual by 1. Then, we move to the next timestep. We stop this process when either no infectious or no susceptible individuals  remain. 
 
 \subsection{Deterministic SIR model}
 The deterministic ODE-based SIR model is:
@@ -39,8 +42,9 @@ Here $G(v,\Ro)$ is a geometric distribution with mean \Ro.
 The fraction of cases due to those caused more than $x$ cases equals $1-F_{\text{trans}}(x)$. 
 The population fraction of these individuals would be $1 - P(x)$, where $P(x)$ is the cumulative distribution function of a geometric distribution with mean \Ro~evaluated at $x$.
 
-To generate panel (a) of \fref{RcAverage}, we used the individual based simulation and computed the number of secondary cases in a population of size $10^4$. 
-The simulation was initiated with infectious individual.
+To generate \fref{RcAverage}, we used the individual-based SIR model as detailed in Section
+\ref{subsec_ibm} and computed the number of secondary cases in a population of size $10^4$. 
+
 
 We used a simple deterministic SIR model to compute the mean and variance of expected infectiousness \Rx{c}.
 First, we scaled time by the mean infectious period, so the resulting SIR model then depends on one parameter, \Ro. 
