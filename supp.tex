@@ -201,7 +201,7 @@ In what follows, we revisit the results while relaxing this assumption.
  \begin{equation} \label{eq_incidence_dirac}
  	i(t)=y_0\delta(t), \quad t\in(-\infty,0].
  \end{equation}
-Here, $y_0$ denotes the proportion of the population that were infectious at the beginning of the outbreak,  $ t = 0$, and $\delta(t)$ denotes the Dirac delta distribution \cite{champredon2018equivalence}.
+Here, $y_0$ denotes the proportion of the population that were infectious at the beginning of the outbreak,  $ t = 0$, and $\delta(t)$ denotes the Dirac delta distribution \cite{Champredon2018}.
  Then, accounting for the initially infectious cohort, the proportion of the infected population that is infectious is given by
 $$
 y(t) = \int_{0^-}^t d\tau\; i(\tau)F(t-\tau).
@@ -259,113 +259,113 @@ The second term in the left hand side is the twice the expected infectiousness o
 Here we notice that the second raw moment is $\emph{dependent}$ on the key parameter \Ro. However, 
  as the initial cohort size $y_0$ tends to zero,  (i) the difference between $C_2$ and twice the first raw moment $2C_1$ approaches zero; (ii) the total weight $C_0$~ \eqref{eq_C0_y0_notnegligible} converges to $C_1$. Thus, \autoref{eq:target} is retrieved.
 
-\subsection{Moments of time-truncated case reproductive number at some point during the outbreak}
-In this section, we derive moments of truncated $C$ at an arbitrary time $j \in (0,\infty)$ during the outbreak, while accounting for the initially infectious cohort.
-Up to time $j$, the expected realized infections due to individuals who became infectious  at time $\tau \in (0,j)$ and remain infectious at time $j$ is the equal to that of the individuals who became infectious at $\tau$ and recovered at time $j$.
-To capture this observation, we introduce a modified infectious period density function, denoted $g_j(t,\tau)$.
-This function equals the true infectious period density  function  $f(t-\tau)$  for $t < j$, and assigns the remaining probability mass to  $t = j$. Hence, its cumulative distribution function reaches $1$ at $j$, i.e.,
-\begin{equation*}
-	g_j(t, \tau) = \begin{cases}
-		f(t - \tau), &\text{if }t<j \text{ and } \tau < j, \\
-		F(j - \tau)\delta(t-j), & \text{if }t \geq j \text{ and } \tau < j, \\
-		0, & \text{otherwise}.
-	\end{cases}
-\end{equation*}
-Accordingly, we
- redefine the size of the cohort that became infectious at time $\tau$ and recovered at time $\rho$ as follows
-\begin{equation*}
-	w_j(\tau, \rho) = i(\tau) g_j(\rho,\tau), \quad \tau \leq \rho \leq j. 
-\end{equation*}
-Note that $\int_t^j g_j(s,\tau)\;ds$ is equal to $F(t-\tau)$ for $t< j$.
-It is straightforward to show that the total weight $C_0(j)$ equals 
-\begin{equation} \label{C0_truncated}
-C_0(j) = \int_{0^{-}}^{j} dt\;i(t).
-\end{equation}
-The first raw moment $C_1(j)$ is given by
-\begin{align*}
-	C_1(j) &= \int_{0^-}^j d\tau \int_\tau^j d\rho \; w_j(\tau,\rho) C(\tau,\rho)\\
-	 &= \Ro\int_{0^-}^j d\tau \int_\tau^j d\rho \; i(\tau) g_j(\rho,\tau) \int_\tau^{\rho} dt x(t)\\
-	& =\Ro\int_{0^-}^j d\tau \int_\tau^j dt \; i(\tau) x(t) \int_t^j d\rho g_j(\rho,\tau)\\
-	&=  \Ro\int_{0^-}^j d\tau \int_\tau^j dt \; i(\tau)x(t) F(t-\tau)\\
-	&=  \Ro\int_0^j dt x(t) \int_{0^-}^t d\tau i(\tau)F(t-\tau)\\
-	&= \Ro\int_{0^-}^jdt\; x(t) y(t)\\
-	&=\int_{0^+}^j dt\; i(t).
-\end{align*}
-Now we move on to calculate  $C_2(j)$.
-We have
-\begin{align*}
-	C_2(j) &= \int_{0^-}^j d\tau \int_\tau^j d\rho \; w_j(\tau,\rho) \left(C(\tau,\rho)\right)^2\\
-	&= \Ro^2 \int_{0^-}^j d\tau \int_\tau^j d\rho \;i(\tau) g_j(\rho,\tau) \left(\int_\tau^{\rho} dt x(t)\right)^2 \\
-	& = 2\Ro^2 \int_{0^-}^j ds\;x(s)\int_{0^-}^s dt \; x(t) \int_{0^-}^t d\tau\;i(\tau)F(s-t)F(t-\tau)\\
-	& = 2\Ro^2 \int_{0^-}^j ds\;x(s)\int_{0^-}^s dt \; x(t)y(t) F(s-t)\\
-	& = 2\Ro^2 \int_{0^-}^j ds\;x(s) \int_{0^-}^s dt\; x(t)y(t) F(s-t) 
-\end{align*}
-Following the same steps as in Section~\ref{sec_initial_y0}, we obtain
-\begin{align*}	
-C_2(j)	& = 2\Ro \int_{0^-}^j ds\;x(s) \int_{0^+}^s dt\; i(t)F(s-t)
-\\
- &= 2\Ro \int_{0^-}^j ds\;x(s) \left( y(s) - y_0F(s) \right) \\
-	& = 2\Ro \int_{0^-}^j ds\;x(s)y(s) -2\Ro y_0 \int_{0^-}^j ds\;x(s) F(s) \\
-	& = 2 \int_{0^+}^j i(s)\;ds -2\Ro y_0\int_{0}^j ds\;x(s) F(s)\\
-	&= 2 C_1(j) -2\Ro y_0\int_{0}^j ds\;x(s) F(s). 
-\end{align*}
- The second raw moment is $\emph{dependent}$ on the key parameter \Ro. However, 
-as the initial cohort size $y_0$ tends to zero, the difference between $C_2(j)$ and twice the truncated first raw moment $2C_1(j)$ approaches zero.
-Apart from  taking the limit of $C_2(j)$ as the initial infectious cohort size tends to zero,  if we increase the truncation time $j$, the value of $C_1(j)$ increase, thereby  the deviation introduced by $y_0$ diminishes.
-Hence, $\kappa(j)$, defined as
-\begin{align*}
-	\kappa(j) = \frac{C_0(j) C_2(j)}{C_1^2(j)} - 1,
-\end{align*}
-approaches 1.
+%\subsection{Moments of time-truncated case reproductive number at some point during the outbreak}
+%In this section, we derive moments of truncated $C$ at an arbitrary time $j \in (0,\infty)$ during the outbreak, while accounting for the initially infectious cohort.
+%Up to time $j$, the expected realized infections due to individuals who became infectious  at time $\tau \in (0,j)$ and remain infectious at time $j$ is the equal to that of the individuals who became infectious at $\tau$ and recovered at time $j$.
+%To capture this observation, we introduce a modified infectious period density function, denoted $g_j(t,\tau)$.
+%This function equals the true infectious period density  function  $f(t-\tau)$  for $t < j$, and assigns the remaining probability mass to  $t = j$. Hence, its cumulative distribution function reaches $1$ at $j$, i.e.,
+%\begin{equation*}
+%	g_j(t, \tau) = \begin{cases}
+%		f(t - \tau), &\text{if }t<j \text{ and } \tau < j, \\
+%		F(j - \tau)\delta(t-j), & \text{if }t \geq j \text{ and } \tau < j, \\
+%		0, & \text{otherwise}.
+%	\end{cases}
+%\end{equation*}
+%Accordingly, we
+% redefine the size of the cohort that became infectious at time $\tau$ and recovered at time $\rho$ as follows
+%\begin{equation*}
+%	w_j(\tau, \rho) = i(\tau) g_j(\rho,\tau), \quad \tau \leq \rho \leq j. 
+%\end{equation*}
+% Note that $\int_t^j g_j(s,\tau)\;ds$ is equal to $F(t-\tau)$ for $t< j$.
+% It is straightforward to show that the total weight $C_0(j)$ equals 
+% \begin{equation} \label{C0_truncated}
+% C_0(j) = \int_{0^{-}}^{j} dt\;i(t).
+% \end{equation}
+% The first raw moment $C_1(j)$ is given by
+% \begin{align*}
+% 	C_1(j) &= \int_{0^-}^j d\tau \int_\tau^j d\rho \; w_j(\tau,\rho) C(\tau,\rho)\\
+% 	 &= \Ro\int_{0^-}^j d\tau \int_\tau^j d\rho \; i(\tau) g_j(\rho,\tau) \int_\tau^{\rho} dt x(t)\\
+% 	& =\Ro\int_{0^-}^j d\tau \int_\tau^j dt \; i(\tau) x(t) \int_t^j d\rho g_j(\rho,\tau)\\
+% 	&=  \Ro\int_{0^-}^j d\tau \int_\tau^j dt \; i(\tau)x(t) F(t-\tau)\\
+% 	&=  \Ro\int_0^j dt x(t) \int_{0^-}^t d\tau i(\tau)F(t-\tau)\\
+% 	&= \Ro\int_{0^-}^jdt\; x(t) y(t)\\
+% 	&=\int_{0^+}^j dt\; i(t).
+% \end{align*}
+% Now we move on to calculate  $C_2(j)$.
+% We have
+% \begin{align*}
+% 	C_2(j) &= \int_{0^-}^j d\tau \int_\tau^j d\rho \; w_j(\tau,\rho) \left(C(\tau,\rho)\right)^2\\
+% 	&= \Ro^2 \int_{0^-}^j d\tau \int_\tau^j d\rho \;i(\tau) g_j(\rho,\tau) \left(\int_\tau^{\rho} dt x(t)\right)^2 \\
+% 	& = 2\Ro^2 \int_{0^-}^j ds\;x(s)\int_{0^-}^s dt \; x(t) \int_{0^-}^t d\tau\;i(\tau)F(s-t)F(t-\tau)\\
+% 	& = 2\Ro^2 \int_{0^-}^j ds\;x(s)\int_{0^-}^s dt \; x(t)y(t) F(s-t)\\
+% 	& = 2\Ro^2 \int_{0^-}^j ds\;x(s) \int_{0^-}^s dt\; x(t)y(t) F(s-t) 
+% \end{align*}
+% Following the same steps as in Section~\ref{sec_initial_y0}, we obtain
+% \begin{align*}	
+% C_2(j)	& = 2\Ro \int_{0^-}^j ds\;x(s) \int_{0^+}^s dt\; i(t)F(s-t)
+% \\
+%  &= 2\Ro \int_{0^-}^j ds\;x(s) \left( y(s) - y_0F(s) \right) \\
+% 	& = 2\Ro \int_{0^-}^j ds\;x(s)y(s) -2\Ro y_0 \int_{0^-}^j ds\;x(s) F(s) \\
+% 	& = 2 \int_{0^+}^j i(s)\;ds -2\Ro y_0\int_{0}^j ds\;x(s) F(s)\\
+% 	&= 2 C_1(j) -2\Ro y_0\int_{0}^j ds\;x(s) F(s). 
+% \end{align*}
+%  The second raw moment is $\emph{dependent}$ on the key parameter \Ro. However, 
+% as the initial cohort size $y_0$ tends to zero, the difference between $C_2(j)$ and twice the truncated first raw moment $2C_1(j)$ approaches zero.
+% Apart from  taking the limit of $C_2(j)$ as the initial infectious cohort size tends to zero,  if we increase the truncation time $j$, the value of $C_1(j)$ increase, thereby  the deviation introduced by $y_0$ diminishes.
+% Hence, $\kappa(j)$, defined as
+% \begin{align*}
+% 	\kappa(j) = \frac{C_0(j) C_2(j)}{C_1^2(j)} - 1,
+% \end{align*}
+% approaches 1.
 \newpage
-\section*{Supplementary Figures}
-%\begin{figure}[H]
-	%\centering
-	%\includegraphics{kappa/withinChk.Rout.pdf}
-	%\caption{\textbf{The cohorts' variance in expected infectiousness evolves as the outbreak unfolds.} %Panel a shows cohort size as a function of the time of infection. Panel b shows the cohorts' variance in %expected infectiousness at four different cutoff times: $0.8,0.9,1$, and $1.1$ times the time of peak %incidence, $t_{\mathrm{peak}}$. For a simple epidemic with $\Ro = 1.5$, $t_{\mathrm{peak}} \approx %38.16$, measured in the unit of infectious period.
-%			}
-%	\flab{CohortVarRc}
-%\end{figure}
+% \section*{Supplementary Figures}
+% %\begin{figure}[H]
+% 	%\centering
+% 	%\includegraphics{kappa/withinChk.Rout.pdf}
+% 	%\caption{\textbf{The cohorts' variance in expected infectiousness evolves as the outbreak unfolds.} %Panel a shows cohort size as a function of the time of infection. Panel b shows the cohorts' variance in %expected infectiousness at four different cutoff times: $0.8,0.9,1$, and $1.1$ times the time of peak %incidence, $t_{\mathrm{peak}}$. For a simple epidemic with $\Ro = 1.5$, $t_{\mathrm{peak}} \approx %38.16$, measured in the unit of infectious period.
+% %			}
+% %	\flab{CohortVarRc}
+% %\end{figure}
 
 
 
-\begin{figure}
-	\centering
-	\includegraphics{kappa/PlotTrunc.Rout.pdf}
-	\captionsetup{width=1.28\linewidth}
-	\caption{
-		\textbf{Mean and heterogeneity of realized infections evolve over the course of an outbreak.}
-		Panel a: The size of the cohort infected during $[t,t+\Delta t]$ is given by the area under the incidence curve over that interval, where
-		 $\Delta t = 10^{-4}t_{\mathrm{peak}}$ and $t_{\mathrm{peak}}$ denotes the time of peak incidence.
-		 Panel b: At each time point, mean realized infections is computed using the cases had occurred by that time.
-		Early in the outbreak, the initial infectious cohort constitutes a relatively large fraction of all infected population up to that time. Because we assume a ``jump-start'' outbreak, the infectors of this initial cohort are not included, and hence, the mean realized infections is noticeably below one.
-		At early times   ($t \lesssim  0.4t_{\mathrm{peak}}$), 
-		epidemics with larger \Ro~have accumulated fewer infections,
-		making the effect of this omission more pronounced. 
-		Panel c:  $\kappa$ of realized infections increases over the course of the outbreak.
-		For epidemics with smaller \Ro, a given fraction of $t_{\mathrm{peak}}$ corresponds to a longer elapsed time, allowing differences in infectious periods among cohort members to become apparent. As a result, the within component of $\kappa$  (measured as the ratio of within-cohort variance to the squared mean) is larger than that for epidemics with larger \Ro.
-		For panels b and c, the simulation was truncated at each plotted time.  
-		The y-axis value at each time point was computed by assigning to each cohort their realized number of infections up to that time.
-		In all panels, time units measured in the mean infectious period are rescaled relative to the peak time, so that peak incidence occurs at $(t/t_{\mathrm{peak}}=1)$. The outbreaks were modeled using standardized compartmental models.
-	}\flab{Naive}
-\end{figure}
-%It's also possible to imagine realistic approaches between these two extremes, but let's put that off for later. There are methods (including by Dushoff and Park) for thinking about this at the cohort level, but not with a focus on individual variation. Maybe this is just for discussion. OR maybe we should also look at plots where we go up until a particular time and only count recovered infectors.
-%\ag{Does \fref{timeCutoffV1} do what we are looking for?}
+% \begin{figure}
+% 	\centering
+% 	\includegraphics{PlotTrunc.Rout.pdf}
+% 	\captionsetup{width=1.28\linewidth}
+% 	\caption{
+% 		\textbf{Mean and heterogeneity of realized infections evolve over the course of an outbreak.}
+% 		Panel a: The size of the cohort infected during $[t,t+\Delta t]$ is given by the area under the incidence curve over that interval, where
+% 		 $\Delta t = 10^{-4}t_{\mathrm{peak}}$ and $t_{\mathrm{peak}}$ denotes the time of peak incidence.
+% 		 Panel b: At each time point, mean realized infections is computed using the cases had occurred by that time.
+% 		Early in the outbreak, the initial infectious cohort constitutes a relatively large fraction of all infected population up to that time. Because we assume a ``jump-start'' outbreak, the infectors of this initial cohort are not included, and hence, the mean realized infections is noticeably below one.
+% 		At early times   ($t \lesssim  0.4t_{\mathrm{peak}}$), 
+% 		epidemics with larger \Ro~have accumulated fewer infections,
+% 		making the effect of this omission more pronounced. 
+% 		Panel c:  $\kappa$ of realized infections increases over the course of the outbreak.
+% 		For epidemics with smaller \Ro, a given fraction of $t_{\mathrm{peak}}$ corresponds to a longer elapsed time, allowing differences in infectious periods among cohort members to become apparent. As a result, the within component of $\kappa$  (measured as the ratio of within-cohort variance to the squared mean) is larger than that for epidemics with larger \Ro.
+% 		For panels b and c, the simulation was truncated at each plotted time.  
+% 		The y-axis value at each time point was computed by assigning to each cohort their realized number of infections up to that time.
+% 		In all panels, time units measured in the mean infectious period are rescaled relative to the peak time, so that peak incidence occurs at $(t/t_{\mathrm{peak}}=1)$. The outbreaks were modeled using standardized compartmental models.
+% 	}\flab{Naive}
+% \end{figure}
+% %It's also possible to imagine realistic approaches between these two extremes, but let's put that off for later. There are methods (including by Dushoff and Park) for thinking about this at the cohort level, but not with a focus on individual variation. Maybe this is just for discussion. OR maybe we should also look at plots where we go up until a particular time and only count recovered infectors.
+% %\ag{Does \fref{timeCutoffV1} do what we are looking for?}
 
-\begin{figure}
-	\centering
-	\includegraphics{kappa/RcTimePlotVaryingPeak.Rout.pdf}
-		\captionsetup{width=1.28\linewidth}
-	\caption{
-		\textbf{Forecasts of the distribution of total infections evolve as an outbreak unfolds.}
-		Panel a: Cohort size infected during $[t,t+\Delta t]$ is measured as the area under the incidence curve over this interval ($\Delta t =10^{-4}t_{\mathrm{peak}}$, where $t_{\mathrm{peak}}$ is the time of peak incidence).
-		Panel b: At each time point,  mean total infections is calculated across all cohorts infected by that time,
-		including the initial infectious cohort of size $10^{-9}$, while accounting for each cohort's subsequent contributions to disease transmission.
-			Cohorts infected earlier have higher mean total infections, with values depending on key parameter \Ro. 
-		As incidence increases, later-infected cohorts, who have larger sizes,
-		encounter susceptible pool depletion, decreasing mean total infections. 
-		After the peak, the susceptible population size stabilizes, and the mean  approaches one. 
-		Panel c: The within-cohort component of the squared coefficient of variation $\kappa_{with}$, measured as the ratio of the within-cohort variance to the squared mean, is the main driver of heterogeneity among the early-infected cohorts, as they experience a similar size of susceptible population. As the outbreak unfolds, the decline in the susceptible population drives between-cohort variation, which is more pronounced in epidemics with large \Ro.  $\kappa$ reaches its minimum around the outbreak peak; large cohorts experience sharp depletion of susceptibles, and the impact of variation in recovery time fades, declining the variance, and hence $\kappa$. After the peak, $\kappa$ rebounds to one. 
-		For panels b and c, the y-axis value at each plotted time point was quantified using only the cohorts that had been infected up to that time. The outbreaks were modeled using standardized compartmental models.
-	}\flab{timeCutoff}
-\end{figure}
+% \begin{figure}
+% 	\centering
+% 	\includegraphics{kappa/RcTimePlotVaryingPeak.Rout.pdf}
+% 		\captionsetup{width=1.28\linewidth}
+% 	\caption{
+% 		\textbf{Forecasts of the distribution of total infections evolve as an outbreak unfolds.}
+% 		Panel a: Cohort size infected during $[t,t+\Delta t]$ is measured as the area under the incidence curve over this interval ($\Delta t =10^{-4}t_{\mathrm{peak}}$, where $t_{\mathrm{peak}}$ is the time of peak incidence).
+% 		Panel b: At each time point,  mean total infections is calculated across all cohorts infected by that time,
+% 		including the initial infectious cohort of size $10^{-9}$, while accounting for each cohort's subsequent contributions to disease transmission.
+% 			Cohorts infected earlier have higher mean total infections, with values depending on key parameter \Ro. 
+% 		As incidence increases, later-infected cohorts, who have larger sizes,
+% 		encounter susceptible pool depletion, decreasing mean total infections. 
+% 		After the peak, the susceptible population size stabilizes, and the mean  approaches one. 
+% 		Panel c: The within-cohort component of the squared coefficient of variation $\kappa_{with}$, measured as the ratio of the within-cohort variance to the squared mean, is the main driver of heterogeneity among the early-infected cohorts, as they experience a similar size of susceptible population. As the outbreak unfolds, the decline in the susceptible population drives between-cohort variation, which is more pronounced in epidemics with large \Ro.  $\kappa$ reaches its minimum around the outbreak peak; large cohorts experience sharp depletion of susceptibles, and the impact of variation in recovery time fades, declining the variance, and hence $\kappa$. After the peak, $\kappa$ rebounds to one. 
+% 		For panels b and c, the y-axis value at each plotted time point was quantified using only the cohorts that had been infected up to that time. The outbreaks were modeled using standardized compartmental models.
+% 	}\flab{timeCutoff}
+% \end{figure}
