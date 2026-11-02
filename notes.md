@@ -1,4 +1,6 @@
 
+##### 2026 Nov 02 (Mon)
+
 ##### 2026 Feb 10 (Tue)
 
 Better introduction of our SIR framework? More clarity that we are:
