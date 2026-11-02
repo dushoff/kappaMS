@@ -38,7 +38,7 @@ output: $(final).op
 ######################################################################
 
 ## https://github.com/dushoff/kappaMS/blob/main/outputs/draft.pdf
-Sources +=  $(wildcard *.tex) add.bib draft.bib
+Sources +=  $(wildcard *.tex) add.bib
 ## draft.pdf: doc.tex draft.tex varBox.tex
 ## draft.pdf: doc.tex draft.tex
 ## draft.pdf: doc.tex draft.tex discussion.md
@@ -100,6 +100,8 @@ Ignore += library
 
 Sources += $(wildcard notes/*.md)
 main.reff.bib: | Bio.pip
+## Refresh the committed copy that draft.tex uses (collaborators don't need the pipeline)
+## main.reff.bib.op: main.rmu
 ## main.recs: main.rmu
 ## main.tags.pgr: main.rmu
 ## main.downloads: main.rmu
