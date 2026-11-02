@@ -25,7 +25,7 @@ Please let Jonathan know if you have any make-related problems. I keep trying to
 
 ## Bibliography
 
-It should work to add things manually to add.bib, or else to add identifiers to main.rmu. We should try to move to the `main` and not rely on manual, except for arxiv and web links, but this is not a high priority
+Feel free to add things to add.bib, even if it is empty. You are also free to try adding to main.rmu. JD will take responsibility for updating.
 
 ## Library
 
