@@ -40,6 +40,7 @@ output: $(final).op
 ## https://github.com/dushoff/kappaMS/blob/main/outputs/draft.pdf
 Sources +=  $(wildcard *.tex) add.bib draft.bib
 ## draft.pdf: doc.tex draft.tex varBox.tex
+## draft.pdf: doc.tex draft.tex
 ## draft.pdf: doc.tex draft.tex discussion.md
 
 Sources += quarto.mk
